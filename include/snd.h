@@ -29,7 +29,7 @@ enum Sfx {
         "RUSHINGH2O          ",
         "NULL                ",
         "ICECRACK1           ", // not sure where this is used in Mount Mayhem
-        "STAINEDGLASS        ", // Coventry Cove ruined church glass impact
+        "STAINEDGLASS        ", // Coventry / Wicked church glass impact
         "DIRTROAD            ",
         "GRAVELROAD          ",
         "METALSCRAPE         ",
@@ -131,7 +131,7 @@ enum Sfx {
         "MISSILESHOT         ", // Beetle Battle missile
         "MISSILEHIT          ", // unused?
         "MISSILEHIT1         ",
-        "LADYBUG             ",
+        "LADYBUG             ", // Beetle Battle ladybug pickup
         "FORCEFIELD          ", // Inferno Isle electric fence
         "HEALTH_GOOD1        ", // "Now ya kickin'!"
         "HEALTH_BAD          ", // "Oh no!" (Inferno Isle hut impact)
@@ -250,4 +250,5 @@ enum Sfx {
         "S_TALLYCOUNT        ", // tallying points for championship
         "V_CHAMPION          "  // "You're the champion!"
 };
+
 
