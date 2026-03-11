@@ -187,7 +187,7 @@ void func_80001A68(s32 arg0, s32 fileId) {
     }
 
     ptr = &D_8002D9B4[temp_v0].structPtr[fileId];
-    if (ptr->structPtr == 0) {
+    if (ptr->instanceCount == 0) {
         return;
     }
 
