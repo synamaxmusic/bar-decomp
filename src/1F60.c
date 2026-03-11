@@ -165,8 +165,8 @@ s32 func_800019B8(s32 arg0, s32 fileId) {
         return 0;
     }
     temp_v1 = &D_8002D9B4[ret].structPtr[fileId];
-    temp_v1->structPtr++;
-    if (temp_v1->structPtr == 1) {
+    temp_v1->instanceCount++;
+    if (temp_v1->instanceCount == 1) {
         temp_v1->ovlPtr = uvLoader(arg0, (s32) fileId);
     }
     return temp_v1->ovlPtr;
