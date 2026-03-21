@@ -422,7 +422,7 @@ toolchain:
 
 dependencies: tools
 	@make -C tools
-	@$(PYTHON) -m pip install -r tools/requirements-python.txt
+	@$(PYTHON) -m pip install -r requirements.txt
 
 torch:
 	@$(MAKE) -s -C $(TOOLS) torch
