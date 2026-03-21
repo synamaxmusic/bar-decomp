@@ -1,9 +1,6 @@
 [submodule "tools/asm-processor"]
 	path = tools/asm-processor
 	url = https://github.com/simonlindholm/asm-processor
-[submodule "tools/splat"]
-	path = tools/splat
-	url = https://github.com/ethteck/splat
 [submodule "tools/ultralib"]
 	path = tools/ultralib
 	url = https://github.com/decompals/ultralib.git
