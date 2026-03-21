@@ -422,7 +422,7 @@ toolchain:
 
 dependencies: tools
 	@make -C tools
-	@$(PYTHON) -m pip install -r tools/splat/requirements.txt #Install the splat dependencies
+	@$(PYTHON) -m pip install -r tools/requirements-python.txt
 
 torch:
 	@$(MAKE) -s -C $(TOOLS) torch
