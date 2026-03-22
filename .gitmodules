@@ -16,6 +16,3 @@
 [submodule "tools/decomp-permuter"]
 	path = tools/decomp-permuter
 	url = https://github.com/simonlindholm/decomp-permuter.git
-[submodule "tools/rabbitizer"]
-	path = tools/rabbitizer
-	url = https://github.com/Decompollaborate/rabbitizer
