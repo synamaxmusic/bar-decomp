@@ -67,7 +67,7 @@ gMemBlockHead = 0x8002DA60;
 gModuleCount = 0x8002DA78;
 gMemBlock = 0x80033770; // defined:true
 
-// 1F60
+// file_manager
 sFormFilesCount = 0x8002D9A0;
 fileDirectory = 0x8002D9A4;
 gFormTags = 0x8002D9B4;
