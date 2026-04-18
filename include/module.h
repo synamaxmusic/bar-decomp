@@ -16,6 +16,7 @@
 #include "uvsprt_rom.h"
 #include "uvtexture_rom.h"
 #include "intro.h"
+#include "splash.h"
 #define MODULE_ENTRY_POINT(func) __entrypoint_##func
 
 #endif /* BAR_MODULE_H */
