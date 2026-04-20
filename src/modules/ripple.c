@@ -2,7 +2,6 @@
 #include "common.h"
 #include "macros.h"
 #include "module.h"
-#include "global_exports.h"
 
 typedef struct Ripple_s {
     Mtx4F mtx;
@@ -11,33 +10,6 @@ typedef struct Ripple_s {
     f32 initSize;
     s32 active;
 } Ripple; // size = 0x50
-
-// uvgfxstate_rom exports
-typedef struct UnkStruct_80025C44_s {
-    char pad[0xC];
-    void (*unkC)(s32);
-    s32 pad10;
-    void (*unk14)(s32);
-    char pad18[0x38];
-    void (*unk50)(void);
-    void (*unk54)(void);
-} UnkStruct_80025C44;
-
-// uvcback_rom exports
-typedef struct UnkCbckExports_s {
-    char pad[0x10];
-    void (*unk10)(s32, void *, s32, s32);
-} UnkCbckExports;
-
-// uvchan_rom exports
-typedef struct UnkChanExports_s {
-    char pad[0x4];
-    void (*unk4)(s32, s32, void *, s32);
-} UnkChanExports;
-
-extern UnkCbckExports *gUvCbckExports;
-extern UnkChanExports *gUvChanExports;
-extern UnkStruct_80025C44 *gUvGfxStateExports;
 
 void __entrypoint_func_ripple_400604(Ripple_Exports *exports);
 void drawRipple(Ripple *ripple);

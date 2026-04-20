@@ -21,5 +21,6 @@
 #include "intro.h"
 #include "track7.h"
 #define MODULE_ENTRY_POINT(func) __entrypoint_##func
+#include "global_exports.h"
 
 #endif /* BAR_MODULE_H */

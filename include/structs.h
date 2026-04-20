@@ -149,4 +149,123 @@ typedef struct UnkStruct_80025CB0_s {
     void (*unk24)(void);
 } UnkStruct_80025CB0;
 
+typedef struct UnkStruct_80025C88_s {
+    s32 pad0;
+    void (*unk4)(s32, s32);
+} UnkStruct_80025C88;
+
+typedef struct UnkStruct_80025C2C_s {
+    /* 0x0 */ char pad0[8];
+    /* 0x8 */ f32 (*unk8)(f32);                     /* inferred */
+} UnkStruct_80025C2C;
+
+typedef struct UnkStruct_80025C44_s {
+    /* 0x00 */ char pad0[0xC];
+    /* 0x0C */ void (*unkC)(s32);                        /* inferred */
+    /* 0x10 */ void (*unk10)(s32);                       /* inferred */
+    /* 0x14 */ char pad14[0x3C];                    /* maybe part of unk10[0x10]? */
+    /* 0x50 */ void (*unk50)(void);                        /* inferred */
+    /* 0x50 */ void (*unk54)(void);                        /* inferred */
+} UnkStruct_80025C44;                               /* size = 0x54 */
+
+// uvgfxstate_rom exports
+typedef struct UnkStruct_80025C44_s {
+    char pad[0xC];
+    void (*unkC)(s32);
+    s32 pad10;
+    void (*unk14)(s32);
+    char pad18[0x38];
+    void (*unk50)(void);
+    void (*unk54)(void);
+} UnkStruct_80025C44;
+
+// uvcback_rom exports
+typedef struct UnkCbckExports_s {
+    char pad[0x10];
+    void (*unk10)(s32, void *, s32, s32);
+} UnkCbckExports;
+
+// uvchan_rom exports
+typedef struct UnkChanExports_s {
+    char pad[0x4];
+    void (*unk4)(s32, s32, void *, s32);
+} UnkChanExports;
+
+typedef struct UnkStruct_80025BD8_s {
+    char pad0[0x14];
+    void (*unk14)(f32);
+} UnkStruct_80025BD8;
+
+typedef struct UnkStruct_80025C54_s {
+    char pad0[0xC];
+    void (*unkC)(s32, f32);
+    u8 pad10[0x120 - 0x10];
+    s32 (*unk120)(s32);
+    s32 (*unk124)(s32);
+    s32 (*unk128)(s32, s32, f32);
+} UnkStruct_80025C54;
+
+typedef struct UnkStruct_80025C64_s {
+    char pad00[8];
+    void (*unk8)(s32, s32);
+    char pad68[0x64];
+    s32 (*unk70)(void);
+    s32 (*unk74)(s32);
+    void (*unk78)(s32, s32);
+} UnkStruct_80025C64;
+
+typedef struct UnkStruct_80025C84_s {
+    s32 pad0;
+    s32 (*unk4)(s32);
+} UnkStruct_80025C84;
+
+typedef struct UnkStruct_80025C90_s {
+    /* 0x00 */ char pad0[0x10];
+    /* 0x10 */ s32 (*unk10)(void);
+    /* 0x18 */ char pad14[0xC];                       /* maybe part of unk20[3]? */
+    /* 0x20 */ s32 (*unk20)(s32);                     /* inferred */
+    /* 0x24 */ char pad24[0x10];                    /* maybe part of unk20[5]? */
+    /* 0x34 */ void (*unk34)(s32);
+    /* 0x38 */ void (*unk38)(s32, s32);
+    /* 0x3C */ void (*unk3C)(s32);
+} UnkStruct_80025C90;                               /* size = 0x40 */
+
+typedef struct UnkStruct_8002CCB0_s {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+    s32 unk10;
+    s32 unk14;
+    s32 unk18;
+    s32 unk1C;
+    s32 unk20;
+} UnkStruct_8002CCB0;
+
+typedef struct UnkStruct_80025C88_s {
+    /* 0x00 */ void (*unk0)(void);                      /* inferred */
+    /* 0x04 */ void (*unk4)(s32, s32);
+} UnkStruct_80025C88;
+
+typedef struct UnkStruct_80025C78_s {
+    /* 0x00 */ void (*unk0)(void);                      /* inferred */
+    /* 0x04 */ void (*unk4)(s32, s32);
+               char pad8[0x34-0x8];
+               void (*unk34)(s32);
+               void (*unk38)(s32);
+               void (*unk3C)(s32);
+} UnkStruct_80025C78;
+
+typedef struct UnkStruct_80025C10_s {
+    /* 0x00 */ void (*unk0)(void);                      /* inferred */
+    /* 0x04 */ void (*unk4)(s32, s32);
+               char pad8[0x4C-0x8];
+               void (*unk4C)(s32, s32);
+} UnkStruct_80025C10;
+
+typedef struct UnkStruct_80025BE4_s {
+    char pad8[0x2C];
+    void (*unk2C)(void);                      /* inferred */
+} UnkStruct_80025BE4;
+
 #endif /* BAR_STRUCTS_H */

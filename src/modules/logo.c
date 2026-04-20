@@ -2,38 +2,11 @@
 #include "common.h"
 #include "module.h"
 
-typedef struct UnkStruct_80025C88_s {
-    s32 pad0;
-    void (*unk4)(s32, s32);
-} UnkStruct_80025C88;
-
-typedef struct UnkStruct_80025C2C_s {
-    /* 0x0 */ char pad0[8];
-    /* 0x8 */ f32 (*unk8)(f32);                     /* inferred */
-} UnkStruct_80025C2C;
-
-typedef struct UnkStruct_80025C44_s {
-    /* 0x00 */ char pad0[0xC];
-    /* 0x0C */ void (*unkC)(s32);                        /* inferred */
-    /* 0x10 */ void (*unk10)(s32);                       /* inferred */
-    /* 0x14 */ char pad14[0x3C];                    /* maybe part of unk10[0x10]? */
-    /* 0x50 */ void (*unk50)(void);                        /* inferred */
-    /* 0x50 */ void (*unk54)(void);                        /* inferred */
-} UnkStruct_80025C44;                               /* size = 0x54 */
-
 typedef struct LogoModule_Exports_s {
     void* func_logo_00400174;
     void* func_logo_0040017C;
     void* func_logo_00400184;
 } LogoModule_Exports;
-
-extern UnkStruct_80025C2C* gUvMathExports;
-extern UnkStruct_80025C44* gUvGfxStateExports;
-
-extern UnkStruct_80025C08* gUvGfxMgrExports;
-extern UnkStruct_80025C14* gUvSprtExports;
-extern UnkStruct_80025C74* gGameGuiExports;
-extern UnkStruct_80025C88* gScrnExports;
 
 void __entrypoint_func_logo_400000(LogoModule_Exports* arg0) ;
 //void uvSetFileDirOvlPtr(void*);
