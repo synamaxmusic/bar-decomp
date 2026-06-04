@@ -25,4 +25,6 @@ extern UnkStruct_80025BE8* gUvContExports;
 extern s32 gNoControllerStrings[];
 extern UvFont_Exports *gUvFontExports;
 extern UnkDobjExports* gUvDobjExports;
+extern UvCMidi_Exports* gUvCmidiExports;
+extern UvEmitter_Exports* gUvEmitterExports;
 #endif /* GLOBAL_EXPORTS_H */

@@ -1,4 +1,73 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
+#ifndef SND_H
+#define SND_H
+typedef struct Snd_Exports_s {
+    /* 0x00 */ void (*func_snd_004004F8)(void);
+    /* 0x04 */ void (*func_snd_004005C8)(void);
+    /* 0x08 */ void (*func_snd_00400750)(void);
+    /* 0x0C */ void (*func_snd_00400854)(void);
+    /* 0x10 */ void (*func_snd_0040094C)(void);
+    /* 0x14 */ void (*func_snd_00400A64)(void);
+    /* 0x18 */ void (*func_snd_00400B0C)(void);
+    /* 0x1C */ void (*func_snd_00400B54)(void);
+    /* 0x20 */ void (*func_snd_00400E90)(s32); // good
+    /* 0x24 */ void (*func_snd_00400EA0)(s32); // good
+    /* 0x28 */ void (*func_snd_00400EB4)(s8);  // good
+    /* 0x2C */ void (*func_snd_00400EC0)(void);
+    /* 0x30 */ void (*func_snd_00401038)(void);
+    /* 0x34 */ void (*func_snd_004012F4)(s16); // good
+    /* 0x38 */ void (*func_snd_00401304)(void);
+    /* 0x3C */ void (*func_snd_004013DC)(s32);
+    /* 0x40 */ void (*func_snd_00401434)(s32);
+    /* 0x44 */ void (*func_snd_00401474)(s32);
+    /* 0x48 */ f32 (*func_snd_004014B4)(void); // good
+    /* 0x4C */ f32 (*func_snd_004014C4)(void); // good
+    /* 0x50 */ void (*func_snd_004014D4)(s32); // good
+    /* 0x54 */ void (*func_snd_00401564)(void);
+    /* 0x58 */ void (*func_snd_00401650)(void);
+    /* 0x5C */ void (*func_snd_00401694)(void);
+    /* 0x60 */ void (*func_snd_00401800)(void);
+    /* 0x64 */ void (*func_snd_00401914)(void);
+    /* 0x68 */ void (*func_snd_00401A28)(void);
+    /* 0x6C */ void (*func_snd_00401AA8)(void);
+    /* 0x70 */ void (*func_snd_00401CDC)(void);
+    /* 0x74 */ void (*func_snd_00401D14)(void);
+    /* 0x78 */ void (*func_snd_00401D54)(void);
+    /* 0x7C */ void (*func_snd_00401DA0)(void);
+    /* 0x80 */ void (*func_snd_00401E08)(void);
+    /* 0x84 */ void (*func_snd_00401E70)(void);
+    /* 0x88 */ void (*func_snd_00401EB8)(void);
+    /* 0x8C */ void (*func_snd_00401F48)(void);
+    /* 0x90 */ void (*func_snd_00401FD8)(void);
+    /* 0x94 */ void (*func_snd_00402020)(void);
+    /* 0x98 */ void (*func_snd_00402084)(void);
+    /* 0x9C */ void (*func_snd_004020D0)(void);
+    /* 0xA0 */ void (*func_snd_0040211C)(void);
+    /* 0xA4 */ void (*func_snd_0040216C)(void);
+    /* 0xA8 */ void (*func_snd_0040221C)(void);
+    /* 0xAC */ void (*func_snd_004022D0)(void);
+    /* 0xB0 */ void (*func_snd_0040231C)(void);
+    /* 0xB4 */ f32 (*func_snd_00402368)(s32);
+    /* 0xB8 */ s32 (*func_snd_00402388)(s32);
+    /* 0xBC */ void (*func_snd_004023A8)(void);
+    /* 0xC0 */ void (*func_snd_004023D4)(void);
+    /* 0xC4 */ void* (*func_snd_004023F4)(s32);
+    /* 0xC8 */ void (*func_snd_00402424)(void);
+    /* 0xCC */ void (*func_snd_00402504)(void);
+    /* 0xD0 */ void (*func_snd_0040252C)(void);
+    /* 0xD4 */ u8 (*func_snd_004025EC)(s32);
+    /* 0xD8 */ void (*func_snd_004025FC)(s32);
+    /* 0xDC */ void (*func_snd_0040260C)(void);
+    /* 0xE0 */ void (*func_snd_0040264C)(s32);
+    /* 0xE4 */ void (*func_snd_00402660)(void);
+    /* 0xE8 */ void (*func_snd_004027E8)(void);
+    /* 0xEC */ void (*func_snd_0040284C)(void);
+    /* 0xF0 */ void (*func_snd_00402B40)(void);
+    /* 0xF4 */ void (*func_snd_00402DC0)(void);
+    /* 0xF8 */ void (*func_snd_00402E1C)(void);
+} Snd_Exports;
+
+// sfx IDs 0x0B-0x0E are mislabeled in the debug menu
 enum SfxId {
         BIGWTRFALL8,
         WATER5,
@@ -28,7 +97,7 @@ enum SfxId {
         FRZH2OFALL,             // frozen waterfall impact
         STALACTITES,            // repurposed for Wicked Woods bridge breakable
         RUSHINGH2O,             // rushing water
-        NULL,
+        SFX_NULL,               // Renamed to "SFX_NULL" so IDO won't complain
         ICECRACK1,              // Mount Mayhem frozen waterfall shortcut
         STAINEDGLASS,           // Coventry / Wicked church glass impact
         DIRTROAD,
@@ -505,3 +574,5 @@ enum Sfx {
         "S_TALLYCOUNT        ", // tallying points for championship
         "V_CHAMPION          "  // "You're the champion!"
 };
+
+#endif /* SND_H */
