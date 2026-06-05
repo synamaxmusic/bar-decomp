@@ -72,6 +72,7 @@ extern void func_snd_00402B40(void);
 extern void func_snd_00402DC0(void);
 extern void func_snd_00402E1C(void);
 
+extern s32 D_snd_004064BC;
 extern f32 D_snd_004045D0;
 extern f32 D_snd_004045D4;
 
@@ -245,7 +246,9 @@ void func_snd_0040094C(s16 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_004014C4.s")
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_004014D4.s")
+void func_snd_004014D4(s32 arg0) {
+    D_snd_004064BC = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_004014E0.s")
 
