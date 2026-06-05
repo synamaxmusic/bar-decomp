@@ -321,6 +321,7 @@ enum SfxId {
         V_CHAMPION              // "You're the champion!"
 };
 
+/* 
 // strings for debug menu
 enum Sfx {
         "BIGWTRFALL8         ",
@@ -574,5 +575,6 @@ enum Sfx {
         "S_TALLYCOUNT        ", // tallying points for championship
         "V_CHAMPION          "  // "You're the champion!"
 };
+*/
 
 #endif /* SND_H */
