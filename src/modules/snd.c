@@ -22,7 +22,7 @@ extern void func_snd_00400B0C(void);
 extern void func_snd_00400B54(void);
 extern void func_snd_00400E90(s32);
 extern void func_snd_00400EA0(s32);
-extern void func_snd_00400EB4(s8);
+extern void func_snd_00400EB4(s32);
 extern void func_snd_00400EC0(void);
 extern void func_snd_00401038(void);
 extern void func_snd_004012F4(s16);
