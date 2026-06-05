@@ -337,5 +337,7 @@ void func_snd_004014D4(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00402DC0.s")
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00402E1C.s")
+void func_snd_00402E1C(void) {
+}
+
 
