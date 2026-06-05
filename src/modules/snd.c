@@ -16,7 +16,7 @@ extern void func_snd_004004F8(void);
 extern void func_snd_004005C8(void);
 extern void func_snd_00400750(void);
 extern void func_snd_00400854(void);
-extern void func_snd_0040094C(void);
+extern void func_snd_0040094C(s16, s32);
 extern void func_snd_00400A64(void);
 extern void func_snd_00400B0C(void);
 extern void func_snd_00400B54(void);
