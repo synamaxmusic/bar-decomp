@@ -56,7 +56,7 @@ extern void func_snd_004022D0(void);
 extern void func_snd_0040231C(void);
 extern f32 func_snd_00402368(s32);
 extern s32 func_snd_00402388(s32);
-extern void func_snd_004023A8(void);
+extern s32 func_snd_004023A8(s16);
 extern void func_snd_004023D4(void);
 extern void func_snd_00402424(void);
 extern void func_snd_00402504(void);
@@ -71,6 +71,9 @@ extern void func_snd_0040284C(void);
 extern void func_snd_00402B40(void);
 extern void func_snd_00402DC0(void);
 extern void func_snd_00402E1C(void);
+
+extern f32 D_snd_004045D0;
+extern f32 D_snd_004045D4;
 
 typedef struct UnkStruct_snd_00406198_s {
     /* 0x00 */ u8 unk0;                             /* inferred */
@@ -191,7 +194,22 @@ void __entrypoint_func_snd_400000(Snd_Exports* arg0) {
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00400854.s")
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_0040094C.s")
+void func_snd_0040094C(s16 arg0, s32 arg1) {
+    u8 ret;
+
+    ret = gUvEmitterExports->func_uvemitter_rom_004006FC();
+    gUvEmitterExports->func_uvemitter_rom_00400E60(ret, arg1);
+    if (ret == 0xFF) {
+        return;
+    }
+        
+    gUvEmitterExports->func_uvemitter_rom_004007B4(ret, arg0);
+    gUvEmitterExports->func_uvemitter_rom_00400D48(ret, (f32) func_snd_004023A8(arg0) / D_snd_004045D0);
+    gUvEmitterExports->func_uvemitter_rom_00400EBC(ret, 5, 0x30, 0);
+    gUvEmitterExports->func_uvemitter_rom_00400BE8(ret, func_snd_004014B4() * D_snd_004045D4);
+    gUvEmitterExports->func_uvemitter_rom_00401010(ret);
+}
+
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00400A64.s")
 
