@@ -2,6 +2,7 @@
 #include "common.h"
 #include "module.h"
 #include "global_exports.h"
+#include "snd.h"
 
 void __entrypoint_func_snd_400000(Snd_Exports *arg0);
 void func_snd_004013DC(s32);                           /* extern */
