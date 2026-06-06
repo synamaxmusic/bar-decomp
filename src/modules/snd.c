@@ -276,7 +276,9 @@ void func_snd_00401304(u8 arg0) {
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00401474.s")
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_004014B4.s")
+f32 func_snd_004014B4(void) {
+    return 1.0f;
+}
 
 f32 func_snd_004014C4(void) {
     return 1.0f;
