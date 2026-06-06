@@ -347,6 +347,7 @@ f32 func_snd_00402368(s32 arg0) {
 
 s32 func_snd_004023A8(s32 arg0) {
     return D_snd_00406198[arg0].unk8;
+}
 
 UnkStruct_snd_00406198* func_snd_004023D4(s32 arg0) {
     return D_snd_00406198[arg0].unk18;
