@@ -356,7 +356,13 @@ UnkStruct_snd_00406198* func_snd_004023D4(s32 arg0) {
     return D_snd_00406198[arg0].unk18;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_004023F4.s")
+UnkStruct_snd_00406198* func_snd_004023F4(s32 arg0) {
+    if (arg0 >= 0) {
+        return D_snd_00406198[arg0].unk0;
+    }
+    return 0;
+}
+
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00402424.s")
 
