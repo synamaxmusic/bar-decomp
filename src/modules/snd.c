@@ -88,6 +88,7 @@ extern void func_snd_00402E1C(void);
 extern u8 D_snd_00406168;
 extern u16 D_snd_00406190;
 extern u8 D_snd_00406194;
+extern u8 D_snd_004063B8;
 extern u8 D_snd_004064B8;
 extern s32 D_snd_004064BC;
 extern f32 D_snd_004045D0;
@@ -359,7 +360,10 @@ UnkStruct_snd_00406198* func_snd_004023D4(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_0040252C.s")
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_004025EC.s")
+u8 func_snd_004025EC(s32 arg0) {
+    return *(&D_snd_004063B8 + arg0);
+}
+
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_004025FC.s")
 
