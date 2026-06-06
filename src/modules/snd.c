@@ -246,7 +246,10 @@ void func_snd_00400EB4(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00401038.s")
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_004012F4.s")
+void func_snd_004012F4(u16 arg0) {
+    D_snd_00406190 = arg0;
+}
+
 
 void func_snd_00401304(u8 arg0) {
     switch (arg0) {
