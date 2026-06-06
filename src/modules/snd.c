@@ -7,11 +7,12 @@
 typedef struct UnkStruct_snd_00406198_s {
     /* 0x00 */ u8 unk0;                             /* inferred */
     /* 0x01 */ u8 unk1;                             /* inferred */
-    /* 0x02 */ u8 pad2[0x0C-0x02];
+    /* 0x02 */ u8 pad2[0x08-0x02];
+    /* 0x08 */ f32 unk8;
     /* 0x0C */ f32 unkC;
     /* 0x10 */ char pad[0x8];
     /* 0x18 */ u8 unk18;
-} UnkStruct_snd_00406198;    
+} UnkStruct_snd_00406198;      
 
 UnkStruct_snd_00406198* func_snd_004023F4(s32);
 extern UnkStruct_snd_00406198* D_snd_00406198;
@@ -68,7 +69,7 @@ extern void func_snd_004022D0(void);
 extern void func_snd_0040231C(void);
 extern f32 func_snd_00402368(s32);
 extern s32 func_snd_00402388(s32);
-extern s32 func_snd_004023A8(s16);
+extern s32 func_snd_004023A8(s32);
 extern UnkStruct_snd_00406198* func_snd_004023D4(s32);
 extern void func_snd_00402424(void);
 extern void func_snd_00402504(void);
@@ -339,7 +340,8 @@ f32 func_snd_00402368(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00402388.s")
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_004023A8.s")
+s32 func_snd_004023A8(s32 arg0) {
+    return D_snd_00406198[arg0].unk8;
 
 UnkStruct_snd_00406198* func_snd_004023D4(s32 arg0) {
     return D_snd_00406198[arg0].unk18;
