@@ -38,7 +38,7 @@ extern void func_snd_00400EA0(s32);
 extern void func_snd_00400EB4(s32);
 extern void func_snd_00400EC0(void);
 extern void func_snd_00401038(void);
-extern void func_snd_004012F4(s16);
+extern void func_snd_004012F4(u16);
 extern void func_snd_00401304(u8);
 extern f32 func_snd_004014B4(void);
 extern f32 func_snd_004014C4(void);
