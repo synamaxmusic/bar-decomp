@@ -26,7 +26,7 @@ extern void func_snd_00400EB4(s32);
 extern void func_snd_00400EC0(void);
 extern void func_snd_00401038(void);
 extern void func_snd_004012F4(s16);
-extern void func_snd_00401304(void);
+extern void func_snd_00401304(u8);
 extern f32 func_snd_004014B4(void);
 extern f32 func_snd_004014C4(void);
 extern void func_snd_004014D4(s32);
@@ -60,7 +60,7 @@ extern s32 func_snd_004023A8(s16);
 extern void func_snd_004023D4(void);
 extern void func_snd_00402424(void);
 extern void func_snd_00402504(void);
-extern void func_snd_0040252C(void);
+extern void func_snd_0040252C(u8);
 extern u8 func_snd_004025EC(s32);
 extern void func_snd_004025FC(s32);
 extern void func_snd_0040260C(void);
@@ -73,6 +73,8 @@ extern void func_snd_00402DC0(void);
 extern void func_snd_00402E1C(void);
 
 extern u8 D_snd_00406168;
+extern u16 D_snd_00406190;
+extern u8 D_snd_00406194;
 extern u8 D_snd_004064B8;
 extern s32 D_snd_004064BC;
 extern f32 D_snd_004045D0;
@@ -240,7 +242,28 @@ void func_snd_00400EB4(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_004012F4.s")
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00401304.s")
+void func_snd_00401304(u8 arg0) {
+    switch (arg0) {
+    case 0:
+    case 3:
+        func_snd_0040252C(0);
+        if (D_snd_00406194 != 0) {
+            gUvCmidiExports->func_uvcmidi_rom_00400940();
+        }
+
+        gUvCmidiExports->func_uvcmidi_rom_0040062C(D_snd_00406190);
+        gUvCmidiExports->func_uvcmidi_rom_004006F4();
+        D_snd_00406194 = 1;
+        break;
+    case 2:
+    case 1:
+        if (D_snd_00406194 != 0) {
+            gUvCmidiExports->func_uvcmidi_rom_00400940();
+            D_snd_00406194 = 0;
+        }
+    }
+    
+}
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_004013DC.s")
 
