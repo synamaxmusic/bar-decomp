@@ -4,6 +4,15 @@
 #include "global_exports.h"
 #include "snd.h"
 
+typedef struct UnkStruct_snd_00406198_s {
+    /* 0x00 */ u8 unk0;                             /* inferred */
+    /* 0x01 */ u8 unk1;                             /* inferred */
+    /* 0x02 */ char pad2[0x1A];                     /* maybe part of unk1[0x1B]? */
+} UnkStruct_snd_00406198;                           /* size = 0x1C */
+
+UnkStruct_snd_00406198* func_snd_004023F4(s32);
+extern UnkStruct_snd_00406198* D_snd_00406198;
+
 void __entrypoint_func_snd_400000(Snd_Exports *arg0);
 void func_snd_004013DC(s32);                           /* extern */
 void func_snd_00401434(s32);                           /* extern */
@@ -57,7 +66,7 @@ extern void func_snd_0040231C(void);
 extern f32 func_snd_00402368(s32);
 extern s32 func_snd_00402388(s32);
 extern s32 func_snd_004023A8(s16);
-extern void func_snd_004023D4(void);
+extern UnkStruct_snd_00406198* func_snd_004023D4(s32);
 extern void func_snd_00402424(void);
 extern void func_snd_00402504(void);
 extern void func_snd_0040252C(u8);
@@ -79,14 +88,6 @@ extern u8 D_snd_004064B8;
 extern s32 D_snd_004064BC;
 extern f32 D_snd_004045D0;
 extern f32 D_snd_004045D4;
-
-typedef struct UnkStruct_snd_00406198_s {
-    /* 0x00 */ u8 unk0;                             /* inferred */
-    /* 0x01 */ u8 unk1;                             /* inferred */
-    /* 0x02 */ char pad2[0x1A];                     /* maybe part of unk1[0x1B]? */
-} UnkStruct_snd_00406198;                           /* size = 0x1C */
-
-UnkStruct_snd_00406198* func_snd_004023F4(s32);
 
 void __entrypoint_func_snd_400000(Snd_Exports* arg0) {
     s32 var_v0;    
@@ -335,7 +336,9 @@ void func_snd_004014D4(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_004023A8.s")
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_004023D4.s")
+UnkStruct_snd_00406198* func_snd_004023D4(s32 arg0) {
+    return D_snd_00406198[arg0].unk18;
+}
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_004023F4.s")
 
