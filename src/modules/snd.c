@@ -5,9 +5,11 @@
 #include "snd.h"
 
 typedef struct UnkStruct_snd_00406198_s {
-    /* 0x00 */ u8 unk0;                             /* inferred */
+    /* 0x00 */ s32 unk0;                             /* inferred */
     /* 0x01 */ u8 unk1;                             /* inferred */
-    /* 0x02 */ char pad2[0x1A];                     /* maybe part of unk1[0x1B]? */
+    /* 0x02 */ char pad2[0x18-0x02];                     /* maybe part of unk1[0x1B]? */
+    /* 0x18 */ u8 unk18;
+    /* 0x19 */ char pad19[0x1C-0x19]; 
 } UnkStruct_snd_00406198;                           /* size = 0x1C */
 
 UnkStruct_snd_00406198* func_snd_004023F4(s32);
