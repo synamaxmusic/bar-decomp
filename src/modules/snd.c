@@ -32,6 +32,11 @@ typedef struct UnkSnd_004064F0_s {
     /* 0x27 */ char pad27[1];
 } UnkSnd_004064F0;  
 
+typedef struct UnkSnd_00402504_s{
+    f32 unk0;
+    u8 unk4;
+} UnkSnd_00402504;
+
 extern f32 D_snd_00404604;
 UnkStruct_snd_00406198* func_snd_004023F4(s32);
 extern UnkStruct_snd_00406198_2* D_snd_00406198;
@@ -391,7 +396,14 @@ UnkStruct_snd_00406198* func_snd_004023F4(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00402424.s")
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00402504.s")
+void func_snd_00402504(UnkSnd_00402504* arg0) {
+    if (arg0 == NULL) {
+        *(s32*)0 = 0;
+        return;
+    }
+    arg0->unk4 = 0xFF;
+    arg0->unk0 = -1.0f;
+}
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_0040252C.s")
 
