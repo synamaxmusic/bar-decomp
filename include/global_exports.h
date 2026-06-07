@@ -27,4 +27,6 @@ extern UvFont_Exports *gUvFontExports;
 extern UnkDobjExports* gUvDobjExports;
 extern UvCMidi_Exports* gUvCmidiExports;
 extern UvEmitter_Exports* gUvEmitterExports;
+extern UvChannelExports* gUvChanExports;
+extern UvEar_Rom_Exports* gUvEarExports;
 #endif /* GLOBAL_EXPORTS_H */

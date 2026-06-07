@@ -23,8 +23,20 @@ typedef struct UnkStruct_snd_00406198_2 {
     /* 0x18 */ u8 unk18;
 } UnkStruct_snd_00406198_2;
 
+typedef struct UnkSnd_004064F0_s {
+    /* 0x00 */ f32 unk0;                            /* inferred */
+    /* 0x04 */ char pad4[0x1C];                     /* maybe part of unk0[8]? */
+    /* 0x20 */ s32 unk20;                           /* inferred */
+    /* 0x24 */ s16 unk24;
+    /* 0x26 */ u8 unk26;                            /* inferred */
+    /* 0x27 */ char pad27[1];
+} UnkSnd_004064F0;  
+
+extern f32 D_snd_00404604;
 UnkStruct_snd_00406198* func_snd_004023F4(s32);
 extern UnkStruct_snd_00406198_2* D_snd_00406198;
+extern UnkSnd_004064F0 D_snd_004064F0[];
+extern UnkSnd_004064F0 D_snd_004064C8[];
 
 void __entrypoint_func_snd_400000(Snd_Exports *arg0);
 void func_snd_004013DC(s32);                           /* extern */
@@ -52,7 +64,7 @@ extern void func_snd_00401304(u8);
 extern f32 func_snd_004014B4(void);
 extern f32 func_snd_004014C4(void);
 extern void func_snd_004014D4(s32);
-extern void func_snd_00401564(void);
+extern void func_snd_00401564(u8);
 extern void func_snd_00401650(void);
 extern void func_snd_00401694(void);
 extern void func_snd_00401800(void);
@@ -86,8 +98,8 @@ extern void func_snd_0040252C(u8);
 extern u8 func_snd_004025EC(s32);
 extern void func_snd_004025FC(s32);
 extern void func_snd_0040260C(void);
-extern void func_snd_0040264C(s32);
-extern void func_snd_00402660(void);
+extern void func_snd_0040264C(void);
+extern void func_snd_00402660(s32);
 extern void func_snd_004027E8(void);
 extern void func_snd_0040284C(void);
 extern void func_snd_00402B40(void);
@@ -390,7 +402,34 @@ u8 func_snd_004025EC(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_0040264C.s")
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00402660.s")
+void func_snd_00402660(s32 arg0) {
+    s32 count;
+    s32 i;
+    s32 j;
+    s32 spDC[32];
+    s32 sp5C[32];
+
+    func_snd_0040264C();
+    count = gUvEmitterExports->func_uvemitter_rom_00402754(spDC, sp5C);
+    
+    for (i = 0; i < count; i++) {
+        if (arg0 == spDC[i]) {
+            for (j = 1; j < 40; j++) {
+                if (D_snd_004064F0[j].unk24 == spDC[i]) {
+                    gUvEmitterExports->func_uvemitter_rom_00400BE8(j, 0.0f);
+                    gUvEmitterExports->func_uvemitter_rom_004010CC(j);
+                    func_snd_00401564(j);
+                } else {
+                    if (gUvEmitterExports->func_uvemitter_rom_00400834(j) == spDC[i]) {
+                        gUvEmitterExports->func_uvemitter_rom_00400BE8(j, 0.0f);
+                        gUvEmitterExports->func_uvemitter_rom_004010CC(j);
+                        gUvEmitterExports->func_uvemitter_rom_0040075C(j);
+                    }
+                }
+            } 
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_004027E8.s")
 
