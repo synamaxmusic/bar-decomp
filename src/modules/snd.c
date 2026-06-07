@@ -253,7 +253,9 @@ void func_snd_0040094C(s16 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00400DDC.s")
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00400E90.s")
+void func_snd_00400E90(s32 arg0) {
+    *(&D_snd_004064B8 + arg0) = 0;
+}
 
 void func_snd_00400EA0(s32 arg0) {
     *(&D_snd_004064B8 + arg0) = 1;
@@ -401,7 +403,10 @@ void func_snd_004025FC(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_0040260C.s")
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_0040264C.s")
+void func_snd_0040264C(s32 arg0) {
+    *(&D_snd_004063B8 + arg0) = 1;
+}
+
 
 void func_snd_00402660(s32 arg0) {
     s32 count;
