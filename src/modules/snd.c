@@ -16,7 +16,7 @@ typedef struct UnkStruct_snd_00406198_s {
 
 typedef struct UnkStruct_snd_00406198_2 {
     /* 0x00 */ UnkStruct_snd_00406198* unk0;
-    /* 0x02 */ u8 pad4[4];
+    /* 0x02 */ s32 unk4;
     /* 0x08 */ f32 unk8;
     /* 0x0C */ f32 unkC;
     /* 0x10 */ char pad[0x8];
@@ -369,7 +369,9 @@ f32 func_snd_00402368(s32 arg0) {
     return D_snd_00406198[arg0].unkC;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00402388.s")
+s32 func_snd_00402388(s32 arg0) {
+    return D_snd_00406198[arg0].unk4;
+}
 
 s32 func_snd_004023A8(s32 arg0) {
     return D_snd_00406198[arg0].unk8;
