@@ -54,6 +54,7 @@ UnkStruct_snd_00406198* func_snd_004023F4(s32);
 extern UnkStruct_snd_00406198_2* D_snd_00406198;
 extern UnkSnd_004064F0 D_snd_004064F0[];
 extern UnkSnd_004064F0 D_snd_004064C8[];
+extern UnkSnd_004064F0 D_snd_004064D0[];
 
 void __entrypoint_func_snd_400000(Snd_Exports *arg0);
 void func_snd_004013DC(s32);                           /* extern */
@@ -88,7 +89,7 @@ extern void func_snd_00401800(void);
 extern void func_snd_00401914(void);
 extern s32 func_snd_00401A28(void*);
 extern u8 func_snd_00401AA8(UnkStruct_snd_00401AA8*, s32, s32, s32);
-extern void func_snd_00401CDC(void);
+extern void func_snd_00401CDC(UnkSnd_00402504*);
 extern void func_snd_00401D14(void);
 extern void func_snd_00401D54(void);
 extern void func_snd_00401DA0(void);
@@ -115,7 +116,7 @@ extern void func_snd_0040252C(u8);
 extern u8 func_snd_004025EC(s32);
 extern void func_snd_004025FC(s32);
 extern void func_snd_0040260C(void);
-extern void func_snd_0040264C(void);
+extern void func_snd_0040264C(s32);
 extern void func_snd_00402660(s32);
 extern void func_snd_004027E8(void);
 extern void func_snd_0040284C(void);
@@ -475,7 +476,7 @@ void func_snd_00402660(s32 arg0) {
     s32 spDC[32];
     s32 sp5C[32];
 
-    func_snd_0040264C();
+    func_snd_0040264C(arg0);
     count = gUvEmitterExports->func_uvemitter_rom_00402754(spDC, sp5C);
     
     for (i = 0; i < count; i++) {
