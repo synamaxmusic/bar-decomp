@@ -15,8 +15,12 @@ typedef struct UnkStruct_snd_00406198_s {
 } UnkStruct_snd_00406198;      
 
 typedef struct UnkStruct_snd_00406198_2 {
-    UnkStruct_snd_00406198* unk0;
-    u8 pad4[0x18];
+    /* 0x00 */ UnkStruct_snd_00406198* unk0;
+    /* 0x02 */ u8 pad4[4];
+    /* 0x08 */ f32 unk8;
+    /* 0x0C */ f32 unkC;
+    /* 0x10 */ char pad[0x8];
+    /* 0x18 */ u8 unk18;
 } UnkStruct_snd_00406198_2;
 
 UnkStruct_snd_00406198* func_snd_004023F4(s32);
