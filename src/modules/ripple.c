@@ -36,7 +36,7 @@ typedef struct UnkChanExports_s {
 } UnkChanExports;
 
 extern UnkCbckExports *gUvCbckExports;
-extern UnkChanExports *gUvChanExports;
+//extern UnkChanExports *gUvChanExports;
 extern UnkStruct_80025C44 *gUvGfxStateExports;
 
 void __entrypoint_func_ripple_400604(Ripple_Exports *exports);
@@ -141,7 +141,7 @@ void addRipple(Mtx4F *mtx, f32 initSize) {
 void func_ripple_004005A0(s32 arg0) {
     s32 sp1C;
 
-    gUvChanExports->unk4(arg0, 6, &sp1C, 0);
+    gUvChanExports->func_uvchannel_rom_00400288(arg0, 6, &sp1C, 0);
     if (sp1C != 0) {
         gUvCbckExports->unk10(sp1C, drawRipples, 0, 0xD2);
     }
