@@ -14,8 +14,13 @@ typedef struct UnkStruct_snd_00406198_s {
     /* 0x18 */ u8 unk18;
 } UnkStruct_snd_00406198;      
 
+typedef struct UnkStruct_snd_00406198_2 {
+    UnkStruct_snd_00406198* unk0;
+    u8 pad4[0x18];
+} UnkStruct_snd_00406198_2;
+
 UnkStruct_snd_00406198* func_snd_004023F4(s32);
-extern UnkStruct_snd_00406198* D_snd_00406198;
+extern UnkStruct_snd_00406198_2* D_snd_00406198;
 
 void __entrypoint_func_snd_400000(Snd_Exports *arg0);
 void func_snd_004013DC(s32);                           /* extern */
