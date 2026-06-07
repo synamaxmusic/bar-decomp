@@ -87,8 +87,8 @@ extern void func_snd_00401650(void);
 extern s32 func_snd_00401694(void*, s32, s32, s32); 
 extern void func_snd_00401800(void);
 extern void func_snd_00401914(void);
-extern s32 func_snd_00401A28(void*);
-extern u8 func_snd_00401AA8(UnkStruct_snd_00401AA8*, s32, s32, s32);
+extern s32 func_snd_00401A28(UnkSnd_00402504*);
+extern u8 func_snd_00401AA8(UnkSnd_00402504*, s32, s32, s32);
 extern void func_snd_00401CDC(UnkSnd_00402504*);
 extern void func_snd_00401D14(void);
 extern void func_snd_00401D54(void);
@@ -119,7 +119,7 @@ extern void func_snd_0040260C(void);
 extern void func_snd_0040264C(s32);
 extern void func_snd_00402660(s32);
 extern void func_snd_004027E8(void);
-extern void func_snd_0040284C(void);
+extern void func_snd_0040284C(s32);
 extern void func_snd_00402B40(void);
 extern void func_snd_00402DC0(void);
 extern void func_snd_00402E1C(void);
@@ -347,7 +347,7 @@ void func_snd_004014D4(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00401A28.s")
 
-u8 func_snd_00401AA8(UnkStruct_snd_00401AA8* arg0, s32 arg1, s32 arg2, s32 arg3) {
+u8 func_snd_00401AA8(UnkSnd_00402504* arg0, s32 arg1, s32 arg2, s32 arg3) {
     if (arg0 == NULL) {
         return 0U;
     }
@@ -379,7 +379,7 @@ u8 func_snd_00401AA8(UnkStruct_snd_00401AA8* arg0, s32 arg1, s32 arg2, s32 arg3)
 }
 
 void func_snd_00401CDC(UnkSnd_00402504* arg0) {
-    if (func_snd_00401A28() != 0) {
+    if (func_snd_00401A28(arg0) != 0) {
         func_snd_00401564(arg0->unk4);
         func_snd_00402504(arg0);
     }
