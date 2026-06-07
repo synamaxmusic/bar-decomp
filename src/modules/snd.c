@@ -415,7 +415,7 @@ void func_snd_00402660(s32 arg0) {
     for (i = 0; i < count; i++) {
         if (arg0 == spDC[i]) {
             for (j = 1; j < 40; j++) {
-                if (D_snd_004064F0[j].unk24 == spDC[i]) {
+                if (D_snd_004064C8[j].unk24 == spDC[i]) {
                     gUvEmitterExports->func_uvemitter_rom_00400BE8(j, 0.0f);
                     gUvEmitterExports->func_uvemitter_rom_004010CC(j);
                     func_snd_00401564(j);
