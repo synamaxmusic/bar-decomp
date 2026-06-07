@@ -395,8 +395,9 @@ u8 func_snd_004025EC(s32 arg0) {
     return *(&D_snd_004063B8 + arg0);
 }
 
-
-#pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_004025FC.s")
+void func_snd_004025FC(s32 arg0) {
+    *(&D_snd_004063B8 + arg0) = 0;
+}
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_0040260C.s")
 
