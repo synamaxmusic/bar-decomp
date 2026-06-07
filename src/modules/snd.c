@@ -24,18 +24,30 @@ typedef struct UnkStruct_snd_00406198_2 {
 } UnkStruct_snd_00406198_2;
 
 typedef struct UnkSnd_004064F0_s {
-    /* 0x00 */ f32 unk0;                            /* inferred */
-    /* 0x04 */ char pad4[0x1C];                     /* maybe part of unk0[8]? */
+    /* 0x00 */ f32 unk0;     
+               f32 unk4;
+               f32 unk8;
+    /* 0x0C */ char padC[0x4];                     /* maybe part of unk0[8]? */
+               s32 unk14;
+               s32 unk18;
+               char pad1C[0x4];
+               u8 unk1D;
+               u8 unk1F;
     /* 0x20 */ s32 unk20;                           /* inferred */
     /* 0x24 */ s16 unk24;
     /* 0x26 */ u8 unk26;                            /* inferred */
     /* 0x27 */ char pad27[1];
-} UnkSnd_004064F0;  
+} UnkSnd_004064F0;                                  /* size = 0x28 */
 
 typedef struct UnkSnd_00402504_s{
     f32 unk0;
     u8 unk4;
 } UnkSnd_00402504;
+
+typedef struct UnkStruct_snd_00401AA8_s {
+    s32 pad0;
+    u8 unk4;
+} UnkStruct_snd_00401AA8;
 
 extern f32 D_snd_00404604;
 UnkStruct_snd_00406198* func_snd_004023F4(s32);
@@ -71,11 +83,11 @@ extern f32 func_snd_004014C4(void);
 extern void func_snd_004014D4(s32);
 extern void func_snd_00401564(u8);
 extern void func_snd_00401650(void);
-extern void func_snd_00401694(void);
+extern s32 func_snd_00401694(void*, s32, s32, s32); 
 extern void func_snd_00401800(void);
 extern void func_snd_00401914(void);
-extern s32 func_snd_00401A28(void);
-extern void func_snd_00401AA8(void);
+extern s32 func_snd_00401A28(void*);
+extern u8 func_snd_00401AA8(UnkStruct_snd_00401AA8*, s32, s32, s32);
 extern void func_snd_00401CDC(void);
 extern void func_snd_00401D14(void);
 extern void func_snd_00401D54(void);
@@ -334,7 +346,36 @@ void func_snd_004014D4(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00401A28.s")
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00401AA8.s")
+u8 func_snd_00401AA8(UnkStruct_snd_00401AA8* arg0, s32 arg1, s32 arg2, s32 arg3) {
+    if (arg0 == NULL) {
+        return 0U;
+    }
+    if (arg0->unk4 == 0) {
+        *(s32*)0 = 0; // fault
+    }
+    if (func_snd_00401A28(arg0) == 0) {
+        if (func_snd_00401694(arg0, arg1, arg2, arg3) == 0xFF) {
+            return 0xFFU;
+        }
+    } else if (D_snd_004064D0[arg0->unk4].unk1F == 0) {
+        return arg0->unk4;
+    } else if (func_snd_004023D4(arg1) != 0) {
+        return arg0->unk4;
+    }
+    
+    if (arg1 >= 0xFF) {
+        return 0xFFU;
+    }
+    
+    gUvEmitterExports->func_uvemitter_rom_004007B4(arg0->unk4, D_snd_004064D0[arg0->unk4].unk1D);
+    gUvEmitterExports->func_uvemitter_rom_00400EBC(arg0->unk4, 5, D_snd_004064D0[arg0->unk4].unk14, 2, 1000.0f, 1, 0.0f, 0);
+    gUvEmitterExports->func_uvemitter_rom_00400BE8(arg0->unk4, D_snd_004064D0[arg0->unk4].unk8);
+    gUvEmitterExports->func_uvemitter_rom_00400CA8(arg0->unk4, D_snd_004064D0[arg0->unk4].unk4);
+    gUvEmitterExports->func_uvemitter_rom_00400D48(arg0->unk4, D_snd_004064D0[arg0->unk4].unk0);
+    gUvEmitterExports->func_uvemitter_rom_00400E60(arg0->unk4, D_snd_004064D0[arg0->unk4].unk18);
+
+    return arg0->unk4;
+}
 
 void func_snd_00401CDC(UnkSnd_00402504* arg0) {
     if (func_snd_00401A28() != 0) {
