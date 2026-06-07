@@ -458,7 +458,53 @@ void func_snd_00402660(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_004027E8.s")
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_0040284C.s")
+void func_snd_0040284C(s32 arg0) {
+    s32 i;
+    s32 j;
+    s32 sp164;
+    s32 spE4[32];
+    s32 sp64[32];
+    f32 temp_fv0;
+    sp164 = gUvEmitterExports->func_uvemitter_rom_00402754(spE4, sp64);
+    for (i = 0; i < sp164; i++) {
+        if (arg0 == spE4[i]) {
+            for (j = 1; j < 40; j++) {
+                if (D_snd_004064C8[j].unk24 == spE4[i]) {
+                    while (gUvEmitterExports->func_uvemitter_rom_00400C5C(j) > 0.0f) {
+                        temp_fv0 = gUvEmitterExports->func_uvemitter_rom_00400C5C(j) - 0.1f;
+                        if (temp_fv0 < 0.0f) {
+                            temp_fv0 = 0.0f;
+                        } else if (temp_fv0 > 1.0f) {
+                            temp_fv0 = 1.0f;
+                        }
+                        gUvEmitterExports->func_uvemitter_rom_00400BE8(j, temp_fv0);
+                    }
+
+                    if (gUvEmitterExports->func_uvemitter_rom_00400C5C(j) == 0.0f) {
+                        gUvEmitterExports->func_uvemitter_rom_004010CC(j);
+                        func_snd_00401564(j);
+                    }
+                } else {
+                    if (gUvEmitterExports->func_uvemitter_rom_00400834(j) == spE4[i]) {
+                        while (gUvEmitterExports->func_uvemitter_rom_00400C5C(j) > 0.0f) {
+                            temp_fv0 = gUvEmitterExports->func_uvemitter_rom_00400C5C(j) - 0.1f;
+                            if (temp_fv0 < 0.0f) {
+                                temp_fv0 = 0.0f;
+                            } else if (temp_fv0 > 1.0f) {
+                                temp_fv0 = 1.0f;
+                            }
+                            gUvEmitterExports->func_uvemitter_rom_00400BE8(j, temp_fv0);
+                        }
+                        if (gUvEmitterExports->func_uvemitter_rom_00400C5C(j) == 0.0f) {
+                            gUvEmitterExports->func_uvemitter_rom_004010CC(j);
+                            gUvEmitterExports->func_uvemitter_rom_0040075C(j);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00402B40.s")
 
