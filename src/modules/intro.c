@@ -31,17 +31,6 @@ typedef struct UnkStruct_80025C84_s {
     s32 (*unk4)(s32);
 } UnkStruct_80025C84;
 
-typedef struct UnkStruct_80025C90_s {
-    /* 0x00 */ char pad0[0x10];
-    /* 0x10 */ s32 (*unk10)(void);
-    /* 0x18 */ char pad14[0xC];                       /* maybe part of unk20[3]? */
-    /* 0x20 */ s32 (*unk20)(s32);                     /* inferred */
-    /* 0x24 */ char pad24[0x10];                    /* maybe part of unk20[5]? */
-    /* 0x34 */ void (*unk34)(s32);
-    /* 0x38 */ void (*unk38)(s32, s32);
-    /* 0x3C */ void (*unk3C)(s32);
-} UnkStruct_80025C90;                               /* size = 0x40 */
-
 typedef struct UnkStruct_8002CCB0_s {
     s32 unk0;
     s32 unk4;
@@ -146,7 +135,6 @@ extern UnkStruct_80025C54* gUvDynExports;
 extern UnkStruct_80025C74* gGameGuiExports;
 extern UnkStruct_80025C78* gSndExports;
 extern UnkStruct_80025C88* gScrnExports;
-extern UnkStruct_80025C90* gReplayExports;
 extern UnkStruct_8002CCB0 D_8002CCB0[];
 extern u8 D_intro_00400A04[];
 extern u8 D_intro_00400A0C[];
@@ -168,7 +156,6 @@ extern f32 D_intro_004009C8;
 extern f32 D_intro_004009D4[];
 extern s32 D_intro_004009EC[];
 extern UnkStruct_intro_00400A84* D_intro_00400A84;
-extern UnkStruct_80025C90* gReplayExports;
 extern u8 D_intro_004009D0;
 extern s32 D_intro_00400A94;
 extern UnkStruct_80025C84* gSceneExports;
