@@ -287,11 +287,11 @@ s32 func_snd_00400CD8(s32 arg0) {
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00400DDC.s")
 
 void func_snd_00400E90(s32 arg0) {
-    *(&D_snd_004064B8 + arg0) = 0;
+    D_snd_004064B8[arg0] = 0;
 }
 
 void func_snd_00400EA0(s32 arg0) {
-    *(&D_snd_004064B8 + arg0) = 1;
+    D_snd_004064B8[arg0] = 1;
 }
 
 void func_snd_00400EB4(s32 arg0) {
