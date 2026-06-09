@@ -36,6 +36,7 @@
 #include "track7.h"
 #include "fileux.h"
 #include "weapon.h"
+#include "replay.h"
 #define MODULE_ENTRY_POINT(func) __entrypoint_##func
 
 #endif /* BAR_MODULE_H */

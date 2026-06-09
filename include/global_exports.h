@@ -29,4 +29,5 @@ extern UvCMidi_Exports* gUvCmidiExports;
 extern UvEmitter_Exports* gUvEmitterExports;
 extern UvChannelExports* gUvChanExports;
 extern UvEar_Rom_Exports* gUvEarExports;
+extern ReplayExports* gReplayExports;
 #endif /* GLOBAL_EXPORTS_H */

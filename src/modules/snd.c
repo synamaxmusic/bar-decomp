@@ -27,11 +27,12 @@ typedef struct UnkSnd_004064F0_s {
     /* 0x00 */ f32 unk0;     
                f32 unk4;
                f32 unk8;
-    /* 0x0C */ char padC[0x4];                     /* maybe part of unk0[8]? */
+    /* 0x04 */ char padC[0x4];                     /* maybe part of unk0[8]? */
                s32 unk14;
                s32 unk18;
-               char pad1C[0x4];
+               char pad1C[0x5];
                u8 unk1D;
+               u8 unk1E;
                u8 unk1F;
     /* 0x20 */ s32 unk20;                           /* inferred */
     /* 0x24 */ s16 unk24;
@@ -55,6 +56,7 @@ extern UnkStruct_snd_00406198_2* D_snd_00406198;
 extern UnkSnd_004064F0 D_snd_004064F0[];
 extern UnkSnd_004064F0 D_snd_004064C8[];
 extern UnkSnd_004064F0 D_snd_004064D0[];
+extern UnkSnd_004064F0 D_snd_004064D4[];
 
 void __entrypoint_func_snd_400000(Snd_Exports *arg0);
 void func_snd_004013DC(s32);                           /* extern */
@@ -128,10 +130,13 @@ extern u8 D_snd_00406168;
 extern u16 D_snd_00406190;
 extern u8 D_snd_00406194;
 extern u8 D_snd_004063B8;
-extern u8 D_snd_004064B8;
+//extern u8 D_snd_004064B8;
 extern s32 D_snd_004064BC;
 extern f32 D_snd_004045D0;
 extern f32 D_snd_004045D4;
+extern f32 D_snd_004045DC;
+extern f32 D_snd_004045E0;
+extern u8 D_snd_004064B8[];
 
 void __entrypoint_func_snd_400000(Snd_Exports* arg0) {
     s32 var_v0;    
@@ -267,7 +272,17 @@ void func_snd_0040094C(s16 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00400B54.s")
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00400CD8.s")
+s32 func_snd_00400CD8(s32 arg0) {
+    s32 i;
+
+    // Needs rodata migrated
+    for (i = 0; i < D_snd_00406168; i++) {
+        if ((D_snd_004064B8[i] == 0) && ((0.7f < gReplayExports->unk2C(i, arg0)) || (gReplayExports->unk2C(i, arg0) < -0.7f))) {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/modules/snd/func_snd_00400DDC.s")
 
@@ -369,11 +384,11 @@ u8 func_snd_00401AA8(UnkSnd_00402504* arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
     
     gUvEmitterExports->func_uvemitter_rom_004007B4(arg0->unk4, D_snd_004064D0[arg0->unk4].unk1D);
-    gUvEmitterExports->func_uvemitter_rom_00400EBC(arg0->unk4, 5, D_snd_004064D0[arg0->unk4].unk14, 2, 1000.0f, 1, 0.0f, 0);
+    gUvEmitterExports->func_uvemitter_rom_00400EBC(arg0->unk4, 5, D_snd_004064D4[arg0->unk4].unk14, 2, 1000.0f, 1, 0.0f, 0);
     gUvEmitterExports->func_uvemitter_rom_00400BE8(arg0->unk4, D_snd_004064D0[arg0->unk4].unk8);
     gUvEmitterExports->func_uvemitter_rom_00400CA8(arg0->unk4, D_snd_004064D0[arg0->unk4].unk4);
     gUvEmitterExports->func_uvemitter_rom_00400D48(arg0->unk4, D_snd_004064D0[arg0->unk4].unk0);
-    gUvEmitterExports->func_uvemitter_rom_00400E60(arg0->unk4, D_snd_004064D0[arg0->unk4].unk18);
+    gUvEmitterExports->func_uvemitter_rom_00400E60(arg0->unk4, D_snd_004064D4[arg0->unk4].unk18);
 
     return arg0->unk4;
 }
