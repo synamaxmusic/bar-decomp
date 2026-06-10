@@ -321,7 +321,7 @@ enum SfxId {
         V_CHAMPION              // "You're the champion!"
 };
 
-char sfxNames[] = {
+const char* D_snd_004064B8[] = {
         'BIGWTRFALL8         ',
         'WATER5              ',
         'SKID11              ', // tire skid (surprisingly bad loop)

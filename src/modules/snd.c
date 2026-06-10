@@ -136,7 +136,7 @@ extern f32 D_snd_004045D0;
 extern f32 D_snd_004045D4;
 extern f32 D_snd_004045DC;
 extern f32 D_snd_004045E0;
-extern sfxNames D_snd_004064B8[];
+extern u8 D_snd_004064B8[];
 
 void __entrypoint_func_snd_400000(Snd_Exports* arg0) {
     s32 var_v0;    
