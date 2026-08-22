@@ -43,15 +43,15 @@ jobs:
       run: make dependencies
     - name: Build
       run: make extract; make
-    #- name: Generate Progress Report
-    #  run: python3 -m mapfile_parser objdiff_report --version ${{ matrix.version }}
-    #- name: Upload Progress Report
-    #  uses: actions/upload-artifact@v4
-    #  with:
-    #    name: ${{ matrix.version }}_report
-    #    path: build/progress.json
-    #- name: Discord Progress
-    #  if: ${{ github.event_name == 'push' }}
-    #  run: python3 tools/discord_progress.py --discord_url ${{ secrets.SECRET_DISCORD_WEBHOOK_URL }} --version ${{ matrix.version }}
+    - name: Generate Progress Report
+      run: python3 -m mapfile_parser objdiff_report --version ${{ matrix.version }}
+    - name: Upload Progress Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ matrix.version }}_report
+        path: build/progress.json
+    - name: Discord Progress
+      if: ${{ github.event_name == 'push' }}
+      run: python3 tools/discord_progress.py --discord_url ${{ secrets.SECRET_DISCORD_WEBHOOK_URL }} --version ${{ matrix.version }}
     - name: Cleanup
       run: rm -f baserom.us.z64
