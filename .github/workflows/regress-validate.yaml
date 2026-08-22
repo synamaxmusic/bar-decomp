@@ -25,6 +25,7 @@ jobs:
         repository: ${{ secrets.SECRET_REPO }}
         token: ${{ secrets.SECRET_TOKEN }}
         path: secret_repo
+    
     - name: Decrypt Secrets
       working-directory: secret_repo
       run: |
@@ -36,22 +37,29 @@ jobs:
           SECRET_VERSION: us
           #SECRET_NAME: ${{ secrets.SECRET_NAME }}
           SECRET_NAME: baserom.${{ matrix.version }}.z64
+    
     - name: Install Packages
       #run: sudo apt-get install -y git make git build-essential binutils-mips-linux-gnu python3 python3-pip
       run: sudo apt-get install -y make git build-essential binutils-mips-linux-gnu python3 python3-pip clang-format-14 clang-tidy libcjson-dev curl libzstd-dev binutils-dev
+    
     - name: Build Dependencies
       run: make dependencies
+      
     - name: Build
       run: make extract; make
-    - name: Generate Progress Report
-      run: python3 -m mapfile_parser objdiff_report --version ${{ matrix.version }}
-    - name: Upload Progress Report
+
+    - name: Generate objdiff report
+      run: python3 -m mapfile_parser objdiff_report report.json --version ${{ matrix.version }}
+
+    - name: Upload progress report artifact
       uses: actions/upload-artifact@v4
       with:
         name: ${{ matrix.version }}_report
-        path: build/progress.json
+        path: report.json
+  
     - name: Discord Progress
       if: ${{ github.event_name == 'push' }}
       run: python3 tools/discord_progress.py --discord_url ${{ secrets.SECRET_DISCORD_WEBHOOK_URL }} --version ${{ matrix.version }}
+
     - name: Cleanup
       run: rm -f baserom.us.z64
