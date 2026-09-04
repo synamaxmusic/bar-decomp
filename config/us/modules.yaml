@@ -169,6 +169,10 @@ Modules:
   - name: uvenv_rom
   - name: uvenvld_rom
   - name: uvfmtx_rom
+    done_sections:
+      - text
+      - data
+      - bss
   - name: uvfvec_rom
     done_sections:
       - text
@@ -216,6 +220,10 @@ Modules:
       - rodata
       - data
   - name: uvquery_rom
+    done_sections:
+      - text
+      - data
+      - bss
   - name: uvsort_rom
     done_sections:
       - text
