@@ -191,7 +191,7 @@ typedef struct UnkStruct_80025CB0_s {
 typedef struct UnkDobjExports_s {
                s32 unk0;
                s32 pad4[4];
-               void (*unk14)(s32, s32);
+               void (*unk14)(s32, f32);
     /* 0x18 */ s32 (*unk18)(void);              /* inferred */
     /* 0x1C */ void (*unk1C)(s32, s32, void*, s32, s32);
                s32 unk20;

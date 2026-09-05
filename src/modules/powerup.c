@@ -39,12 +39,14 @@ typedef struct UnkStruct_Powerup_00400368_s{
 } UnkStruct_Powerup_00400368;
 
 UnkStruct_Powerup_004003C0 D_powerup_004003C0[];
-UnkStruct_Powerup_004004D4* D_powerup_004004D4;
-s32 D_powerup_004004E8;
 void func_powerup_004000F0(void);
 void func_powerup_00400180(s32, Vec3F*);
 UnkStruct_Powerup_004003C0* func_powerup_00400330(s32);
 void func_powerup_00400368(UnkStruct_Powerup_00400368*);
+
+// .bss
+extern UnkStruct_Powerup_004004D4* D_powerup_004004D4;
+extern s32 D_powerup_004004E8;
 
 void __entrypoint_func_powerup_400000(Powerup_Exports* arg0) {
     s32 i;
