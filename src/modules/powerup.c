@@ -53,9 +53,9 @@ void __entrypoint_func_powerup_400000(Powerup_Exports* arg0) {
     UnkStruct_Powerup_004004D4* var_v0;
 
     uvUpdateFileAllocPtr(arg0);
-    arg0->func_powerup_004000F0 = &func_powerup_004000F0;
-    arg0->func_powerup_00400180 = &func_powerup_00400180;
-    arg0->func_powerup_00400330 = &func_powerup_00400330;
+    arg0->func_powerup_004000F0 = func_powerup_004000F0;
+    arg0->func_powerup_00400180 = func_powerup_00400180;
+    arg0->func_powerup_00400330 = func_powerup_00400330;
     D_powerup_004004D4 = _uvMemAllocAlign8(30 * sizeof(UnkStruct_Powerup_004004D4));
     D_powerup_004004E8 = 0;
     for (i = 0; i < 30; i++) {
