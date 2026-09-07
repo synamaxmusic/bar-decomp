@@ -27,7 +27,7 @@ s32 fileuxOpen(char *arg0, s32 arg1, s32 arg2);
 s32 fileuxClose(s32 arg0);
 
 // .data
-s32 D_fileux_00400CE0[] = { 0x140000, __entrypoint_func_fileux_400000, 0, 0};
+s32 D_fileux_00400CE0[] = { 0x140000, __entrypoint_func_fileux_400000, 0, 0 };
 
 // .rodata
 static const char sStubbedPrintf[] = { " %02x" };
