@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 #include "common.h"
 #include "module.h"
+#include "stdarg.h"
 #include "global_exports.h"
 
-#define MAX_FILE_DESCRIPTORS 20
+#define MAX_FILE_DESCRIPTORS 21
 
 typedef struct FileDescriptorState_s {
     s32 unk0;
@@ -17,7 +18,7 @@ void func_fileux_00400060(void);
 void func_fileux_00400068(void);
 s32 fileuxStrlen(u8 *s);
 void fileuxStrcpy(u8 **d, u8 *s, s32 len);
-void func_fileux_00400138(s32 arg0, s32 arg1);
+void func_fileux_00400138(void *arg0, s32 arg1);
 s32 func_fileux_00400144(void);
 s32 fileuxHostRequest(s32 mode, ...);
 s32 fileuxWrite(s32 arg0, u8 *arg1, s32 arg2);
@@ -25,10 +26,34 @@ s32 fileuxRead(s32 arg0, u8 *arg1, s32 arg2);
 s32 fileuxOpen(char *arg0, s32 arg1, s32 arg2);
 s32 fileuxClose(s32 arg0);
 
-extern FileDescriptorState *sFileDescriptorsState[];
+// .data
+s32 D_fileux_00400CE0[] = { 0x140000, __entrypoint_func_fileux_400000, 0, 0};
+
+// .rodata
+static const char sStubbedPrintf[] = { " %02x" };
+static const char sStubbedPrintf1[] = { "\n" };
+static const char sStubbedPrintf2[] = {
+    "=================================================================\n"
+};
+static const char sStubbedPrintf3[] = { "all synced up\n" };
+static const char sStubbedPrintf4[] = { "requesting open [%s] mask [0x%x] cmask [0x%x]\n" };
+static const char sStubbedPrintf5[] = { "result fd = %d\n" };
+static const char sStubbedPrintf6[] = { "requesting read fd: %d buf: 0x%x  nbytes: %d\n" };
+static const char sStubbedPrintf7[] = { "number of bytes read by host: %d\n" };
+static const char sStubbedPrintf8[] = { "send acknowledge to host\n" };
+static const char sStubbedPrintf9[] = { "reading %d bytes at offset %d\n" };
+static const char sStubbedPrintf10[] = { "requesting write of fd: %d  buf: 0x%x nbytes:%d\n" };
+static const char sStubbedPrintf11[] = { "sending buffer with %d bytes\n" };
+static const char sStubbedPrintf12[] = { "requesting close of fd: %d\n" };
+static const char sStubbedPrintf13[] = { "requesting lseek fd: %d  offs: %d  whence: %d\n" };
+
+// .bss
+s32 B_fileux_00400CF0[2]; // unreferenced padding
+u8 D_fileux_00400CF8[0x200];
+FileDescriptorState *sFileDescriptorsState[MAX_FILE_DESCRIPTORS];
 
 void __entrypoint_func_fileux_400000(FileUx_Exports *exports) {
-    uvUpdateFileAllocPtr((s32) exports);
+    uvUpdateFileAllocPtr(exports);
     exports->func_fileux_00400060 = func_fileux_00400060;
     exports->fileuxWrite = fileuxWrite;
     exports->fileuxRead = fileuxRead;
@@ -67,32 +92,29 @@ void fileuxStrcpy(u8 **d, u8 *s, s32 len) {
     *d += len;
 }
 
-void func_fileux_00400138(s32 arg0, s32 arg1) {
+void func_fileux_00400138(void *arg0, s32 arg1) {
 }
 
 s32 func_fileux_00400144(void) {
     return 1;
 }
 
-#ifdef _NON_MATCHING
-extern u8 D_fileux_00400CF8[0x100];
-
 s32 fileuxHostRequest(s32 mode, ...) {
     u8 sp60[0x100];
     u8 *sp5C;
     u8 *sp58;
-    s32 buf;
-    s32 fd;
+    s32 sp54;
+    s32 sp50;
     s32 i; // a3
     s32 temp_v0;
     s32 sp44;
     s32 var_s0;
-    s32 size;
+    s32 sp3C;
     s32 sp38;
     s32 sp34;
     s32 sp30;
     va_list args;
-    u8 *v0;
+    s32 a0;
 
     gUvGfxMgrExports->func_uvgfxmgr_rom_00402090();
     sp5C = sp60;
@@ -106,15 +128,9 @@ s32 fileuxHostRequest(s32 mode, ...) {
     }
 
     i = 0;
-    while (1) {
-        if (D_fileux_00400CF8[i] == (0xFF - i)) {
-            i++;
-            if (i >= 0x100) {
-                break;
-            }
-        } else {
-            break;
-        }
+    do {
+    } while ((D_fileux_00400CF8[i] == (0xFF - i)) && (++i < 0x100));
+    if (i) {
     }
 
     _uvMediaCopy(sp60, &mode, sizeof(int));
@@ -124,29 +140,30 @@ s32 fileuxHostRequest(s32 mode, ...) {
         case 'O':
             sp58 = va_arg(args, u8 *);
             sp44 = va_arg(args, s32);
-            func_fileux_004000A0(&sp5C, sp58, func_fileux_00400070(sp58));
+            fileuxStrcpy(&sp5C, sp58, fileuxStrlen(sp58));
             *sp5C = '\0';
             sp5C += 1;
-            func_fileux_004000A0(&sp5C, &sp44, 4);
+            fileuxStrcpy(&sp5C, &sp44, 4);
             if (sp44 & 0x100) {
                 i = va_arg(args, s32);
-                func_fileux_004000A0(&sp5C, (u8 *) &i, 4);
+                fileuxStrcpy(&sp5C, (u8 *) &i, 4);
             } else {
                 i = 0;
             }
             func_fileux_00400138(sp60, 0x100);
             func_fileux_00400144();
-            return ((s32 *) D_fileux_00400CF8)[0];
+            a0 = ((s32 *) D_fileux_00400CF8)[0];
+            return a0;
         case 'R':
-            fd = va_arg(args, s32);
-            buf = va_arg(args, s32);
-            size = va_arg(args, s32);
+            sp50 = va_arg(args, s32);
+            sp54 = va_arg(args, s32);
+            sp3C = va_arg(args, s32);
             sp30 = va_arg(args, s32);
-            func_fileux_004000A0(&sp5C, &fd, 4);
-            func_fileux_004000A0(&sp5C, &size, 4);
+            fileuxStrcpy(&sp5C, &sp50, 4);
+            fileuxStrcpy(&sp5C, &sp3C, 4);
             func_fileux_00400138(sp60, 0x100);
             func_fileux_00400144();
-            v0 = sp60;
+
             if (sp30 != 0) {
                 // FAKE
                 if (&sp30) {
@@ -154,69 +171,70 @@ s32 fileuxHostRequest(s32 mode, ...) {
                 if (&sp30) {
                 }
             }
-            v0[0] = 6;
-            func_fileux_00400138(v0, 0x100);
-            for (i = 0; i < size;) {
-                temp_v0 = size - i;
+            sp60[0] = 6;
+            func_fileux_00400138(sp60, 0x100);
+            for (i = 0; i < sp3C;) {
+                temp_v0 = sp3C - i;
                 if (temp_v0 < 0x100) {
                     var_s0 = temp_v0;
                 } else {
                     var_s0 = 0x100;
                 }
                 func_fileux_00400144();
-                _uvMediaCopy(buf + i, D_fileux_00400CF8, var_s0);
+                _uvMediaCopy(sp54 + i, D_fileux_00400CF8, var_s0);
                 i += var_s0;
             }
-            return size;
-        case 'W':
-            fd = va_arg(args, s32);
-            buf = va_arg(args, s32);
-            size = va_arg(args, s32);
-            func_fileux_004000A0(&sp5C, (u8 *) &fd, 4);
-            func_fileux_004000A0(&sp5C, (u8 *) &size, 4);
-            func_fileux_00400138(sp60, 0x100);
-            func_fileux_00400144();
-            i = size;
-            if (size & 7) {
-                i = (size - (size % 8)) + 8;
+
+            // FAKE
+            if ((a0 && a0) && a0) {
             }
-            func_fileux_00400138(buf, i);
-            func_fileux_00400144();
-            return ((s32 *) D_fileux_00400CF8)[0];
-        case 'C':
-            fd = va_arg(args, s32);
-            func_fileux_004000A0(&sp5C, (u8 *) &fd, 4);
+            return sp3C;
+        case 'W':
+            sp50 = va_arg(args, s32);
+            sp54 = va_arg(args, s32);
+            sp3C = va_arg(args, s32);
+            fileuxStrcpy(&sp5C, (u8 *) &sp50, 4);
+            fileuxStrcpy(&sp5C, (u8 *) &sp3C, 4);
             func_fileux_00400138(sp60, 0x100);
             func_fileux_00400144();
-            return ((s32 *) D_fileux_00400CF8)[0];
+            i = sp3C;
+            if (sp3C & 7) {
+                i = (sp3C - (sp3C % 8)) + 8;
+            }
+            func_fileux_00400138(sp54, i);
+            func_fileux_00400144();
+            a0 = ((s32 *) D_fileux_00400CF8)[0];
+            return a0;
+        case 'C':
+            sp50 = va_arg(args, s32);
+            fileuxStrcpy(&sp5C, (u8 *) &sp50, 4);
+            func_fileux_00400138(sp60, 0x100);
+            func_fileux_00400144();
+            a0 = ((s32 *) D_fileux_00400CF8)[0];
+            return a0;
         case 'L':
-            fd = va_arg(args, s32);
+            sp50 = va_arg(args, s32);
             sp38 = va_arg(args, s32);
             sp34 = va_arg(args, s32);
-            func_fileux_004000A0(&sp5C, &fd, 4);
-            func_fileux_004000A0(&sp5C, &sp38, 4);
-            func_fileux_004000A0(&sp5C, &sp34, 4);
+            fileuxStrcpy(&sp5C, &sp50, 4);
+            fileuxStrcpy(&sp5C, &sp38, 4);
+            fileuxStrcpy(&sp5C, &sp34, 4);
             func_fileux_00400138(sp60, 0x100);
             func_fileux_00400144();
-            return ((s32 *) D_fileux_00400CF8)[0];
+            a0 = ((s32 *) D_fileux_00400CF8)[0];
+            return a0;
         default:
             return -1;
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/us/nonmatchings/modules/fileux/fileuxHostRequest.s")
-#endif
 
 s32 fileuxWrite(s32 fd, u8 *buf, s32 nbytes) {
     s32 var_a3;
     s32 var_s1;
     FileDescriptorState *fileDescriptorState;
 
-#ifdef NEEDS_RODATA
-    PRINTF("requesting write of fd: %d  buf: 0x%x nbytes:%d\n", fd, buf, nbytes);
-#endif
     var_s1 = 0;
-    if ((fd < MAX_FILE_DESCRIPTORS) && (fd >= 0)) {
+    if ((fd < MAX_FILE_DESCRIPTORS - 1) && (fd >= 0)) {
         fileDescriptorState = sFileDescriptorsState[fd];
     } else {
         fileDescriptorState = NULL;
@@ -278,7 +296,7 @@ s32 fileuxRead(s32 fd, u8 *buf, s32 nbytes) {
     s32 temp_v0_3;
 
     var_s1 = 0;
-    if ((fd < MAX_FILE_DESCRIPTORS) && (fd >= 0)) {
+    if ((fd < MAX_FILE_DESCRIPTORS - 1) && (fd >= 0)) {
         fileDescriptorState = sFileDescriptorsState[fd];
     } else {
         fileDescriptorState = NULL;
@@ -305,9 +323,6 @@ s32 fileuxRead(s32 fd, u8 *buf, s32 nbytes) {
         }
         while (var_s1 < nbytes) {
             if ((nbytes - var_s1) >= 0x101) {
-#ifdef NEEDS_RODATA
-                PRINTF("reading %d bytes at offset %d\n", nbytes, var_s1);
-#endif
                 var_s1 += fileuxHostRequest('R', fd, buf + var_s1, 0x100, 1);
                 continue;
             }
@@ -329,9 +344,6 @@ s32 fileuxRead(s32 fd, u8 *buf, s32 nbytes) {
         } else {
             var_a3 = 0x100;
         }
-#ifdef NEEDS_RODATA
-        PRINTF("send acknowledge to host\n");
-#endif
         var_s1 += fileuxHostRequest('R', fd, buf + var_s1, var_a3, 1);
     }
     if (var_s1 != nbytes) {
@@ -347,15 +359,12 @@ s32 fileuxOpen(char *path, s32 flags, s32 mode) {
     fd = fileuxHostRequest('O', path, flags, mode);
     if (fd < 0) {
         return fd;
-    } else if (fd < MAX_FILE_DESCRIPTORS) {
+    } else if (fd < MAX_FILE_DESCRIPTORS - 1) {
         sFileDescriptorsState[fd] = malloc8(0x10C);
         if (sFileDescriptorsState[fd] != NULL) {
             sFileDescriptorsState[fd]->unk0 = 0;
         }
     }
-#ifdef NEEDS_RODATA
-    PRINTF("result fd = %d\n", fd);
-#endif
     return fd;
 }
 
@@ -365,7 +374,7 @@ s32 fileuxClose(s32 fd) {
     if (fd < 0) {
         return -1;
     }
-    if (fd < MAX_FILE_DESCRIPTORS) {
+    if (fd < MAX_FILE_DESCRIPTORS - 1) {
         fileDescriptorState = sFileDescriptorsState[fd];
         if (fileDescriptorState != NULL) {
             if ((fileDescriptorState->unk0 != 0) && (fileDescriptorState->unk8 == 0)) {
