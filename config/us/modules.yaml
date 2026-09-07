@@ -79,6 +79,8 @@ Modules:
   - name: piece
   - name: plyr
   - name: powerup
+    done_sections:
+      - text
   - name: profgame
   - name: race
   - name: rain

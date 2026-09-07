@@ -14,7 +14,7 @@ extern void* gRainExports;
 extern void* gFlagExports;
 extern Volt_Exports* gVolTestExports;
 extern void* gBattleExports;
-extern void* gPowerupExports;
+extern Powerup_Exports* gPowerupExports;
 extern void* gLetterExports;
 extern void* gWeaponExports;
 extern void* gRumbleExports;
