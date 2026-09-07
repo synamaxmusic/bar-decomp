@@ -20,6 +20,11 @@ Modules:
   - name: expl
   - name: filerom
   - name: fileux
+    done_sections:
+      - text
+      - data
+      - rodata
+      - bss
   - name: filmroll
   - name: flag
   - name: game
