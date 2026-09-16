@@ -3,7 +3,7 @@
 #include "module.h"
 #include "global_exports.h"
 
-// .bss
+// .rodata
 extern f32 D_cbars_00400510;
 extern f32 D_cbars_00400530;
 extern f32 D_cbars_00400534;
@@ -11,6 +11,9 @@ extern f32 D_cbars_00400538;
 extern f32 D_cbars_00400558;
 extern f32 D_cbars_0040055C;
 extern f32 D_cbars_00400560;
+
+// .data
+s32 D_cbars_00400570[] = {0x000C0000, __entrypoint_func_cbars_400000, 0, 0};
 
 void func_cbars_004000E4(void);
 void func_cbars_004000EC(void);
