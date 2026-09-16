@@ -16,15 +16,11 @@ void func_cbars_004000EC(void);
 void func_cbars_004000F4(void);
 
 void __entrypoint_func_cbars_400000(Cbars_Exports* exports) {
-    s32 i; // unused??
-    s32 sp18;
-
     uvUpdateFileAllocPtr(exports);
     exports->func_cbars_004000E4 = &func_cbars_004000E4;
     exports->func_cbars_004000EC = &func_cbars_004000EC;
     exports->func_cbars_004000F4 = &func_cbars_004000F4;
-    sp18 = gUvGfxMgrExports->uvGetScreenHeight(exports);
-    gUvGfxMgrExports->func_uvgfxmgr_rom_00401BD4(0, sp18, 0, gUvGfxMgrExports->uvGetScreenHeight());
+    gUvGfxMgrExports->func_uvgfxmgr_rom_00401BD4(0, gUvGfxMgrExports->uvGetScreenWidth(), 0, gUvGfxMgrExports->uvGetScreenHeight());
     gGameGuiExports->unk10(0);
     gGameGuiExports->unk1C(gGameGuiExports->unk4);
     gScrnExports->unk4(0, 0);
