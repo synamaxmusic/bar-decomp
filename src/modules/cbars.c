@@ -3,30 +3,6 @@
 #include "module.h"
 #include "global_exports.h"
 
-typedef struct UnkStruct_80025C08_V2_s {
-    s32 pad0;
-    void (*unk4)(void);
-    char pad8[0x18];
-    void (*unk20)(void);
-    char padC[0x2C];
-    void (*unk50)(s32, s32, s32);
-    char pad54[0x4];
-    void (*unk58)(s32, s32, s32, s32);
-    char pad5C[0x18];
-    void (*unk74)();
-    char pad78[0xC];
-    s32 (*unk84)(void);
-    s32 (*unk88)(s32); // or s32 (*unk88)(Cbars_Exports*);
-} UnkStruct_80025C08_V2;
-
-typedef struct UvGeom_Exports_s {
-        void (*unk0)(void);
-        void (*unk4)(void);
-        void (*unk8)(void);
-        void (*unkC)(f32, f32, f32, f32);
-        void (*unk10)(s16, s32, s32, s32);
-} UvGeom_Exports;
-
 extern f32 D_cbars_00400510;
 extern f32 D_cbars_00400530;
 extern f32 D_cbars_00400534;
@@ -34,15 +10,10 @@ extern f32 D_cbars_00400538;
 extern f32 D_cbars_00400558;
 extern f32 D_cbars_0040055C;
 extern f32 D_cbars_00400560;
-extern UvGeom_Exports* gUvGeomExports;
-extern UvGfxMgr_Exports* gUvGfxMgrExports;
 
 void func_cbars_004000E4(void);
 void func_cbars_004000EC(void);
 void func_cbars_004000F4(void);
-
-extern UnkScrnExports* gScrnExports;
-extern UnkStruct_80025C08_V2* gUvGfxMgrExports;
 
 void __entrypoint_func_cbars_400000(Cbars_Exports* exports) {
     s32 i; // unused??

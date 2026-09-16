@@ -14,21 +14,7 @@ typedef struct UnkStruct_80025C00_s {
 
 } UnkStruct_80025C00;
 
-typedef struct UnkStruct_80025C08_s {
-    s32 pad0;
-    void (*unk4)(void);
-    char pad8[0x18];
-    void (*unk20)(void);
-    char padC[0x2C];
-    void (*unk50)(s32, s32, s32); // bg solid color
-    char pad54[0x4];
-    void (*unk58)(s32, s32, s32, s32);
-    char pad5C[0x18];
-    void (*unk74)();
-    char pad78[0xC];
-    s32 (*unk84)(void);
-    s32 (*unk88)(void);
-} UnkStruct_80025C08;
+
 
 // logo and intro
 typedef struct UnkStruct_80025C14_s {
