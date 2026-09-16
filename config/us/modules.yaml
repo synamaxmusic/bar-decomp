@@ -13,6 +13,8 @@ Modules:
   - name: caranim
   - name: caraudio
   - name: cbars
+    done_sections:
+      - text
   - name: dledit
   - name: demo
   - name: env

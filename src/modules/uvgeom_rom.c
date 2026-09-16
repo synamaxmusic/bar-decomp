@@ -17,7 +17,7 @@ void uvEndGridWide(s16 arg0, s16 arg1, u8 arg2, u8 arg3, s32 arg4, s32 arg5, UvG
 void uvEndGrid(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, UvGeom_Rom_0040019C *arg6,
                Gfx **gdl);
 void uvSetFillColor(f32 red, f32 green, f32 blue, f32 alpha);
-void uvVtxRect(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+void uvVtxRect(s16 arg0, s32 arg1, s32 arg2, s32 arg3);
 void uvVtxEndPolyInternal(s32 arg0, s32 arg1, UvGeom_Rom_0040019C *arg2, Gfx **gdl);
 
 // .bss
@@ -314,7 +314,7 @@ void uvSetFillColor(f32 red, f32 green, f32 blue, f32 alpha) {
     gDPSetFillColor(gdl[0]++, GPACK_RGBA5551(r, g, b, a) << 16 | GPACK_RGBA5551(r, g, b, a));
 }
 
-void uvVtxRect(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+void uvVtxRect(s16 arg0, s32 arg1, s32 arg2, s32 arg3) {
     Gfx **gdl;
 
     gdl = D_uvgeom_rom_00401758->uvGetDisplayListHead();
