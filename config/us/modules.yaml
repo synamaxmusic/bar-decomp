@@ -17,6 +17,7 @@ Modules:
       - text
       - data
       - rodata
+      - bss
   - name: dledit
   - name: demo
   - name: env
