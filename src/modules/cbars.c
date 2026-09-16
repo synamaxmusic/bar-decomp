@@ -23,8 +23,8 @@ void __entrypoint_func_cbars_400000(Cbars_Exports* exports) {
     exports->func_cbars_004000E4 = &func_cbars_004000E4;
     exports->func_cbars_004000EC = &func_cbars_004000EC;
     exports->func_cbars_004000F4 = &func_cbars_004000F4;
-    sp18 = gUvGfxMgrExports->unk88(exports);
-    gUvGfxMgrExports->unk58(0, sp18, 0, gUvGfxMgrExports->unk84());
+    sp18 = gUvGfxMgrExports->uvGetScreenHeight(exports);
+    gUvGfxMgrExports->func_uvgfxmgr_rom_00401BD4(0, sp18, 0, gUvGfxMgrExports->uvGetScreenHeight());
     gGameGuiExports->unk10(0);
     gGameGuiExports->unk1C(gGameGuiExports->unk4);
     gScrnExports->unk4(0, 0);
@@ -100,8 +100,8 @@ void func_cbars_00400114(void) {
                 break;
         }
 
-        gUvGeomExports->unkC(var_fs2, var_fs3, var_fs4, 1.0f);
-        gUvGeomExports->unk10(var_fs5, (s16) temp_s4, ((s16) var_fs5) + 1.33f, (s16) temp_s2);
+        gUvGeomExports->uvSetFillColor(var_fs2, var_fs3, var_fs4, 1.0f);
+        gUvGeomExports->uvVtxRect(var_fs5, (s16) temp_s4, ((s16) var_fs5) + 1.33f, (s16) temp_s2);
         var_fs5 += 1.22f;
     }
 
@@ -154,8 +154,8 @@ void func_cbars_00400114(void) {
                 break;
         }
 
-        gUvGeomExports->unkC(var_fs2, var_fs3, var_fs4, 1.0f);
-        gUvGeomExports->unk10(var_fs5, (s16) temp_s2, ((s16) var_fs5) + 1.55f, (s16) temp_s4);
+        gUvGeomExports->uvSetFillColor(var_fs2, var_fs3, var_fs4, 1.0f);
+        gUvGeomExports->uvVtxRect(var_fs5, (s16) temp_s2, ((s16) var_fs5) + 1.55f, (s16) temp_s4);
         var_fs5 += 1.66f;
     }
     
@@ -165,8 +165,8 @@ void func_cbars_00400114(void) {
     
     for (i = 0; i < 0x1C; i++) {
         temp_fa0 = i / 27.0f;
-        gUvGeomExports->unkC(temp_fa0, temp_fa0, temp_fa0, 1.0f);
-        gUvGeomExports->unk10(var_fs5, (s16) temp_s2, ((s16) var_fs5) + 1.77f, (s16) temp_s4);
+        gUvGeomExports->uvSetFillColor(temp_fa0, temp_fa0, temp_fa0, 1.0f);
+        gUvGeomExports->uvVtxRect(var_fs5, (s16) temp_s2, ((s16) var_fs5) + 1.77f, (s16) temp_s4);
         var_fs5 += 1.77f;
     }
 }
