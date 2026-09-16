@@ -15,6 +15,7 @@ Modules:
   - name: cbars
     done_sections:
       - text
+      - rodata
   - name: dledit
   - name: demo
   - name: env
