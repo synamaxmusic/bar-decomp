@@ -210,7 +210,7 @@ typedef struct Env_Exports_s {
 typedef struct UnkScrnExports_s {
     /* 0x00 */ void (*unk0)(void);                      /* inferred */
     /* 0x04 */ void (*unk4)(s32, s32);
-               char pad8[0x14 - 0x8]
+               char pad8[0x14 - 0x8];
                void *(*unk14)(s32 *);
 } UnkScrnExports;
 
