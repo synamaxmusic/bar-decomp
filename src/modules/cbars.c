@@ -14,6 +14,7 @@ extern f32 D_cbars_00400560;
 void func_cbars_004000E4(void);
 void func_cbars_004000EC(void);
 void func_cbars_004000F4(void);
+void func_cbars_00400114(void);
 
 void __entrypoint_func_cbars_400000(Cbars_Exports* exports) {
     uvUpdateFileAllocPtr(exports);
