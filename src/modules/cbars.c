@@ -109,7 +109,7 @@ void func_cbars_00400114(void) {
 
     
     var_fs5 = 22.0f;
-    temp_s4 = D_cbars_00400538;
+    temp_s4 = 78.100006f;
     temp_s2 = 67.0f;
     for (i = 0; i < 7; i++) {
         switch (i) {
