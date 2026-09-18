@@ -13,13 +13,16 @@ void func_cbars_00400114(void);
 extern f32 D_cbars_00400510;
 extern f32 D_cbars_00400530;
 extern f32 D_cbars_00400534;
-f32 D_cbars_00400538 = 78.100006f;
+extern f32 D_cbars_00400538;
 extern f32 D_cbars_00400558;
 extern f32 D_cbars_0040055C;
 extern f32 D_cbars_00400560;
 
 // .data
 s32 D_cbars_00400570[] = {0x000C0000, __entrypoint_func_cbars_400000, 0, 0};
+
+// .bss
+s32 B_cbars_00400580[4]; // unreferenced padding
 
 void __entrypoint_func_cbars_400000(Cbars_Exports* exports) {
     uvUpdateFileAllocPtr(exports);
@@ -109,10 +112,7 @@ void func_cbars_00400114(void) {
 
     
     var_fs5 = 22.0f;
-#ifdef __sgi
-#line 1
-#endif
-    temp_s4 = D_cbars_00400538;
+    temp_s4 = 78.100006f;
     temp_s2 = 67.0f;
     for (i = 0; i < 7; i++) {
         switch (i) {
