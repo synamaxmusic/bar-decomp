@@ -288,6 +288,7 @@ SECTIONS
         build/src/game_init.o(.bss);
         build/src/profiler.o(.bss);
         build/asm/us/data/bss_1.bss.o(.bss);
+        build/src/profiler.o(.bss);
         build/src/clocks.o(.bss);
         build/src/isprint.o(.bss);
         build/src/file_manager.o(.bss);

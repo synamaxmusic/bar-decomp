@@ -675,11 +675,11 @@ rom:0x9CA0 reloc:MIPS_32 symbol:.Lbattle_00407160
 rom:0x9CA4 reloc:MIPS_32 symbol:.Lbattle_0040716C
 rom:0x9CA8 reloc:MIPS_32 symbol:.Lbattle_00407174
 rom:0x60 reloc:MIPS_26 symbol:uvUpdateFileAllocPtr
-rom:0x140 reloc:MIPS_26 symbol:func_80000BE0
-rom:0x154 reloc:MIPS_26 symbol:func_80000BE0
-rom:0x168 reloc:MIPS_26 symbol:func_80000BE0
-rom:0x17C reloc:MIPS_26 symbol:func_80000BE0
-rom:0x190 reloc:MIPS_26 symbol:func_80000BE0
+rom:0x140 reloc:MIPS_26 symbol:uvProfilerCreate
+rom:0x154 reloc:MIPS_26 symbol:uvProfilerCreate
+rom:0x168 reloc:MIPS_26 symbol:uvProfilerCreate
+rom:0x17C reloc:MIPS_26 symbol:uvProfilerCreate
+rom:0x190 reloc:MIPS_26 symbol:uvProfilerCreate
 rom:0x1A4 reloc:MIPS_26 symbol:uvLoadModule
 rom:0x1B8 reloc:MIPS_26 symbol:uvGetLoadedModule
 rom:0x1CC reloc:MIPS_26 symbol:uvLoadModule

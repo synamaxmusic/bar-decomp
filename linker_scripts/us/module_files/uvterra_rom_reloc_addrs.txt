@@ -796,10 +796,10 @@ rom:0xD2D0 reloc:MIPS_HI16 symbol:D_uvterra_rom_0040F770
 rom:0xD370 reloc:MIPS_LO16 symbol:D_uvterra_rom_0040F770
 rom:0xF78C reloc:MIPS_32 symbol:__entrypoint_func_uvterra_rom_400000
 rom:0x5C reloc:MIPS_26 symbol:uvUpdateFileAllocPtr
-rom:0x2A0 reloc:MIPS_26 symbol:func_80000BE0
-rom:0x2B4 reloc:MIPS_26 symbol:func_80000BE0
-rom:0x2C8 reloc:MIPS_26 symbol:func_80000BE0
-rom:0x2DC reloc:MIPS_26 symbol:func_80000BE0
+rom:0x2A0 reloc:MIPS_26 symbol:uvProfilerCreate
+rom:0x2B4 reloc:MIPS_26 symbol:uvProfilerCreate
+rom:0x2C8 reloc:MIPS_26 symbol:uvProfilerCreate
+rom:0x2DC reloc:MIPS_26 symbol:uvProfilerCreate
 rom:0x2F0 reloc:MIPS_26 symbol:uvLoadModule
 rom:0x304 reloc:MIPS_26 symbol:uvLoadModule
 rom:0x31C reloc:MIPS_26 symbol:uvLoadModule

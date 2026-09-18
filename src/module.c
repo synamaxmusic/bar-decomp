@@ -327,26 +327,26 @@ void uvDoModuleRelocs(u8 *ovlStartPtr, ModuleCommInfo *info) {
     }
 }
 
-s32 func_80003A14(u32 arg0, s32 *arg1) {
+s32 func_80003A14(u32 addr, s32 *fileId) {
     s32 i;
-    s32 var_s4;
-    u32 temp_v0;
-    u32 var_s1;
+    s32 currentFileId;
+    u32 moduleAddr;
+    u32 currentAddr;
 
-    var_s1 = 0;
-    var_s4 = -1;
+    currentAddr = 0;
+    currentFileId = -1;
     for (i = 0; i < uvGetFilesCount('UVMO'); i++) {
-        temp_v0 = uvGetLoadedFile('UVMO', i);
-        if ((temp_v0 < arg0) && (var_s1 < temp_v0)) {
-            var_s4 = i;
-            var_s1 = temp_v0;
+        moduleAddr = uvGetLoadedFile('UVMO', i);
+        if ((moduleAddr < addr) && (currentAddr < moduleAddr)) {
+            currentFileId = i;
+            currentAddr = moduleAddr;
         }
     }
-    if (arg1 != NULL) {
-        *arg1 = var_s4;
+    if (fileId != NULL) {
+        *fileId = currentFileId;
     }
-    if (var_s4 == -1) {
+    if (currentFileId == -1) {
         return 0;
     }
-    return gModuleNameTags[var_s4];
+    return gModuleNameTags[currentFileId];
 }

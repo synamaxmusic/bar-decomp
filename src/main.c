@@ -3,7 +3,7 @@
 #include "os_internal.h"
 #include "stdarg.h"
 
-void func_80000FC8(void);          /* extern */
+void uvProfilerInit(void);          /* extern */
 void func_800011A8(void);          /* extern */
 void _uvMemAllocInitStartUp(void); /* extern */
 void func_80002EAC(s32);           /* extern */
@@ -68,7 +68,7 @@ void uvSysInit(void) {
         _uvMemAllocInitStartUp();
         uvSetVideoMode();
         uvClkInit();
-        func_80000FC8();
+        uvProfilerInit();
         uvLoadFormFiles();
         uvModuleInit();
         gCartDMATransferFlag = 0;
@@ -83,7 +83,7 @@ void uvSysInit(void) {
         func_80002EAC(0);
         uvLoadFormFiles();
         uvModuleInit();
-        func_80000FC8();
+        uvProfilerInit();
     }
 }
 

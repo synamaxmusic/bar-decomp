@@ -150,7 +150,8 @@ typedef struct ParsedUVMD_1_s {
 typedef struct ParsedUVMD {
     /* 0x00 */ ParsedUVMD_1 *unk0; /* inferred */
     /* 0x04 */ u8 unk4;            /* inferred */
-    /* 0x05 */ char pad5[0xB];
+    /* 0x08 */ Mtx4F* unk8;
+               s32 unkC;
     /* 0x10 */ f32 unk10;
     /* 0x14 */ f32 unk14;
     /* 0x18 */ Vtx *vtxTable;

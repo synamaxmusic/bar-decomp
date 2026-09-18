@@ -314,8 +314,8 @@ rom:0x4998 reloc:MIPS_32 symbol:.Lcam_004039DC
 rom:0x58 reloc:MIPS_26 symbol:uvUpdateFileAllocPtr
 rom:0x128 reloc:MIPS_26 symbol:uvLoadFile
 rom:0x134 reloc:MIPS_26 symbol:uvLoadModule
-rom:0x148 reloc:MIPS_26 symbol:func_80000BE0
-rom:0x15C reloc:MIPS_26 symbol:func_80000BE0
+rom:0x148 reloc:MIPS_26 symbol:uvProfilerCreate
+rom:0x15C reloc:MIPS_26 symbol:uvProfilerCreate
 rom:0x1EC reloc:MIPS_26 symbol:_uvMemAllocAlign8
 rom:0x26C reloc:MIPS_26 symbol:uvLoadFile
 rom:0x6FC reloc:MIPS_26 symbol:uvGetLoadedModule

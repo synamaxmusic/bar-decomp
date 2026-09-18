@@ -540,10 +540,10 @@ rom:0x60 reloc:MIPS_26 symbol:uvUpdateFileAllocPtr
 rom:0xFC reloc:MIPS_26 symbol:uvLoadModule
 rom:0x110 reloc:MIPS_26 symbol:uvLoadModule
 rom:0x124 reloc:MIPS_26 symbol:uvLoadModule
-rom:0x138 reloc:MIPS_26 symbol:func_80000BE0
-rom:0x14C reloc:MIPS_26 symbol:func_80000BE0
-rom:0x160 reloc:MIPS_26 symbol:func_80000BE0
-rom:0x174 reloc:MIPS_26 symbol:func_80000BE0
+rom:0x138 reloc:MIPS_26 symbol:uvProfilerCreate
+rom:0x14C reloc:MIPS_26 symbol:uvProfilerCreate
+rom:0x160 reloc:MIPS_26 symbol:uvProfilerCreate
+rom:0x174 reloc:MIPS_26 symbol:uvProfilerCreate
 rom:0x1B8 reloc:MIPS_26 symbol:uvLoadFile
 rom:0x1E0 reloc:MIPS_26 symbol:uvLoadFile
 rom:0x1F4 reloc:MIPS_26 symbol:uvLoadFile

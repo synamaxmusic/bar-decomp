@@ -765,11 +765,11 @@ rom:0x4844 reloc:MIPS_32 symbol:.Lrace_00403F88
 rom:0x4848 reloc:MIPS_32 symbol:.Lrace_00403F88
 rom:0x484C reloc:MIPS_32 symbol:.Lrace_00403FE8
 rom:0x6C reloc:MIPS_26 symbol:uvUpdateFileAllocPtr
-rom:0xB4 reloc:MIPS_26 symbol:func_80000BE0
-rom:0xC8 reloc:MIPS_26 symbol:func_80000BE0
-rom:0xDC reloc:MIPS_26 symbol:func_80000BE0
-rom:0xF0 reloc:MIPS_26 symbol:func_80000BE0
-rom:0x104 reloc:MIPS_26 symbol:func_80000BE0
+rom:0xB4 reloc:MIPS_26 symbol:uvProfilerCreate
+rom:0xC8 reloc:MIPS_26 symbol:uvProfilerCreate
+rom:0xDC reloc:MIPS_26 symbol:uvProfilerCreate
+rom:0xF0 reloc:MIPS_26 symbol:uvProfilerCreate
+rom:0x104 reloc:MIPS_26 symbol:uvProfilerCreate
 rom:0x2B8 reloc:MIPS_26 symbol:uvLoadModule
 rom:0x2CC reloc:MIPS_26 symbol:uvLoadModule
 rom:0x2E0 reloc:MIPS_26 symbol:uvLoadModule

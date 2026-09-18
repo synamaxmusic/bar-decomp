@@ -145,6 +145,7 @@ segments:
       - [0x1F410, data]
       - [0x20230, .data, game_init]
       - [0x20250, data]
+      - [0x20370, .data, profiler]
       - [0x20390, .data, file_manager]
       - [0x203A0, .data, mem_allocator]
       - [0x203D0, .data, main]
@@ -157,6 +158,7 @@ segments:
       - [0x21C50, .rodata, module]
       - [0x21C70, rodata]
       - { start: 0x237D0, type: bss, vram: 0x80022BD0, name: bss_1 }
+      - { start: 0x237D0, type: .bss, vram: 0x8002D1B0, name: profiler }
       - { start: 0x237D0, type: .bss, vram: 0x8002D940, name: clocks }
       - { start: 0x237D0, type: .bss, vram: 0x8002D9A0, name: file_manager }
       - { start: 0x237D0, type: .bss, vram: 0x8002D9C0, name: filesystem }
