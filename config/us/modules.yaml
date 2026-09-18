@@ -13,6 +13,11 @@ Modules:
   - name: caranim
   - name: caraudio
   - name: cbars
+    done_sections:
+      - text
+      - data
+      - rodata
+      - bss
   - name: dledit
   - name: demo
   - name: env

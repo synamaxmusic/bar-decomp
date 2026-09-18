@@ -23,11 +23,6 @@ typedef struct ReplayExports_s {
     f32 (*unk2C)(s32, s32);
 } ReplayExports;
 
-typedef struct UnkScrnExports_s {
-    char pad[0x14];
-    void *(*unk14)(s32 *);
-} UnkScrnExports;
-
 typedef struct UnkStruct_snd_00406198_s {
     /* 0x00 */ u8 *soundName;
     /* 0x04 */ s32 unk4;
@@ -179,7 +174,7 @@ const char sSndDebugString1[] = { "ACTIVE BUT NO MODEL" };
 const char sSndDebugString2[] = { "UNUSED" };
 
 // global exports
-extern UnkScrnExports *gScrnExports;
+//extern UnkScrnExports *gScrnExports;
 extern ReplayExports *gReplayExports;
 
 void __entrypoint_func_snd_400000(Snd_Exports *exports);
