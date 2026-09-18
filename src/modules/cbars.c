@@ -13,7 +13,7 @@ void func_cbars_00400114(void);
 extern f32 D_cbars_00400510;
 extern f32 D_cbars_00400530;
 extern f32 D_cbars_00400534;
-extern f32 D_cbars_00400538;
+f32 D_cbars_00400538 = 78.100006f;
 extern f32 D_cbars_00400558;
 extern f32 D_cbars_0040055C;
 extern f32 D_cbars_00400560;
@@ -109,7 +109,10 @@ void func_cbars_00400114(void) {
 
     
     var_fs5 = 22.0f;
-    temp_s4 = 78.100006f;
+#ifdef __sgi
+#line 1
+#endif
+    temp_s4 = D_cbars_00400538;
     temp_s2 = 67.0f;
     for (i = 0; i < 7; i++) {
         switch (i) {
