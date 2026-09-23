@@ -19,7 +19,7 @@ void uvStrStub(void);
 void __entrypoint_func_uvStringEntryPoint(UvString_Exports* exports);
 
 void MODULE_ENTRY_POINT(func_uvStringEntryPoint)(UvString_Exports *exports) {
-    uvUpdateFileAllocPtr((s32) exports);
+    uvUpdateFileAllocPtr(exports);
     exports->uvStrcpy = uvStrcpy;
     exports->uvStrStub = uvStrStub;
     exports->uvStrChr = uvStrChr;

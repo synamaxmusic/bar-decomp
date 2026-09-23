@@ -12,7 +12,7 @@ u8 *func_uvdsetld_rom_00400204(u8 *arg0);
 void func_uvdsetld_rom_00400230(void* arg0);
 
 void __entrypoint_func_uvdsetld_rom_400000(UvDSetLd_Rom_Exports *exports) {
-    uvUpdateFileAllocPtr((s32) exports);
+    uvUpdateFileAllocPtr(exports);
     exports->func_uvdsetld_rom_00400204 = func_uvdsetld_rom_00400204;
     exports->func_uvdsetld_rom_00400048 = func_uvdsetld_rom_00400048;
     exports->func_uvdsetld_rom_00400230 = func_uvdsetld_rom_00400230;

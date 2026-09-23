@@ -19,7 +19,7 @@ extern UvFMtx_Rom_Exports *D_uvquat_rom_00400B54;
 extern Mtx4F D_uvquat_rom_00400B58;
 
 void __entrypoint_func_uvquat_rom_400000(UvQuat_Exports *exports) {
-    uvUpdateFileAllocPtr((s32) exports);
+    uvUpdateFileAllocPtr(exports);
     exports->uvQuatModuleCleanup = uvQuatModuleCleanup;
     exports->func_uvquat_rom_004000D8 = func_uvquat_rom_004000D8;
     exports->uvQuatFromEuler = uvQuatFromEuler;

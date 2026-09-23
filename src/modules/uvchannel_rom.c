@@ -75,7 +75,7 @@ void func_uvchannel_rom_00401A4C(s32 arg0);
 void __entrypoint_func_uvchannel_rom_400000(UvChannelExports *exports) {
     s32 *temp_v0;
 
-    uvUpdateFileAllocPtr((s32) exports);
+    uvUpdateFileAllocPtr(exports);
     exports->func_uvchannel_rom_004001D4 = func_uvchannel_rom_004001D4;
     exports->func_uvchannel_rom_00401414 = func_uvchannel_rom_00401414;
     exports->func_uvchannel_rom_00400288 = func_uvchannel_rom_00400288;

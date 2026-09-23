@@ -61,7 +61,7 @@ static UvMath_Exports* sUvMathRomExports;
 s32 D_uvfvec_rom_00400BB0[] = {0x00840000, __entrypoint_func_uvfvec_rom_400000, 0, 0};
 
 void __entrypoint_func_uvfvec_rom_400000(UvFVec_Rom_Exports* exports) {
-    uvUpdateFileAllocPtr((s32) exports);
+    uvUpdateFileAllocPtr(exports);
     exports->uvVec3FSet = uvVec3FSet;
     exports->uvVec3FNormalize = uvVec3FNormalize;
     exports->uvVec3FLen = uvVec3FLen;

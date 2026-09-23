@@ -29,7 +29,7 @@ s32 func_uvvattr_rom_00400514(s32 arg0, s32 *arg1, s32 arg2, va_list args);
 void __entrypoint_func_uvvattr_rom_400000(UvVAttr_Exports *exports);
 
 void __entrypoint_func_uvvattr_rom_400000(UvVAttr_Exports *exports) {
-    uvUpdateFileAllocPtr((s32) exports);
+    uvUpdateFileAllocPtr(exports);
     exports->func_uvvattr_rom_00400070 = func_uvvattr_rom_00400070;
     exports->func_uvvattr_rom_00400094 = func_uvvattr_rom_00400094;
     exports->func_uvvattr_rom_00400314 = func_uvvattr_rom_00400314;

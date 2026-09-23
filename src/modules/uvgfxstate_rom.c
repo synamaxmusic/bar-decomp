@@ -115,7 +115,7 @@ void __entrypoint_func_uvgfxstate_rom_400000(UvGfxState_Rom_Exports* exports) {
     s32 i;
     s32* temp_v0;
 
-    uvUpdateFileAllocPtr((s32) exports);
+    uvUpdateFileAllocPtr(exports);
     exports->func_uvgfxstate_rom_00400440 = func_uvgfxstate_rom_00400440;
     exports->func_uvgfxstate_rom_0040049C = func_uvgfxstate_rom_0040049C;
     exports->uvGfxStateSetFlags = uvGfxStateSetFlags;

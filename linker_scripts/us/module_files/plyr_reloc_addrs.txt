@@ -576,3 +576,5 @@ rom:0x4DEC reloc:MIPS_26 symbol:uvMemSet
 rom:0x4DF8 reloc:MIPS_26 symbol:func_80000CA4
 rom:0x4E3C reloc:MIPS_26 symbol:func_80000D58
 rom:0x5798 reloc:MIPS_26 symbol:sprintf
+rom:0x23E8 reloc:MIPS_HI16 symbol:gUvGfxStateExports
+rom:0x23FC reloc:MIPS_LO16 symbol:gUvGfxStateExports

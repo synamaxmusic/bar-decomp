@@ -158,7 +158,7 @@ void __entrypoint_func_uvaudiomgr_rom_40000c(UvAudioMgr_Exports *exports) {
     AudioMgr_Settings *settings;
     s32 audioHeapSize;
 
-    uvUpdateFileAllocPtr((s32) exports);
+    uvUpdateFileAllocPtr(exports);
     exports->func_uvaudiomgr_rom_004008C0 = func_uvaudiomgr_rom_004008C0;
     exports->func_uvaudiomgr_rom_004011EC = func_uvaudiomgr_rom_004011EC;
     exports->uvGetAudioHeapSize = uvGetAudioHeapSize;

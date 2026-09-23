@@ -1,5 +1,4 @@
 
-#include "include/config.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,13 +7,13 @@
 #include <stdint.h>
 #include <assert.h>
 #include <linux/swab.h>
-#include "include/bfd.h"
-#include "include/bfdlink.h"
 #include "cjson/cJSON.h"
+#define STB_LOG
+#define STB_VECTOR
+#include "stb_vc_vector.h"
+#include "elf_parse.h"
 
 // Small log library
-#define STB_LOG
-#define LOG_USE_COLOR
 #include "stb_log.h"
 
 typedef struct CategoryInfo_s {
@@ -51,7 +50,7 @@ const char *TagOrder[] = { "UVTT", "UVDS", "UVTX", "UVTR", "UVCT", "UVVL", "UVMD
 
 Form0Entry Form0TableEntries[FORM_TAGS];
 cJSON *Root;
-static char CurrentTagName[5];
+static char CurrentTagName[6];
 int CurrentRelativeOffset = 0;
 bool NonMatchingFlag = false;
 int TotalEntriesSize = 0;
@@ -63,7 +62,7 @@ void initEntries(void) {
 }
 
 static char *tagToString(uint32_t tag) {
-    tag = __swab32(tag);
+    tag = __builtin_bswap32(tag);
     char *tagPtr = (char *) &tag;
     for (int i = 0; i < 4; i++) {
         CurrentTagName[i] = tagPtr[i];
@@ -79,65 +78,30 @@ size_t getFileSize(FILE *fp) {
     return fSize;
 }
 
-static asection *readSection(bfd *abfd, char *sectionName) {
-    asection *section = bfd_get_section_by_name(abfd, sectionName);
-
-    if (section == NULL) {
-        return NULL;
-    }
-
-    return section;
-}
-
-int getRelaSize(bfd *abfd, asection *sec) {
+int getRelaSize(Section* section) {
     int relaSize = 0;
 
-    int storage_needed = bfd_get_symtab_upper_bound(abfd);
+    vc_vector* relocTable = ElfParse_GetRelocTable();
+    for (void *i = vc_vector_begin(relocTable); i != vc_vector_end(relocTable); i = vc_vector_next(relocTable, i)) {
+        RelocTableEntry* rel = i;
+        Symbol* sym = &rel->symbol;
 
-    if (storage_needed <= 0) {
-        log_fatal("No symbols for this file!");
-        exit(EXIT_FAILURE);
-    }
-
-    asymbol **symtable = (asymbol **) malloc(storage_needed);
-    int count = bfd_canonicalize_symtab(abfd, symtable);
-    if (count < 0) {
-        log_fatal("No syms!");
-    }
-
-    long relocationSize = bfd_get_reloc_upper_bound(abfd, sec);
-    if (relocationSize <= 0) {
-        log_warn("section: %s doesn't have relocations!", sec->name);
-        return -1;
-    }
-
-    arelent **relocs = (arelent **) malloc(relocationSize);
-    long relcount = bfd_canonicalize_reloc(abfd, sec, relocs, symtable);
-    if (relcount < 0) {
-        log_warn("relcount < 0 in %s!", sec->name);
-        return -1;
-    }
-
-    for (int i = 0; i < relcount; i++) {
-        arelent *rel = relocs[i];
-        asymbol *sym = *rel->sym_ptr_ptr;
-
-        if (sym->section == bfd_und_section_ptr) {
+        if (sym->section == SHN_UNDEF) {
             continue;
         }
 
-        // Only support hi/lo 16 and mips 32 relocs
-        if (rel->howto->type != R_MIPS_26 && rel->howto->type != R_MIPS_LO16
-            && rel->howto->type != R_MIPS_HI16 && rel->howto->type != R_MIPS_32) {
-            // log_info("Skipping reloc for sym %s", sym->name);
+        if (strcmp(rel->targetSection, section->name) != 0) {
             continue;
         }
 
-        relaSize += 4;
+        if (rel->relocType != R_MIPS_26 && rel->relocType != R_MIPS_LO16
+            && rel->relocType != R_MIPS_HI16 && rel->relocType != R_MIPS_32) {
+            continue;
+        }
+
+        relaSize += sizeof(int32_t);
     }
 
-    free(symtable);
-    free(relocs);
     return relaSize;
 }
 
@@ -150,42 +114,29 @@ int getRelaSize(bfd *abfd, asection *sec) {
  * @param path Path othe ELF file
  */
 int computeUvmoSize(const char *path) {
-    bfd *abfd = bfd_openr(path, NULL);
-
-    if (abfd == NULL) {
-        log_info("Can't open bfd!");
-        exit(EXIT_FAILURE);
-    }
-
-    bfd_boolean b = bfd_check_format(abfd, bfd_object);
-
-    if (!b) {
-        log_error("Only ELF Rel object files are supported");
-        exit(EXIT_FAILURE);
-    }
+    ElfParse_Init(path);
 
     int relaArraySize = 0;
     int sectionsSize = 0;
-    asection *text = readSection(abfd, ".text");
-    asection *rodata = readSection(abfd, ".rodata");
-    asection *data = readSection(abfd, ".data");
+    Section *text = ElfParse_GetSection(".text");
+    Section *rodata = ElfParse_GetSection(".rodata");
+    Section *data = ElfParse_GetSection(".data");
 
     if (text != NULL) {
-        relaArraySize += getRelaSize(abfd, text);
+        relaArraySize += getRelaSize(text);
         sectionsSize += text->size;
     }
 
     if (rodata != NULL) {
-        relaArraySize += getRelaSize(abfd, rodata);
+        relaArraySize += getRelaSize(rodata);
         sectionsSize += rodata->size;
     }
 
     if (data != NULL) {
-        relaArraySize += getRelaSize(abfd, data);
+        relaArraySize += getRelaSize(data);
         sectionsSize += data->size;
     }
 
-    bfd_close(abfd);
     int iffSpecificSize = UVMO_HEADER_SIZE + MDBG_SIZE + RELA_HEADER_SIZE;
     int uvmoSize = iffSpecificSize + sectionsSize + relaArraySize;
 
@@ -197,6 +148,7 @@ int computeUvmoSize(const char *path) {
     log_info("RELA size: %x", relaArraySize);
     log_info("Calculated size for %s is: %x", path, uvmoSize);
 
+    ElfParse_Destroy();
     return uvmoSize;
 }
 
@@ -367,7 +319,7 @@ CategoryInfo *searchCategory(const char *category) {
 }
 
 void parseForm0Json(void) {
-    cJSON *formFiles = cJSON_GetObjectItem(Root, "FormFiles");
+    cJSON *formFiles = cJSON_GetObjectItem(Root, "FormFiles"); 
     cJSON *formFile;
 
     CategoryInfo *info = searchCategory("UVMO");
@@ -387,13 +339,13 @@ void parseForm0Json(void) {
 
 void writeForm0(void) {
     Form0Header header;
-    header.formTag = __swab32('FORM');
+    header.formTag = __builtin_bswap32('FORM');
 
     int uvftTagSize = sizeof(int32_t);
     int form0Size = TotalEntriesSize + uvftTagSize + (8 * 18);
 
-    header.form0Size = __swab32(form0Size);
-    header.uvftTag = __swab32('UVFT');
+    header.form0Size = __builtin_bswap32(form0Size);
+    header.uvftTag = __builtin_bswap32('UVFT');
 
     FILE *form0 = fopen("build/FORM0.generated.uvft", "wb");
     if (form0 == NULL) {
@@ -412,16 +364,16 @@ void writeForm0(void) {
         }
         log_info("Writing entries for form %s", tagToString(Form0TableEntries[i].tag));
 
-        byteswapTemp = __swab32(Form0TableEntries[i].tag);
+        byteswapTemp = __builtin_bswap32(Form0TableEntries[i].tag);
         fwrite(&byteswapTemp, sizeof(byteswapTemp), 1, form0);
 
         int size = Form0TableEntries[i].count * sizeof(int32_t);
-        byteswapTemp = __swab32(size);
+        byteswapTemp = __builtin_bswap32(size);
         fwrite(&byteswapTemp, sizeof(byteswapTemp), 1, form0);
 
         // We have to do this manually because of the byteswap memes
         for (int j = 0; j < Form0TableEntries[i].count; j++) {
-            byteswapTemp = __swab32(Form0TableEntries[i].offsets[j]);
+            byteswapTemp = __builtin_bswap32(Form0TableEntries[i].offsets[j]);
             fwrite(&byteswapTemp, sizeof(byteswapTemp), 1, form0);
         }
     }

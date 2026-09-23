@@ -8,7 +8,7 @@ void uvBlitStub(void);
 void uvFreeBlit(ParsedUVBT *uvbt);
 
 void __entrypoint_func_uvblit_rom_400000(UvBlit_Rom_Exports *exports) {
-    uvUpdateFileAllocPtr((s32) exports);
+    uvUpdateFileAllocPtr(exports);
     exports->uvParseBlit = uvParseBlit;
     exports->uvBlitStub = uvBlitStub;
     exports->uvFreeBlit = uvFreeBlit;

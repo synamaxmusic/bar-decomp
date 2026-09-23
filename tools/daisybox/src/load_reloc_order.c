@@ -8,8 +8,6 @@
 #define MAX_LINE_SIZE 300
 
 void LoadRelocOrder(char* relocOrderFileName) {
-    char* relocSortsFileData;
-    size_t relocSortsFileSize;
     FILE* relocSortsFile;
     char line[MAX_LINE_SIZE];
     RelocOrderInfo info = {0};

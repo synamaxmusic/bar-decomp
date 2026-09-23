@@ -46,7 +46,7 @@ jobs:
 
     - name: Install Packages
       #run: sudo apt-get install -y git make git build-essential binutils-mips-linux-gnu python3 python3-pip
-      run: sudo apt-get install -y make git build-essential binutils-mips-linux-gnu python3 python3-pip clang-format-14 clang-tidy libcjson-dev curl libzstd-dev binutils-dev
+      run: sudo apt-get install -y make git build-essential binutils-mips-linux-gnu python3 python3-pip clang-format-14 clang-tidy libcjson-dev curl libzstd-dev binutils-dev libelf-dev
     
     - name: Build Dependencies
       run: make dependencies

@@ -27,7 +27,7 @@ void __entrypoint_func_uvear_rom_400000(UvEar_Rom_Exports *exports) {
     u16 i;
     u16 *size;
 
-    uvUpdateFileAllocPtr((s32) exports);
+    uvUpdateFileAllocPtr(exports);
     exports->func_uvear_rom_0040018C = func_uvear_rom_0040018C;
     exports->func_uvear_rom_00400230 = func_uvear_rom_00400230;
     exports->func_uvear_rom_00400290 = func_uvear_rom_00400290;

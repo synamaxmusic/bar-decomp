@@ -227,7 +227,7 @@ void func_uvdbg_rom_004002EC(s32 arg0) {
 }
 
 void __entrypoint_func_uvdbg_rom_400318(UvDbgRom_Exports *exports) {
-    uvUpdateFileAllocPtr((s32) exports);
+    uvUpdateFileAllocPtr(exports);
     exports->func_uvdbg_rom_00400490 = func_uvdbg_rom_00400490;
     exports->func_uvdbg_rom_00402D00 = func_uvdbg_rom_00402D00;
     exports->func_uvdbg_rom_00401D20 = func_uvdbg_rom_00401D20;

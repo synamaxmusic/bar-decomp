@@ -35,28 +35,28 @@ void Utils_TrimPath(const char *path, char *out) {
     }
 }
 
-int Utils_EncodeInstructionSection(asection *sec) {
-    if (strcmp(sec->name, ".text") == 0) {
+int Utils_EncodeInstructionSection(char *name) {
+    if (strcmp(name, ".text") == 0) {
         return 0;
-    } else if (strcmp(sec->name, ".data") == 0) {
+    } else if (strcmp(name, ".data") == 0) {
         return 1;
-    } else if (strcmp(sec->name, ".rodata") == 0) {
+    } else if (strcmp(name, ".rodata") == 0) {
         return 2;
-    } else if (strcmp(sec->name, ".bss") == 0) {
+    } else if (strcmp(name, ".bss") == 0) {
         return 3;
     }
 
     return -1;
 }
 
-int Utils_EncodeSymbolSection(asection *sec) {
-    if (strcmp(sec->name, ".text") == 0) {
+int Utils_EncodeSymbolSection(char* name) {
+    if (strcmp(name, ".text") == 0) {
         return 0;
-    } else if (strcmp(sec->name, ".rodata") == 0) {
+    } else if (strcmp(name, ".rodata") == 0) {
         return 1;
-    } else if (strcmp(sec->name, ".data") == 0) {
+    } else if (strcmp(name, ".data") == 0) {
         return 2;
-    } else if (strcmp(sec->name, ".bss") == 0) {
+    } else if (strcmp(name, ".bss") == 0) {
         return 3;
     }
 
@@ -101,4 +101,25 @@ int Utils_StringToTag(char *tagStr) {
 
     memcpy(&ptr, tagStr, 4);
     return ptr;
+}
+
+uint16_t Utils_ReadBe16(const uint8_t *p) {
+    return ((uint16_t) p[0] << 8) | ((uint16_t) p[1]);
+}
+
+uint32_t Utils_ReadBe32(const uint8_t *p) {
+    return ((uint32_t) p[0] << 24) | ((uint32_t) p[1] << 16) | ((uint32_t) p[2] << 8)
+           | ((uint32_t) p[3]);
+}
+
+void Utils_WriteBe16(uint8_t *p, uint16_t value) {
+    p[0] = (uint8_t) (value >> 8);
+    p[1] = (uint8_t) value;
+}
+
+void Utils_WriteBe32(uint8_t *p, uint32_t value) {
+    p[0] = (uint8_t) (value >> 24);
+    p[1] = (uint8_t) (value >> 16);
+    p[2] = (uint8_t) (value >> 8);
+    p[3] = (uint8_t) value;
 }

@@ -10,7 +10,6 @@
 #include <string.h>
 #include <argp.h>
 #include <stdarg.h>
-#include <linux/swab.h>
 
 #define MIPS_OPCODE(x) ((x) >> 26)
 #define MIPS_JUMP_TARGET(insn) (((insn) & 0x003FFFFF) << 1)
@@ -111,7 +110,7 @@ static struct argp Argp = { ModuleToolOptions, parseOptions, ArgsDoc, ModuleTool
 
 static int LocalJalsOffsetPtrCount;
 static int *LocalJalsOffsetPtr;
-static char CurrentTagName[5];
+static char CurrentTagName[6];
 static FILE *RelocsFile;
 static char RelocsFilePath[300];
 static char FileName[200];
@@ -146,12 +145,12 @@ void byteSwapModuleFileHeader(ModuleFileHeader *header) {
     int *ptr = (int *) header;
 
     for (int32_t i = 0; i < sizeof(ModuleFileHeader); i += sizeof(int32_t), ptr++) {
-        *ptr = __swab32(*ptr);
+        *ptr = __builtin_bswap32(*ptr);
     }
 }
 
 static char *tagToString(uint32_t tag) {
-    tag = __swab32(tag);
+    tag = __builtin_bswap32(tag);
     char *tagPtr = (char *) &tag;
     for (int i = 0; i < 4; i++) {
         CurrentTagName[i] = tagPtr[i];
@@ -242,15 +241,15 @@ void printCommInfo(ModuleCommInfo *info) {
 
 void printMdbg(ModuleFileMdbgInfo *info) {
     printf("\n-- Module Mdbg info -- \n");
-    printf("     MDBG tag: %s\n", tagToString(__swab32(info->mdbgTag)));
-    printf("     MDBG size: %x\n", __swab32(info->mdbgSize));
+    printf("     MDBG tag: %s\n", tagToString(__builtin_bswap32(info->mdbgTag)));
+    printf("     MDBG size: %x\n", __builtin_bswap32(info->mdbgSize));
     printf("     MDBG contents: %s\n", info->mdbgInfo);
 }
 
 void printRela(RelaInfo *info) {
     printf("\n-- Rela info -- \n");
-    printf("     Rela tag: %s\n", tagToString(__swab32(info->relaTag)));
-    printf("     Rela size: %x\n", __swab32(info->relaSize));
+    printf("     Rela tag: %s\n", tagToString(__builtin_bswap32(info->relaTag)));
+    printf("     Rela size: %x\n", __builtin_bswap32(info->relaSize));
 }
 
 void printExtraInfo(ModuleCommInfo *info) {
@@ -329,7 +328,7 @@ void printRelocEntries(ModuleFileHeader *header, RelaInfo *relaInfo) {
 
     for (int i = 0; i < count; i++) {
 
-        uint32_t entry = __swab32(relocs[i]);
+        uint32_t entry = __builtin_bswap32(relocs[i]);
 
         uint32_t cmd = entry >> 28;
         uint32_t section = (entry & 0x0C000000) >> 26;
@@ -393,7 +392,7 @@ void uvDoModuleRelocs(uint8_t *ovlStartPtr, ModuleCommInfo *info, RelaInfo *rela
 
     int offset = MODULE_FILES_CODE_BYTES_START;
     for (int i = 0; i < info->relocCount; i++, offset += 4) {
-        uint32_t entry = __swab32(relocs[i]);
+        uint32_t entry = __builtin_bswap32(relocs[i]);
 
         symbolSection = (uint32_t) entry >> 0x1C;
         u.targetInstructionSection = (uint32_t) (entry & 0x0C000000) >> 0x1A; // 0
@@ -558,7 +557,7 @@ void uvDoExternalRelocs(uint8_t *data, size_t size, bool writeRelocs) {
     uint32_t *instrPtr = (uint32_t *) data;
 
     for (int addend = 0x50; addend < size + MODULE_FILES_CODE_BYTES_START; addend += 4, instrPtr++) {
-        uint32_t ins = __swab32(*instrPtr);
+        uint32_t ins = __builtin_bswap32(*instrPtr);
 
         // JAL = 3
         if (MIPS_OPCODE(ins) == 3) {

@@ -20,7 +20,7 @@ void Symtab_AddSymbol(const char *name, uint32_t addr) {
     HASH_ADD_STR(Symtab, name, s);
 }
 
-uint32_t Symtab_ResolveSymbol(const char *name) {
+int32_t Symtab_ResolveSymbol(const char *name) {
     Symbol *s;
 
     HASH_FIND_STR(Symtab, name, s);

@@ -10,7 +10,7 @@ ParsedUVFT* func_uvfontld_rom_00400050(u8* data);
 void func_uvfontld_rom_00400324(ParsedUVFT* arg0);
 
 void __entrypoint_func_uvfontld_rom_400000(UvFontLd_Exports *exports) {
-    uvUpdateFileAllocPtr((s32) exports);
+    uvUpdateFileAllocPtr(exports);
     exports->func_uvfontld_rom_00400050 = func_uvfontld_rom_00400050;
     exports->func_uvfontld_rom_00400048 = func_uvfontld_rom_00400048;
     exports->func_uvfontld_rom_00400324 = func_uvfontld_rom_00400324;

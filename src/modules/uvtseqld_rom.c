@@ -30,7 +30,7 @@ extern s32 D_uvtseqld_rom_00400320;
 void __entrypoint_func_uvtseqld_rom_400000(UvtSeqLd_Rom_Exports* exports);
 
 void __entrypoint_func_uvtseqld_rom_400000(UvtSeqLd_Rom_Exports *exports) {
-    uvUpdateFileAllocPtr((s32) exports);
+    uvUpdateFileAllocPtr(exports);
     exports->func_uvtseqld_rom_0040005C = func_uvtseqld_rom_0040005C;
     exports->func_uvtseqld_rom_00400054 = func_uvtseqld_rom_00400054;
     exports->func_uvtseqld_rom_0040027C = func_uvtseqld_rom_0040027C;
