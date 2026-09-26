@@ -193,24 +193,6 @@ typedef struct UnkStruct_80025CB0_s {
     void (*unk24)(void);
 } UnkStruct_80025CB0;
 
-typedef struct UnkDobjExports_s {
-               s32 unk0;
-               s32 pad4[4];
-               void (*unk14)(s32, f32);
-    /* 0x18 */ s32 (*unk18)(void);              /* inferred */
-    /* 0x1C */ void (*unk1C)(s32, s32, void*, s32, s32);
-               s32 unk20;
-    /* 0x24 */ void (*unk24)(s32, u8, Mtx4F *); /* inferred */
-               s32 unk28[2];
-               void (*unk30)(s32, s32);
-               s32 unk34;
-               void (*unk38)(s32, s32);
-               s32 (*unk3C)(void);
-    /* 0x40 */ void (*unk40)(s32);
-    /* 0x44 */ char pad[0x14];
-    /* 0x58 */ s32 (*unk58)(s32, s32, s32);
-} UnkDobjExports; /* size = 0x44 */
-
 typedef struct Volt_Exports_s {
     char pad0[4];
     s32 (*unk4)(s32);

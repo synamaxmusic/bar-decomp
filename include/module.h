@@ -47,6 +47,8 @@
 #include "uvtexanim_rom.h"
 #include "uvtextureld_rom.h"
 #include "uvfx_rom.h"
+#include "uvmodel_rom.h"
+#include "uvdobj_rom.h"
 #include "ripple.h"
 #include "intro.h"
 #include "track7.h"

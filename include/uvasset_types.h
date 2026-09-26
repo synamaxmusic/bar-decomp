@@ -134,18 +134,24 @@ typedef struct uvModelLOD_inner_s {
 } uvModelLOD_inner;
 
 typedef struct uvModelLOD_s {
-    uvGfxState *stateTable;
-    u8 unk4;
-    uvModelLOD_inner unk8;
-    char pad[0xC];
-} uvModelLOD;
+    /* 0x00 */ uvGfxState* stateTable;
+    /* 0x04 */ u8 unk4;
+    /* 0x05 */ u8 unk5;
+    /* 0x06 */ u8 unk6;                             /* inferred */
+    /* 0x07 */ u8 unk7;
+    /* 0x08 */ uvModelLOD_inner unk8;
+    /* 0x20 */ u8 unk20;
+    /* 0x24 */ char pad20[0x8];
+} uvModelLOD;                                       /* size = 0x2C */
 
 typedef struct ParsedUVMD_1_s {
-    uvModelLOD *unk0;
-    u8 unk4;
-    u8 pad[3];
-    u8 unk8;
-} ParsedUVMD_1;
+    /* 0x0 */ uvModelLOD* unk0;
+    /* 0x4 */ u8 unk4;
+    /* 0x5 */ u8 pad[3];
+    /* 0x8 */ u8 unk8;
+    /* 0x9 */ u8 unk9;                              /* inferred */
+    /* 0xA */ char padA[2];                         /* maybe part of unk9[3]? */
+} ParsedUVMD_1;                                     /* size = 0xC */
 
 typedef struct ParsedUVMD_20_s {
     /* 0x0 */ char pad[0x38];
@@ -153,16 +159,20 @@ typedef struct ParsedUVMD_20_s {
 } ParsedUVMD_20;
 
 typedef struct ParsedUVMD {
-    /* 0x00 */ ParsedUVMD_1 *unk0; /* inferred */
-    /* 0x04 */ u8 unk4;            /* inferred */
+    /* 0x00 */ ParsedUVMD_1* unk0;
+    /* 0x04 */ u8 unk4;
+    /* 0x05 */ u8 unk5;
+    /* 0x06 */ u8 unk6;
+    /* 0x07 */ u8 unk7;                             /* inferred */
     /* 0x08 */ Mtx4F* unk8;
-               s32 unkC;
+    /* 0x0C */ f32 unkC;
     /* 0x10 */ f32 unk10;
     /* 0x14 */ f32 unk14;
-    /* 0x18 */ Vtx *vtxTable;
+    /* 0x18 */ Vtx* vtxTable;
     /* 0x1C */ u16 vtxCount;
+    /* 0x1E */ char pad1E[2];
     /* 0x20 */ ParsedUVMD_20* unk20;
-} ParsedUVMD; /* size = 0x20 */
+} ParsedUVMD;                                       /* size = 0x24 */
 
 typedef struct UnkUVTX_1C {
     f32 unk0;

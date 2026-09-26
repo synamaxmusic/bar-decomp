@@ -168,6 +168,11 @@ Modules:
       - rodata
       - data
   - name: uvdobj_rom
+    done_sections:
+      - text
+      - rodata
+      - data
+      - bss
   - name: uvdsetld_rom
     done_sections:
       - text

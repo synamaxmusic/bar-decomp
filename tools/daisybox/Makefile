@@ -1,5 +1,5 @@
 CC := gcc
-CFLAGS := -I include -ggdb3 -O2 -Wall -Wextra -std=c11 -Wno-multichar -DLOG_USE_COLOR
+CFLAGS := -I include -flto -ggdb3 -O3 -Wall -Wextra -std=c11 -Wno-multichar -DLOG_USE_COLOR
 DEFINES := -DSTB_LOG -DSTB_VECTOR
 CPPFLAGS := -I.
 LDFLAGS :=

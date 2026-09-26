@@ -24,7 +24,7 @@ extern char* gNoControllerStrings[];
 extern UvFont_Exports *gUvFontExports;
 extern UvEmitter_Exports* gUvEmitterExports;
 extern UvCMidi_Exports* gUvCmidiExports;
-extern UnkDobjExports* gUvDobjExports;
+extern UvDobj_Exports* gUvDobjExports;
 extern UvChannelExports* gUvChanExports;
 extern UvEar_Rom_Exports* gUvEarExports;
 extern UvAudioMgr_Exports* gUvAudiomgrExports;
