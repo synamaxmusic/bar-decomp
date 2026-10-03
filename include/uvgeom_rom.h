@@ -16,7 +16,7 @@ typedef struct UvGeom_Exports_s {
     /* 0x04 */ void (*uvEndTmesh)(s32, s32, UvGeom_Rom_0040019C *, Gfx **); /* inferred */
     /* 0x08 */ void (*uvEndGrid)(s32, s32, s32, s32, s32, s32, UvGeom_Rom_0040019C *, Gfx **); /* inferred */
     /* 0x0C */ void (*uvSetFillColor)(f32, f32, f32, f32);    /* inferred */
-    /* 0x10 */ void (*uvVtxRect)(s32, s32, s32, s32);   /* inferred */
+    /* 0x10 */ void (*uvVtxRect)(s16, s32, s32, s32);   /* inferred */
     /* 0x14 */ void (*uvVtxEndPolyInternal)(s32, s32, UvGeom_Rom_0040019C *, Gfx **); /* inferred */
 } UvGeom_Exports;                                   /* size = 0x18 */
 

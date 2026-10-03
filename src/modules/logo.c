@@ -3,19 +3,14 @@
 #include "module.h"
 #include "global_exports.h"
 
-typedef struct UnkStruct_80025C88_s {
-    s32 pad0;
-    void (*unk4)(s32, s32);
-} UnkStruct_80025C88;
-
 typedef struct Logo_Exports_s {
     void (*func_logo_00400174)(void);
     void (*func_logo_0040017C)(void);
     void (*unusedLogoRender)(void);
 } Logo_Exports;
 
-extern UnkStruct_80025C74* gGameGuiExports;
-extern UnkStruct_80025C88* gScrnExports;
+//extern UnkGameGuiExports* gGameGuiExports;
+//extern UnkScrnExports* gScrnExports;
 
 void __entrypoint_func_logo_400000(Logo_Exports* arg0) ;
 void func_logo_00400174(void);

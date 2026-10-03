@@ -87,11 +87,6 @@ typedef struct UnkStruct_intro_00400A84_s {
     char pad24[0x10];
 } UnkStruct_intro_00400A84;
 
-typedef struct UnkStruct_80025C88_s {
-    /* 0x00 */ void (*unk0)(void);                      /* inferred */
-    /* 0x04 */ void (*unk4)(s32, s32);
-} UnkStruct_80025C88;
-
 typedef struct UnkStruct_80025C78_s {
     /* 0x00 */ void (*unk0)(void);                      /* inferred */
     /* 0x04 */ void (*unk4)(s32, s32);
@@ -142,8 +137,8 @@ s32 func_intro_00400960(s32* arg0, void *arg1, void *arg2, s32* arg3);
 
 extern UnkStruct_80025C10* gUvModelExports;
 extern UnkStruct_80025C54* gUvDynExports;
-extern UnkStruct_80025C74* gGameGuiExports;
-extern UnkStruct_80025C88* gScrnExports;
+//extern UnkGameGuiExports* gGameGuiExports;
+//extern UnkScrnExports* gScrnExports;
 extern UnkStruct_80025C90* gReplayExports;
 extern UnkStruct_8002CCB0 D_8002CCB0[];
 extern u8 D_intro_00400A04[];
