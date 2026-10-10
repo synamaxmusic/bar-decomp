@@ -6,25 +6,31 @@
 #define MAX_MENU_TITLE_LEN 30
 #define MAX_MENU_OPTIONS 12
 
-typedef void (*UvGuiRoutine)(void* arg0);
+typedef void (*UvGuiCallback)(void* arg0);
 
-typedef struct Inner28_s {
-    /* 0x00 */ u8 unk0[0x1E];                             /* inferred */
-    /* 0x1E */ s16 unk1E;
-    /* 0x20 */ s16 unk20;
+typedef enum GuiSliderState_e {
+    SLIDER_STATE_FREE, // Unallocated
+    SLIDER_STATE_RENDER,
+    SLIDER_STATE_ACTIVE
+} GuiSliderState;
+
+typedef struct GuiSlider_s {
+    /* 0x00 */ u8 label[0x1E];                             /* inferred */
+    /* 0x1E */ s16 state;
+    /* 0x20 */ s16 mode;
     /* 0x22 */ char pad22[2];
     /* 0x24 */ f32 unk24;
     /* 0x28 */ f32 unk28;
     /* 0x2C */ s32* unk2C;
     /* 0x30 */ f32 unk30;
     /* 0x34 */ f32 unk34;
-    /* 0x38 */ s16 unk38;
-    /* 0x3A */ s16 unk3A;
-    /* 0x3C */ s16 unk3C;
-    /* 0x3E */ s16 unk3E;
-    /* 0x40 */ void (*unk40)(void*);
+    /* 0x38 */ s16 x0;
+    /* 0x3A */ s16 x1;
+    /* 0x3C */ s16 y0;
+    /* 0x3E */ s16 y1;
+    /* 0x40 */ UvGuiCallback callback;
     /* 0x44 */ s32* unk44;
-} Inner28;                                          /* size = 0x48 */
+} GuiSlider;                                          /* size = 0x48 */
 
 typedef struct Inner2C_s {
     /* 0x00 */ u8 unk0[0x1E];
@@ -81,10 +87,10 @@ typedef struct GuiMenuItem_s {
     /* 0x16 */ s16 unk16;
     /* 0x18 */ s16 unk18;
     /* 0x1A */ char pad1A[2];
-    /* 0x1C */ UvGuiRoutine unk1C; /* inferred */
-    /* 0x20 */ UvGuiRoutine unk20; /* inferred */
-    /* 0x24 */ UvGuiRoutine unk24; /* inferred */
-    /* 0x28 */ Inner28* unk28;
+    /* 0x1C */ UvGuiCallback unk1C; /* inferred */
+    /* 0x20 */ UvGuiCallback unk20; /* inferred */
+    /* 0x24 */ UvGuiCallback unk24; /* inferred */
+    /* 0x28 */ GuiSlider* slider;
     /* 0x2C */ Inner2C* unk2C;
     /* 0x30 */ Inner30* unk30;
 } GuiMenuItem;    /* size = 0x34 */
@@ -147,7 +153,7 @@ typedef struct UvGui_Exports_s {
     /* 0x000 */ void (*uvGuiDestroy)(void);
     /* 0x004 */ void (*uvGuiInit)(uvGui *);
     /* 0x008 */ void (*uvGuiAddMenu)(uvGui *, GuiMenu *);
-    /* 0x00C */ void (*func_uvgui_rom_00400754)(uvGui *);
+    /* 0x00C */ void (*uvGuiRender)(uvGui *);
     /* 0x010 */ void (*uvGuiDrawRect)(s16, s16, s16, s16, s16, u8, u8, u8, u8);
     /* 0x014 */ void (*uvGuiPrintCentered)(s16, s16, s16, s16, u8 *, u8, u8, u8, u8);
     /* 0x018 */ void (*uvGuiDrawCursor)(s16, s16);
@@ -168,7 +174,7 @@ typedef struct UvGui_Exports_s {
     /* 0x054 */ void (*func_uvgui_rom_00401DC4)(GuiMenuItem *);
     /* 0x058 */ s32 (*func_uvgui_rom_004020A0)(GuiMenuItem *, u8, s16, s16, s32, f32, f32);
     /* 0x05C */ void (*func_uvgui_rom_0040221C)(GuiMenuItem *, s16, void (*)(void *));
-    /* 0x060 */ void (*func_uvgui_rom_00402268)(GuiMenuItem *, Inner28 *);
+    /* 0x060 */ void (*func_uvgui_rom_00402268)(GuiMenuItem *, GuiSlider *);
     /* 0x064 */ void (*func_uvgui_rom_00402308)(GuiMenuItem *, Inner2C *);
     /* 0x068 */ void (*func_uvgui_rom_004023A8)(GuiMenuItem *, Inner30 *);
     /* 0x06C */ void (*uvGuiInitMenus)(void);
@@ -189,19 +195,19 @@ typedef struct UvGui_Exports_s {
     /* 0x0A8 */ void (*uvGuiAddMenuItem)(GuiMenuOption *, GuiMenuItem *);
     /* 0x0AC */ void (*uvGuiRenderMenuOption)(GuiMenuOption *);
     /* 0x0B0 */ s32 (*func_uvgui_rom_00402E48)(GuiMenuOption *, u8, s16, s16, s32, f32, f32);
-    /* 0x0B4 */ void (*func_uvgui_rom_0040300C)(void);
-    /* 0x0B8 */ s16 (*func_uvgui_rom_004031A4)(void);
-    /* 0x0BC */ void (*func_uvgui_rom_004031E4)(s16);
-    /* 0x0C0 */ Inner28 *(*func_uvgui_rom_0040320C)(s16);
-    /* 0x0C4 */ void (*func_uvgui_rom_00403234)(void *, u8 *);
-    /* 0x0C8 */ void (*func_uvgui_rom_00403298)(Inner28 *, s16, s16, s16, s16);
-    /* 0x0CC */ void (*func_uvgui_rom_004032BC)(Inner28 *);
-    /* 0x0D0 */ void (*func_uvgui_rom_004037D8)(Inner28 *, s32);
-    /* 0x0D4 */ void (*func_uvgui_rom_004037E0)(Inner28 *, f32, f32, f32, s32 *);
-    /* 0x0D8 */ void (*func_uvgui_rom_004038D8)(Inner28 *, s16);
-    /* 0x0DC */ void (*func_uvgui_rom_004038E4)(Inner28 *, u8, f32);
-    /* 0x0E0 */ void (*func_uvgui_rom_00403C50)(Inner28 *, s16);
-    /* 0x0E4 */ void (*func_uvgui_rom_00403CA4)(Inner28 *, s32);
+    /* 0x0B4 */ void (*uvGuiSliderInit)(void);
+    /* 0x0B8 */ s16 (*uvGuiSliderNew)(void);
+    /* 0x0BC */ void (*uvGuiSliderFree)(s16);
+    /* 0x0C0 */ GuiSlider *(*uvGuiGetSlider)(s16);
+    /* 0x0C4 */ void (*uvGuiSliderSetLabel)(GuiSlider *, u8 *);
+    /* 0x0C8 */ void (*uvGuiSliderSetRect)(GuiSlider *, s16, s16, s16, s16);
+    /* 0x0CC */ void (*uvGuiDrawSlider)(GuiSlider *);
+    /* 0x0D0 */ void (*func_uvgui_rom_004037D8)(GuiSlider *, s32);
+    /* 0x0D4 */ void (*func_uvgui_rom_004037E0)(GuiSlider *, f32, f32, f32, s32 *);
+    /* 0x0D8 */ void (*func_uvgui_rom_004038D8)(GuiSlider *, s16);
+    /* 0x0DC */ void (*func_uvgui_rom_004038E4)(GuiSlider *, u8, f32);
+    /* 0x0E0 */ void (*func_uvgui_rom_00403C50)(GuiSlider *, s16);
+    /* 0x0E4 */ void (*func_uvgui_rom_00403CA4)(GuiSlider *, s32);
     /* 0x0E8 */ void (*func_uvgui_rom_00403CAC)(void);
     /* 0x0EC */ s16 (*func_uvgui_rom_00403E78)(void);
     /* 0x0F0 */ void (*func_uvgui_rom_00403EB8)(s16);

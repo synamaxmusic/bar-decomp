@@ -47,6 +47,7 @@ Modules:
   - name: intro
     done_sections:
       - text
+      - rodata
   - name: letter
   - name: level1
     done_sections:
@@ -61,6 +62,11 @@ Modules:
   - name: med
   - name: menuslct
   - name: misc
+    done_sections:
+      - text
+      - rodata
+      - data
+      - bss
   - name: motion
   - name: mult1
     done_sections:

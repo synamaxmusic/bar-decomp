@@ -135,7 +135,6 @@ void func_intro_00400820(void);
 void func_intro_0040087C(void);
 s32 func_intro_00400960(s32* arg0, void *arg1, void *arg2, s32* arg3);
 
-extern UnkStruct_80025C10* gUvModelExports;
 extern UnkStruct_80025C54* gUvDynExports;
 extern UnkStruct_80025C90* gReplayExports;
 extern UnkStruct_8002CCB0 D_8002CCB0[];
@@ -162,7 +161,6 @@ extern UnkStruct_80025C90* gReplayExports;
 extern u8 D_intro_004009D0;
 extern s32 D_intro_00400A94;
 extern UnkStruct_80025C84* gSceneExports;
-extern UnkStruct_80025C64* gUvGuiExports;
 extern s32 D_intro_00400A9C;
 extern UnkStruct_intro_004009C0 D_intro_004009C0;
 extern UnkStruct_80025C84* gSceneExports;
@@ -218,7 +216,7 @@ void __entrypoint_func_intro_400000(Intro_Exports *arg0) {
     gUvSprtExports->uvSprtProps(D_intro_00400A90.unk8[0], 2, temp_a2, 0x64, 0);
     gUvSprtExports->uvSprtProps(D_intro_00400A90.unk8[1], 2, temp_a2, 0x64, 0);
     uvLoadFile('UVMD', 0x116);
-    gUvModelExports->unk4C(0x116, func_intro_00400960);
+    gUvModelExports->func_uvmodel_rom_00402E50(0x116, func_intro_00400960);
     gGameGuiExports->unk1C((s32) func_intro_0040087C);
     gGameGuiExports->unk10(0);
     gReplayExports->unk10();
@@ -285,7 +283,7 @@ void func_intro_004005CC(void) {
                 return;
             }
         }
-        if ((temp_fv1 < D_intro_004009C8) && (gGameSettings->dbgOptsRecordIntro == 0)) {
+        if ((temp_fv1 < 0.7f) && (gGameSettings->dbgOptsRecordIntro == 0)) {
             D_intro_004009D0 = 1;
             return;
         }
@@ -311,18 +309,17 @@ void func_intro_00400820(void) {
 
 void func_intro_0040087C(void) {
     s32 sp1C;
-    s32 temp_v0;
-    s16 a0;
+    GuiMenu* menu;
 
     sp1C = gGameGuiExports->unk28 + 0x10;
     gGameGuiExports->unk14();
-    a0 = gUvGuiExports->unk70(); // (sll a0,v0,0x10 and sra t0,a0,0x10) means there is a conversion from s16 to s32
-    temp_v0 = gUvGuiExports->unk74(a0);
-    gUvGuiExports->unk78(temp_v0, &D_intro_004009C0);
-    gUvGuiExports->unk8(sp1C, temp_v0);
-    gReplayExports->unk34(temp_v0);
+    menu = gUvGuiExports->uvGuiGetMenu(gUvGuiExports->uvGuiNewMenu());
+    gUvGuiExports->uvGuiSetMenuTitle(menu, "intro");
+    gUvGuiExports->uvGuiAddMenu(sp1C, menu);
+    // TODO: Remove these casts
+    gReplayExports->unk34((s32)menu);
     if (gAiExports != 0) {
-        gAiExports->unk14(temp_v0);
+        gAiExports->unk14((s32)menu);
     }
 }
 

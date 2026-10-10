@@ -38,4 +38,8 @@ extern UnkGameGuiExports* gGameGuiExports;
 extern UnkScrnExports* gScrnExports;
 extern UvGeom_Exports* gUvGeomExports;
 extern UvPfx_Exports* gUvPfxExports;
+extern UvGui_Exports* gUvGuiExports;
+extern UvQuat_Exports* gUvQuatExports;
+extern UvModel_Exports* gUvModelExports;
+extern UvGui_Exports* gUvGuiExports;
 #endif /* GLOBAL_EXPORTS_H */

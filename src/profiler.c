@@ -34,7 +34,7 @@ s32 D_8002D930;
 
 void func_80001040(s32, s32);                          /* extern */
 void uvProfilerResetEntry(s32);                               /* extern */
-void func_80000EC8(s32, ...);
+void uvProfilerGetProps(s32, ...);
 
 s32 uvProfilerCreate(char* label) {
     ProfilerEntry* profilerEntry;
@@ -122,7 +122,7 @@ void uvProfilerResetEntry(s32 id) {
     sProfilerEntries[id].unk8 = -1.0;
 }
 
-void func_80000EC8(s32 id, ...) {
+void uvProfilerGetProps(s32 id, ...) {
     ProfilerEntry *profilerEntry;
     f64 *temp_a0_2;
     u32 prop;

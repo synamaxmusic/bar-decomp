@@ -177,6 +177,7 @@ void compareTextSection(ModuleSection* target, ModuleSection* current) {
 
         if (targetInstruction != currentInstruction) {
             if (differingWords < MaxWordsToPrint) {
+                printf("VRAM: 0x%X\n", MODULE_FILES_SECTION_FAKE_VADDR + 0x50 + i);
                 printf("Instruction difference: 0x%X != 0x%X (offset: 0x%X)\n", targetInstruction, currentInstruction, MODULE_TEXT_START + i);
                 printInstruction(targetInstruction, NULL);
                 printf(" vs ");

@@ -20,4 +20,5 @@
 #include "game.h"
 #include "uv_module.h"
 #include "uv_main.h"
+#include "uv_profiler.h"
 #endif // BAR_COMMON_H
