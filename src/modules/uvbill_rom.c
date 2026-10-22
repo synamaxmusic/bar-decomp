@@ -51,7 +51,7 @@ s32 func_uvbill_rom_00401388(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4);
 s32 func_uvbill_rom_00401418(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4, s32 **arg5);
 void uvBillPosm(s32 arg0, Mtx4F *arg1);
 void uvBillProps(s32 arg0, ...);
-s32 uvBillInit(void);
+s32 uvBillFindFree(void);
 void uvBillFreeId(s32 arg0);
 void func_uvbill_rom_004002C0(s32 arg0);
 void __entrypoint_func_uvbill_rom_400000(UvBill_Exports *exports);
@@ -87,7 +87,7 @@ void __entrypoint_func_uvbill_rom_400000(UvBill_Exports *exports) {
     exports->func_uvbill_rom_00401418 = func_uvbill_rom_00401418;
     exports->uvBillPosm = uvBillPosm;
     exports->uvBillProps = uvBillProps;
-    exports->uvBillInit = uvBillInit;
+    exports->uvBillFindFree = uvBillFindFree;
     exports->uvBillFreeId = uvBillFreeId;
     billBoardCount = uvGetSystemProp(SYSTEM_PROPID_BILLBOARD_COUNT);
     if (billBoardCount == NULL) {
@@ -544,7 +544,7 @@ void uvBillProps(s32 id, ...) {
     }
 }
 
-s32 uvBillInit(void) {
+s32 uvBillFindFree(void) {
     s32 i;
     BillBoard *billBoard;
 
