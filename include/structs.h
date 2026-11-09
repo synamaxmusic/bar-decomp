@@ -42,7 +42,7 @@ typedef struct UnkStruct_80025CF0_s {
     /* 0x0000 */ s32 debugState;    // 80025CF0
     /* 0x0004 */ s32 dbgNumMaxTxts; 
     /* 0x0008 */ s32 newGameState;
-    /* 0x000C */ s32 unkC;
+    /* 0x000C */ s32 replayCam;
     /* 0x0010 */ s32 unk10;         // 80025D00
     /* 0x0014 */ s32 finishedIntroCount;
     /* 0x0018 */ s32 optionsMusicVol;
@@ -97,7 +97,7 @@ typedef struct UnkStruct_80025CF0_s {
     /* 0x00D4 */ s32 dbgOptsLosCheckOff;
     /* 0x00D8 */ s32 dbgOptsVelCam;
     /* 0x00DC */ s32 dbgOptsDrawingOff;
-    /* 0x00E0 */ s32 unkE0;   // 80025DD0
+    /* 0x00E0 */ s32 sceneEditorState;   // 80025DD0
     /* 0x00E4 */ u8 padE4[0x138 - 0xE4];   // 80025DD4
     /* 0x0138 */ CarInfo playerCarInfo[4]; // 80025E28
     /* 0x0150 */ u8 playerName[16];        // 80025E40

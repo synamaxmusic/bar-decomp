@@ -763,9 +763,9 @@ void func_gamegui_00402030(void (*arg0)(void)) {
 
 void func_gamegui_0040203C(void *arg0) {
     if (arg0 == D_gamegui_00402D28) {
-        gGameSettings->unkE0 = 1;
+        gGameSettings->sceneEditorState = 1;
     } else {
-        gGameSettings->unkE0 = 0;
+        gGameSettings->sceneEditorState = 0;
     }
     gGameSettings->newGameState = SCENE_EDITOR;
 }
@@ -780,19 +780,19 @@ void func_gamegui_00402088(void *arg0) {
 
 void func_gamegui_0040209C(void *arg0) {
     gGameSettings->newGameState = DEMO;
-    gGameSettings->unkC = 2;
+    gGameSettings->replayCam = 2;
 }
 
 void func_gamegui_004020BC(void *arg0) {
     gGameSettings->newGameState = CREDITS;
-    gGameSettings->unkC = 2;
+    gGameSettings->replayCam = 2;
 }
 
 void func_gamegui_004020DC(void *arg0) {
     gGameSettings->newGameState = INTRO;
     gGameSettings->currentTrack = TRACK_INTRO1;
     gGameSettings->finishedIntroCount = 0;
-    gGameSettings->unkC = 1;
+    gGameSettings->replayCam = 1;
     gGameSettings->playIntroFlag = 1;
 }
 
