@@ -63,7 +63,7 @@ s32 func_envsnd_00400114(UnkStruct_envsnd_0040005C *arg0, Vec3F *arg1) {
         if ((arg0->unk0 == 0x18) && (arg1->z < 290.0f)) {
             ret = FALSE;
         }
-        if ((gGameSettings->currentTrack == 0xA)
+        if ((gGameSettings->currentTrack == METRO_MADNESS)
             && ((arg0->unk0 == 0x48) || (arg0->unk0 == 0x49) || (arg0->unk0 == 0x4A)
                 || (arg0->unk0 == 0x4B))
             && (((arg1->z > 28.7f)) || (arg1->z < 19.0f))) {
