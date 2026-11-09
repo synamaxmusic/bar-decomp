@@ -790,7 +790,7 @@ void func_gamegui_004020BC(void *arg0) {
 
 void func_gamegui_004020DC(void *arg0) {
     gGameSettings->newGameState = INTRO;
-    gGameSettings->currentTrack = INTRO1;
+    gGameSettings->currentTrack = TRACK_INTRO1;
     gGameSettings->finishedIntroCount = 0;
     gGameSettings->unkC = 1;
     gGameSettings->playIntroFlag = 1;
@@ -798,7 +798,7 @@ void func_gamegui_004020DC(void *arg0) {
 
 void func_gamegui_00402110(void *arg0) {
     gGameSettings->newGameState = VICTORY;
-    gGameSettings->currentTrack = FINISH;
+    gGameSettings->currentTrack = TRACK_FINISH;
 }
 
 void func_gamegui_00402130(void *arg0) {
