@@ -59,3 +59,40 @@ typedef enum GameOptionsDisplay_e {
     /* 0 */ OPTIONS_DISPLAY_OFF,
     /* 1 */ OPTIONS_DISPLAY_ON
 } GameOptionsDisplay;
+
+typedef enum TrackIds_e {
+    /* 0 */ TRACK_NONE = 0,
+    /* 1 */ TRACK_TEST_ROAD,
+    /* 2 */ TRACK_TEST_GRID,
+    /* 3 */ TRACK_CHECKER_BOARD,
+    /* 4 */ TRACK_ROUND_TRACK,
+    /* 5 */ TRACK_COVENTRY_COVE,
+    /* 6 */ TRACK_WICKED_WOODS,
+    /* 7 */ TRACK_MOUNT_MAYHEM,
+    /* 8 */ TRACK_SUNSET_SANDS,
+    /* 9 */ TRACK_INFERNO_ISLE,
+    /* 10 */ TRACK_METRO_MADNESS,
+    /* 11 */ TRACK_STUNT_O_RAMA,
+    /* 12 */ TRACK_8,  // unused
+    /* 13 */ TRACK_9,  // unused
+    /* 14 */ TRACK_10, // unused
+    /* 15 */ TRACK_DRAGSTRIP,
+    /* 16 */ TRACK_DERBY,
+    /* 17 */ TRACK_MULT_1,
+    /* 18 */ TRACK_MULT_2,
+    /* 19 */ TRACK_MULT_3,
+    /* 20 */ TRACK_MULT_4,
+    /* 21 */ TRACK_MULT_5,
+    /* 22 */ TRACK_MULT_6,
+    /* 23 */ TRACK_MULT_7,
+    /* 24 */ TRACK_MULT_8,
+    /* 25 */ TRACK_MULT_9,
+    /* 26 */ TRACK_MULT_10,  // unused
+    /* 27 */ TRACK_INTRO1,
+    /* 28 */ TRACK_INTRO2,
+    /* 29 */ TRACK_INTRO3,
+    /* 30 */ TRACK_INTRO4,
+    /* 31 */ TRACK_INTRO5,
+    /* 32 */ TRACK_INTRO6,  // unused
+    /* 33 */ TRACK_FINISH
+} TrackIds;

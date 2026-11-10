@@ -43,7 +43,7 @@ void uvGameInit(void) {
     gGameSettings->optionsMusicVol = 8;
     gGameSettings->optionsSpeechVol = 8;
     gGameSettings->numPlayers = 1;
-    gGameSettings->currentTrack = 0;
+    gGameSettings->currentTrack = TRACK_NONE;
     gGameSettings->introReplayState = 0;
     gGameSettings->dbgOptsRecordIntro = 0;
     gGameSettings->dbgOptsGlare = 1;
@@ -94,7 +94,7 @@ void uvGameInit(void) {
     gGameSettings->unk6F74 = 1;
     gGameSettings->unk6EAC = 0;
     gGameSettings->unk6EAE = 0;
-    gGameSettings->unkC = 0;
+    gGameSettings->replayCam = 0;
     gGameSettings->finishedIntroCount = 0;
     gGameSettings->unk10 = 0;
     gGameSettings->unk704C[0] = 0;
@@ -116,7 +116,7 @@ void uvGameInit(void) {
     }
 
     gGameSettings->playIntroFlag = 1; // zero goes immediately to main menu
-    gGameSettings->currentTrack = 5;
+    gGameSettings->currentTrack = TRACK_COVENTRY_COVE;
     uvSetGameState(SELECTION);
     if (!gUvContExports->uvControllerPlugged(0)) {
         uvShowNoController();
