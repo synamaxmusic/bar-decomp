@@ -9,7 +9,7 @@ typedef struct UvBill_Exports_s {
     /* 0x10 */ s32 (*func_uvbill_rom_00401418)(f32, f32, f32, f32, s32, s32 **);
     /* 0x14 */ void (*uvBillPosm)(s32, Mtx4F *);
     /* 0x18 */ void (*uvBillProps)(s32, ...);
-    /* 0x1C */ s32 (*uvBillInit)(void);
+    /* 0x1C */ s32 (*uvBillFindFree)(void);
     /* 0x20 */ void (*uvBillFreeId)(s32);
 } UvBill_Exports;
 

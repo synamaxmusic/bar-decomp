@@ -34,7 +34,7 @@ typedef struct UvFMtx_Rom_Exports_s {
     /* 0x074 */ void (*uvGfxMtxProjPushF)(Mtx4F*);
     /* 0x078 */ void (*func_uvfmtx_rom_004029B8)(Mtx4F*);
     /* 0x07C */ void (*func_uvfmtx_rom_004029DC)(Mtx4F*);
-    /* 0x080 */ void (*func_uvfmtx_rom_00402B30)(Mtx4F*, f32, f32, f32);
+    /* 0x080 */ void (*uvMat4MakeEuler)(Mtx4F*, f32, f32, f32);
     /* 0x084 */ void (*func_uvfmtx_rom_00402D40)(Mtx4F*, f32, f32, f32);
     /* 0x088 */ void (*func_uvfmtx_rom_00402D84)(Vec3F*, Vec3F*);
     /* 0x08C */ void (*func_uvfmtx_rom_00402DB0)(Vec3F*, Vec3F*);

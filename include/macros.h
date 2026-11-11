@@ -125,4 +125,7 @@
 #define ABS_DIFF(x, y) ((x) < (y) ? (y) - (x) : -((y) - (x)))
 #define ROUNDF2(val) (s32)(((val) >= 0.0f) ? ((val) + 0.5f) : ((val) - 0.5f))
 
+
+#define FOR_START(it, init, bound) (it) = (init); if ((it) < (bound)) { do {
+#define FOR_END(it, bound) } while (++(it) != (bound)); }
 #endif

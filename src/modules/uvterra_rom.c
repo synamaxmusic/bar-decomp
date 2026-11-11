@@ -552,7 +552,7 @@ void uvTerraGetPlane(s32 arg0, u32 arg1, f32 arg2, f32 arg3, f32 *arg4, Vec3F *a
     sp4C *= sp60->unk40->unk2C;
     sp48 *= sp60->unk40->unk30;
     temp_fv0 = (sp60->unk40->unk2C / sp60->unk40->unk30);
-    if (sUvIntersectExports->func_uvintersect_rom_00400804(sp54, sp58->unk0, sp58->unk2, sp58->unk4,
+    if (sUvIntersectExports->_uvSurfGetNorm(sp54, sp58->unk0, sp58->unk2, sp58->unk4,
                                                               arg5, temp_fv0)
         == 0) {
         arg5->x = 0.0f;
@@ -592,7 +592,7 @@ void func_uvterra_rom_004010B4(s32 arg0, u32 arg1, Vec3F *arg2) {
     t = &temp_v0_2->unk8[(arg1 >> 0xC) & 0x3FF];
     temp_v1 = &t->unk18[arg1 & 0xFFF];
 
-    if (sUvIntersectExports->func_uvintersect_rom_00400804(temp_v0_2->vtxTable, temp_v1->unk0,
+    if (sUvIntersectExports->_uvSurfGetNorm(temp_v0_2->vtxTable, temp_v1->unk0,
                                                               temp_v1->unk2, temp_v1->unk4, arg2,
                                                               temp_v0_2->unk2C / temp_v0_2->unk30)
         == 0) {

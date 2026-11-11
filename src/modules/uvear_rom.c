@@ -197,7 +197,6 @@ f32 func_uvear_rom_004006D4(Vec3F *v1, Vec3F *v2) {
 s32 func_uvear_rom_0040077C(s32 arg0, Vec3F *arg1) {
     f32 temp_fv0;
     f32 var_fs0;
-    s32 var_s0;
     s32 i;
     s32 found;
 

@@ -12,7 +12,7 @@ s32 func_uvintersect_rom_00400460(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 ar
 s32 func_uvintersect_rom_004004C4(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7);
 s32 func_uvintersect_rom_00400530(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9, f32 arg10);
 void func_uvintersect_rom_00400700(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9, Vec3F *arg10);
-s32 func_uvintersect_rom_00400804(Vtx *arg0, s32 arg1, s32 arg2, s32 arg3, Vec3F *arg4, f32 arg5);
+s32 _uvSurfGetNorm(Vtx *arg0, s32 arg1, s32 arg2, s32 arg3, Vec3F *arg4, f32 arg5);
 s32 func_uvintersect_rom_0040093C(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9, f32 arg10, f32 arg11, f32 arg12, f32 arg13, Vec3F *arg14, f32 *arg15);
 s32 func_uvintersect_rom_00400E60(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8);
 s32 func_uvintersect_rom_00400FA8(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8);
@@ -40,7 +40,7 @@ void __entrypoint_func_uvintersect_rom_400000(UvIntersect_Exports* exports) {
     exports->func_uvintersect_rom_00401CB0 = func_uvintersect_rom_00401CB0;
     exports->func_uvintersect_rom_00400700 = func_uvintersect_rom_00400700;
     exports->func_uvintersect_rom_004020A0 = func_uvintersect_rom_004020A0;
-    exports->func_uvintersect_rom_00400804 = func_uvintersect_rom_00400804;
+    exports->_uvSurfGetNorm = _uvSurfGetNorm;
     exports->func_uvintersect_rom_004021A0 = func_uvintersect_rom_004021A0;
     exports->func_uvintersect_rom_0040093C = func_uvintersect_rom_0040093C;
     exports->func_uvintersect_rom_00400E60 = func_uvintersect_rom_00400E60;
@@ -236,7 +236,7 @@ void func_uvintersect_rom_00400700(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 a
     arg10->z = sp2C;
 }
 
-s32 func_uvintersect_rom_00400804(Vtx *arg0, s32 arg1, s32 arg2, s32 arg3, Vec3F *arg4, f32 arg5) {
+s32 _uvSurfGetNorm(Vtx *arg0, s32 arg1, s32 arg2, s32 arg3, Vec3F *arg4, f32 arg5) {
     Vec3F sp3C;
     Vec3F sp30;
     f32 temp_fa0;
