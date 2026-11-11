@@ -74,8 +74,8 @@ rom:0x1EC reloc:MIPS_HI16 symbol:func_uvfmtx_rom_00403648
 rom:0x214 reloc:MIPS_LO16 symbol:func_uvfmtx_rom_00403648
 rom:0x1F0 reloc:MIPS_HI16 symbol:uvMat4InvertTranslationRotation
 rom:0x218 reloc:MIPS_LO16 symbol:uvMat4InvertTranslationRotation
-rom:0x1F4 reloc:MIPS_HI16 symbol:func_uvfmtx_rom_00402B30
-rom:0x21C reloc:MIPS_LO16 symbol:func_uvfmtx_rom_00402B30
+rom:0x1F4 reloc:MIPS_HI16 symbol:uvMat4MakeEuler
+rom:0x21C reloc:MIPS_LO16 symbol:uvMat4MakeEuler
 rom:0x1F8 reloc:MIPS_HI16 symbol:uvMat4FInvertTranslationRotation
 rom:0x220 reloc:MIPS_LO16 symbol:uvMat4FInvertTranslationRotation
 rom:0x1FC reloc:MIPS_HI16 symbol:func_uvfmtx_rom_00402D40

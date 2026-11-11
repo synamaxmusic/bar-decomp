@@ -49,7 +49,7 @@ void uvGfxMtxFViewPop(void);
 void uvGfxMtxProjPushF(Mtx4F *mtxF);
 void func_uvfmtx_rom_004029B8(Mtx4F *arg0);
 void func_uvfmtx_rom_004029DC(Mtx4F *arg0);
-void func_uvfmtx_rom_00402B30(Mtx4F *mP, f32 arg1, f32 arg2, f32 arg3);
+void uvMat4MakeEuler(Mtx4F *mP, f32 arg1, f32 arg2, f32 arg3);
 void func_uvfmtx_rom_00402D40(Mtx4F *arg0, f32 arg1, f32 arg2, f32 arg3);
 void func_uvfmtx_rom_00402D84(Vec3F *arg0, Vec3F *arg1);
 void func_uvfmtx_rom_00402DB0(Vec3F *arg0, Vec3F *arg1);
@@ -124,7 +124,7 @@ void __entrypoint_func_uvfmtx_rom_400000(UvFMtx_Rom_Exports *exports) {
     exports->func_uvfmtx_rom_004029DC = func_uvfmtx_rom_004029DC;
     exports->func_uvfmtx_rom_00403648 = func_uvfmtx_rom_00403648;
     exports->uvMat4InvertTranslationRotation = uvMat4InvertTranslationRotation;
-    exports->func_uvfmtx_rom_00402B30 = func_uvfmtx_rom_00402B30;
+    exports->uvMat4MakeEuler = uvMat4MakeEuler;
     exports->uvMat4FInvertTranslationRotation = uvMat4FInvertTranslationRotation;
     exports->func_uvfmtx_rom_00402D40 = func_uvfmtx_rom_00402D40;
     exports->func_uvfmtx_rom_00401B88 = func_uvfmtx_rom_00401B88;
@@ -945,7 +945,7 @@ void func_uvfmtx_rom_004029DC(Mtx4F *arg0) {
     sUvImtxExports->func_uvimtx_rom_00400410(sp88);
 }
 
-void func_uvfmtx_rom_00402B30(Mtx4F *mP, f32 arg1, f32 arg2, f32 arg3) {
+void uvMat4MakeEuler(Mtx4F *mP, f32 arg1, f32 arg2, f32 arg3) {
     f32 var_fa0;
     f32 var_ft4;
     f32 var_fa1;

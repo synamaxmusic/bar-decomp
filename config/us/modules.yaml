@@ -161,6 +161,7 @@ Modules:
   - name: triganim
   - name: txtview
     done_sections:
+      - text
       - rodata
       - data
       - bss
@@ -404,6 +405,10 @@ Modules:
     done_sections:
       - text
   - name: uvvattr_rom
+    done_sections:
+      - text
+      - data
+      - bss
   - name: uvvolumeld_rom
     done_sections:
       - text

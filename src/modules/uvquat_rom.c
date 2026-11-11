@@ -140,7 +140,7 @@ void func_uvquat_rom_00400524(Mtx4F *arg0, Quat *quat) {
 
     if (!firstTime) {
         firstTime = TRUE;
-        D_uvquat_rom_00400B54->func_uvfmtx_rom_00402B30(&D_uvquat_rom_00400B58, -1.5707964f, 0.0f, 3.1415927f);
+        D_uvquat_rom_00400B54->uvMat4MakeEuler(&D_uvquat_rom_00400B58, -1.5707964f, 0.0f, 3.1415927f);
     }
 
     sp44 = SQ(quat->x);

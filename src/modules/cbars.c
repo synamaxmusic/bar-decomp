@@ -39,10 +39,8 @@ void func_cbars_00400114(void) {
     f32 var_fs3;
     f32 var_fs4;
     f32 var_fs5;
-    int tmp;
     f32 temp_s2;
     f32 temp_s4;
-    f32 temp_s3;
     s32 i;
 
     temp_fa0 = 78.100006f;
