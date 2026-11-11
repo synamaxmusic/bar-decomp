@@ -94,7 +94,7 @@ void uvGameInit(void) {
     gGameSettings->unk6F74 = 1;
     gGameSettings->unk6EAC = 0;
     gGameSettings->unk6EAE = 0;
-    gGameSettings->replayCam = 0;
+    gGameSettings->replayCam = REPLAY_CAM_OFF;
     gGameSettings->finishedIntroCount = 0;
     gGameSettings->unk10 = 0;
     gGameSettings->unk704C[0] = 0;
