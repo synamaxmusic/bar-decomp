@@ -73,7 +73,7 @@ typedef struct Snd_Exports_s {
     /* 0xF8 */ void (*func_snd_00402E1C)(void);
 } Snd_Exports; /* size = 0xFC */
 
-enum SfxId {
+typedef enum SfxId_e {
         /* 0x00 */ BIGWTRFALL8,
         /* 0x01 */ WATER5,
         /* 0x02 */ SKID11,                 // tire skid (surprisingly bad loop)
@@ -328,9 +328,9 @@ enum SfxId {
         /* 0xF7 */ S_TALLYBELL,            // finish tallying points
         /* 0xF8 */ S_TALLYCOUNT,           // tallying points for championship
         /* 0xF9 */ V_CHAMPION              // "You're the champion!"
-};
+} SfxId;
 
-enum MidiId {
+typedef enum MidiId_e {
         /* 0xFF */ MIDI_NONE = 0xFF,
         /* 0x00 */ MIDI_MAIN_MENU = 0,
         /* 0x01 */ MIDI_SUNSET_SANDS,
@@ -348,7 +348,7 @@ enum MidiId {
         /* 0x0D */ MIDI_INTRO_3,
         /* 0x0E */ MIDI_INTRO_4,
         /* 0x0F */ MIDI_INTRO_5
-};
+} MidiId;
 
 #define MAX_VOLUME 0x7FFF
 
