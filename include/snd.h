@@ -331,7 +331,7 @@ enum SfxId {
 };
 
 enum MidiId {
-        /* 0xFF */ MIDI_NONE = -1,
+        /* 0xFF */ MIDI_NONE = 0xFF,
         /* 0x00 */ MIDI_MAIN_MENU = 0,
         /* 0x01 */ MIDI_SUNSET_SANDS,
         /* 0x02 */ MIDI_MOUNT_MAYHEM,
