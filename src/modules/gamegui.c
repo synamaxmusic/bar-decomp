@@ -717,14 +717,14 @@ void func_gamegui_00401E24(void *arg0) {
     if (gGameSettings->numPlayers >= 2) {
         gGameSettings->numAiCars = 0;
     }
-    gGameSettings->newGameState = RACE;
+    gGameSettings->newGameState = GAME_STATE_RACE;
 }
 
 void func_gamegui_00401E50(void *arg0) {
     if (gGameSettings->numPlayers < 2) {
         gGameSettings->numPlayers = 2;
     }
-    gGameSettings->newGameState = BATTLE;
+    gGameSettings->newGameState = GAME_STATE_BATTLE;
 }
 
 void func_gamegui_00401FE0(void);
@@ -767,29 +767,29 @@ void func_gamegui_0040203C(void *arg0) {
     } else {
         gGameSettings->sceneEditorState = 0;
     }
-    gGameSettings->newGameState = SCENE_EDITOR;
+    gGameSettings->newGameState = GAME_STATE_SCENE_EDITOR;
 }
 
 void func_gamegui_00402074(void *arg0) {
-    gGameSettings->newGameState = UFO_CAMERA;
+    gGameSettings->newGameState = GAME_STATE_UFO_CAMERA;
 }
 
 void func_gamegui_00402088(void *arg0) {
-    gGameSettings->newGameState = AI_EDIT;
+    gGameSettings->newGameState = GAME_STATE_AI_EDIT;
 }
 
 void func_gamegui_0040209C(void *arg0) {
-    gGameSettings->newGameState = DEMO;
+    gGameSettings->newGameState = GAME_STATE_DEMO;
     gGameSettings->replayCam = 2;
 }
 
 void func_gamegui_004020BC(void *arg0) {
-    gGameSettings->newGameState = CREDITS;
+    gGameSettings->newGameState = GAME_STATE_CREDITS;
     gGameSettings->replayCam = 2;
 }
 
 void func_gamegui_004020DC(void *arg0) {
-    gGameSettings->newGameState = INTRO;
+    gGameSettings->newGameState = GAME_STATE_INTRO;
     gGameSettings->currentTrack = TRACK_INTRO1;
     gGameSettings->finishedIntroCount = 0;
     gGameSettings->replayCam = 1;
@@ -797,28 +797,28 @@ void func_gamegui_004020DC(void *arg0) {
 }
 
 void func_gamegui_00402110(void *arg0) {
-    gGameSettings->newGameState = VICTORY;
+    gGameSettings->newGameState = GAME_STATE_VICTORY;
     gGameSettings->currentTrack = TRACK_FINISH;
 }
 
 void func_gamegui_00402130(void *arg0) {
-    gGameSettings->newGameState = TASK_EDITOR;
+    gGameSettings->newGameState = GAME_STATE_TASK_EDITOR;
 }
 
 void func_gamegui_00402144(void *arg0) {
-    gGameSettings->newGameState = TEXTURE_VIEWER;
+    gGameSettings->newGameState = GAME_STATE_TEXTURE_VIEWER;
 }
 
 void func_gamegui_00402158(void *arg0) {
-    gGameSettings->newGameState = COLOR_BARS;
+    gGameSettings->newGameState = GAME_STATE_COLOR_BARS;
 }
 
 void func_gamegui_0040216C(void *arg0) {
-    gGameSettings->newGameState = SELECTION;
+    gGameSettings->newGameState = GAME_STATE_SELECTION;
 }
 
 void func_gamegui_00402180(void *arg0) {
-    gGameSettings->newGameState = PROFILE_CAR;
+    gGameSettings->newGameState = GAME_STATE_PROFILE_CAR;
 }
 
 void func_gamegui_00402194(void) {

@@ -98,7 +98,9 @@ typedef struct UnkStruct_80025CF0_s {
     /* 0x00D8 */ s32 dbgOptsVelCam;
     /* 0x00DC */ s32 dbgOptsDrawingOff;
     /* 0x00E0 */ s32 sceneEditorState;   // 80025DD0
-    /* 0x00E4 */ u8 padE4[0x138 - 0xE4];   // 80025DD4
+    /* 0x00E4 */ u8 padE4[0xF0 - 0xE4];   // 80025DD4
+    /* 0x00F0 */ s32 unkF0;
+    /* 0x00F4 */ u8 padF4[0x138 - 0xF4];
     /* 0x0138 */ CarInfo playerCarInfo[4]; // 80025E28
     /* 0x0150 */ u8 playerName[16];        // 80025E40
     /* 0x0160 */ u8 playerNameBuffer;
@@ -130,7 +132,9 @@ typedef struct UnkStruct_80025CF0_s {
     /* 0x6F78 */ s32 unk6F78[4];
     /* 0x6F88 */ u8 pad6F88[0x6FA0 - 0x6F88];
     /* 0x6FA0 */ f32 unk6FA0;
-    /* 0x6FA4 */ u8 pad6FA4[0x6FB0 - 0x6FA4];
+    /* 0x6FA4 */ u8 unk6FA4;
+    /* 0x6FA5 */ u8 unk6FA5;
+    /* 0x6FA6 */ u8 pad6FA6[0x6FB0 - 0x6FA6];
     /* 0x6FB0 */ s32 unk6FB0;
     /* 0x6FB4 */ s32 unk6FB4;
     /* 0x6FB8 */ s16 unk6FB8;
@@ -178,15 +182,24 @@ typedef struct Env_Exports_s {
     void (*unk1C)(s32, s32);
 } Env_Exports;
 
-typedef struct UnkScrnExports_s {
-    /* 0x00 */ void (*unk0)(void);                      /* inferred */
-    /* 0x04 */ void (*unk4)(s32, s32);
-               char pad8[0x14 - 0x8];
-               void *(*unk14)(s32 *);
-               char pad18[0x4];
-               s32 unk1C;
-} UnkScrnExports;
+typedef struct UnkScrnExports_unk18_unk0_s {
+    char pad[0x21C];
+    s32 unk21C;
+} UnkScrnExports_unk18_unk0;
 
+typedef struct UnkScrnExports_unk18_s {
+    UnkScrnExports_unk18_unk0 *unk0[4];
+    s16 unk10;
+} UnkScrnExports_unk18;
+
+typedef struct UnkScrnExports_s {
+    void (*unk0)(void);
+    void (*unk4)(s32, s32);
+    char pad8[0x14 - 0x8];
+    void *(*unk14)(s32 *);
+    UnkScrnExports_unk18 *unk18;
+    s32 unk1C;
+} UnkScrnExports;
 
 typedef struct UnkRainExports_s {
     char pad[0x24];
@@ -203,5 +216,16 @@ typedef struct UnkFlagExports_s {
     char pad[0x18];
     s32 unk18;
 } UnkFlagExports;
+
+typedef struct UnkGlareExports_s {
+    char pad[0x8];
+    void (*unk8)(u16 arg0, ...);
+} UnkGlareExports;
+
+typedef struct UnkIsectExports_s {
+    char pad[0x64];
+    void (*unk64)(s32);
+} UnkIsectExports;
+
 
 #endif /* BAR_STRUCTS_H */

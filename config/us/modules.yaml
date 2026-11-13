@@ -133,6 +133,11 @@ Modules:
       - data
       - bss
   - name: scene
+    done_sections:
+      - text
+      - rodata
+      - data
+      - bss
   - name: scrn
   - name: selection
   - name: shadow

@@ -236,7 +236,7 @@ void func_intro_004004F0(void) {
     int i;
 
     gGameSettings->numAiCars = (s32) D_intro_00400A94;
-    if (gGameSettings->newGameState != INTRO) {
+    if (gGameSettings->newGameState != GAME_STATE_INTRO) {
         gGameSettings->currentTrack = gSceneExports->unk4(0);
         gGameSettings->finishedIntroCount = 0;
         gGameSettings->dbgOptsRecordIntro = 0;
@@ -258,16 +258,16 @@ void func_intro_004005CC(void) {
     sp1C = gReplayExports->unk20(0);
     temp_fv1 = D_intro_004009D4[gGameSettings->finishedIntroCount] - uvClkGetSec(1);
     if (((sp1C & 0x1000) || (sp1C & 0x8000)) && (gGameSettings->dbgOptsRecordIntro == 0)) {
-        gGameSettings->newGameState = SELECTION;
+        gGameSettings->newGameState = GAME_STATE_SELECTION;
     } else {
         if ((gGameSettings->dbgOptsRecordIntro != 0) && (temp_fv1 < -2.0f)) {
             gReplayExports->unk38((s32) &gCurrentReplayEvent, sp1C);
             gGameSettings->finishedIntroCount++;
             if (gGameSettings->finishedIntroCount >= 6) {
-                gGameSettings->newGameState = SELECTION;
+                gGameSettings->newGameState = GAME_STATE_SELECTION;
                 return;
             }
-            gGameSettings->newGameState = INTRO;
+            gGameSettings->newGameState = GAME_STATE_INTRO;
             gGameSettings->currentTrack = D_intro_004009EC[gGameSettings->finishedIntroCount];
             return;
         }
@@ -275,9 +275,9 @@ void func_intro_004005CC(void) {
             if (gGameSettings->dbgOptsRecordIntro == 0) {
                 gGameSettings->finishedIntroCount++;
                 if (gGameSettings->finishedIntroCount >= 6) {
-                    gGameSettings->newGameState = SELECTION;
+                    gGameSettings->newGameState = GAME_STATE_SELECTION;
                 } else {
-                    gGameSettings->newGameState = INTRO;
+                    gGameSettings->newGameState = GAME_STATE_INTRO;
                     gGameSettings->currentTrack = D_intro_004009EC[gGameSettings->finishedIntroCount];
                 }
                 return;
