@@ -97,7 +97,7 @@ typedef struct UnkStruct_80025CF0_s {
     /* 0x00D4 */ s32 dbgOptsLosCheckOff;
     /* 0x00D8 */ s32 dbgOptsVelCam;
     /* 0x00DC */ s32 dbgOptsDrawingOff;
-    /* 0x00E0 */ s32 sceneEditorState;   // 80025DD0
+    /* 0x00E0 */ s32 sceneEditorMode;   // 80025DD0
     /* 0x00E4 */ u8 padE4[0xF0 - 0xE4];   // 80025DD4
     /* 0x00F0 */ s32 unkF0;
     /* 0x00F4 */ u8 padF4[0xE0 - 0xF4];
