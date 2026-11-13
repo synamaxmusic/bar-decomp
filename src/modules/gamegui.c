@@ -763,9 +763,9 @@ void func_gamegui_00402030(void (*arg0)(void)) {
 
 void func_gamegui_0040203C(void *arg0) {
     if (arg0 == D_gamegui_00402D28) {
-        gGameSettings->sceneEditorState = 1;
+        gGameSettings->sceneEditorMode = MODE_CAR_EDITOR;
     } else {
-        gGameSettings->sceneEditorState = 0;
+        gGameSettings->sceneEditorMode = MODE_SCENE_EDITOR;
     }
     gGameSettings->newGameState = GAME_STATE_SCENE_EDITOR;
 }
@@ -780,19 +780,19 @@ void func_gamegui_00402088(void *arg0) {
 
 void func_gamegui_0040209C(void *arg0) {
     gGameSettings->newGameState = GAME_STATE_DEMO;
-    gGameSettings->replayCam = 2;
+    gGameSettings->replayCam = DEMO_REPLAY_CAM_ON;
 }
 
 void func_gamegui_004020BC(void *arg0) {
     gGameSettings->newGameState = GAME_STATE_CREDITS;
-    gGameSettings->replayCam = 2;
+    gGameSettings->replayCam = DEMO_REPLAY_CAM_ON;
 }
 
 void func_gamegui_004020DC(void *arg0) {
     gGameSettings->newGameState = GAME_STATE_INTRO;
     gGameSettings->currentTrack = TRACK_INTRO1;
     gGameSettings->finishedIntroCount = 0;
-    gGameSettings->replayCam = 1;
+    gGameSettings->replayCam = INTRO_REPLAY_CAM_ON;
     gGameSettings->playIntroFlag = 1;
 }
 

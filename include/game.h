@@ -62,6 +62,17 @@ typedef enum GameOptionsDisplay_e {
     /* 1 */ OPTIONS_DISPLAY_ON
 } GameOptionsDisplay;
 
+typedef enum GameReplayCam_e {
+    /* 0 */ REPLAY_CAM_OFF,
+    /* 1 */ INTRO_REPLAY_CAM_ON,
+    /* 2 */ DEMO_REPLAY_CAM_ON // appears to be the same as INTRO?
+} GameReplayCam;
+
+typedef enum GameSceneEditorMode_e {
+    /* 0 */ MODE_SCENE_EDITOR,
+    /* 1 */ MODE_CAR_EDITOR
+} GameSceneEditorMode;
+
 typedef enum TrackIds_e {
     /* 0 */ TRACK_NONE = 0,
     /* 1 */ TRACK_TEST_ROAD,

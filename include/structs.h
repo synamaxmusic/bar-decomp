@@ -100,7 +100,9 @@ typedef struct UnkStruct_80025CF0_s {
     /* 0x00E0 */ s32 sceneEditorState;   // 80025DD0
     /* 0x00E4 */ u8 padE4[0xF0 - 0xE4];   // 80025DD4
     /* 0x00F0 */ s32 unkF0;
-    /* 0x00F4 */ u8 padF4[0x138 - 0xF4];
+    /* 0x00F4 */ u8 padF4[0xE0 - 0xF4];
+    /* 0x00E0 */ s32 sceneEditorMode;   // 80025DD0
+    /* 0x00E4 */ u8 padE4[0x138 - 0xE4];   // 80025DD4
     /* 0x0138 */ CarInfo playerCarInfo[4]; // 80025E28
     /* 0x0150 */ u8 playerName[16];        // 80025E40
     /* 0x0160 */ u8 playerNameBuffer;
