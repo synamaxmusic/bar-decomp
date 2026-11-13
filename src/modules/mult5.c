@@ -16,7 +16,7 @@ void __entrypoint_func_mult5_400000(Mult5_Exports* arg0) {
     gWeaponExports = uvLoadModule('wpon');
     gBattleExports = uvLoadModule('batl');
     gTdataExports = uvLoadModule('tdta');
-    if (gGameSettings->currentGameState != TASK_EDITOR) {
+    if (gGameSettings->currentGameState != GAME_STATE_TASK_EDITOR) {
         gTdataExports->unk24();
     }
     uvUnloadModule('tdta');
