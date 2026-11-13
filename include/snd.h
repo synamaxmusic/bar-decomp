@@ -73,7 +73,7 @@ typedef struct Snd_Exports_s {
     /* 0xF8 */ void (*func_snd_00402E1C)(void);
 } Snd_Exports; /* size = 0xFC */
 
-enum SfxId {
+typedef enum SfxId_e {
         /* 0x00 */ BIGWTRFALL8,
         /* 0x01 */ WATER5,
         /* 0x02 */ SKID11,                 // tire skid (surprisingly bad loop)
@@ -328,7 +328,27 @@ enum SfxId {
         /* 0xF7 */ S_TALLYBELL,            // finish tallying points
         /* 0xF8 */ S_TALLYCOUNT,           // tallying points for championship
         /* 0xF9 */ V_CHAMPION              // "You're the champion!"
-};
+} SfxId;
+
+typedef enum MidiId_e {
+        /* 0xFF */ MIDI_NONE = 0xFF,
+        /* 0x00 */ MIDI_MAIN_MENU = 0,
+        /* 0x01 */ MIDI_SUNSET_SANDS,
+        /* 0x02 */ MIDI_MOUNT_MAYHEM,
+        /* 0x03 */ MIDI_METRO_MADNESS,
+        /* 0x04 */ MIDI_WICKED_WOODS,
+        /* 0x05 */ MIDI_INFERNO_ISLE,
+        /* 0x06 */ MIDI_INTRO_MEDLEY,
+        /* 0x07 */ MIDI_BEETLE_BATTLE,
+        /* 0x08 */ MIDI_TOURNAMENT_RESULTS,
+        /* 0x09 */ MIDI_COVENTRY_COVE,
+        /* 0x0A */ MIDI_CREDITS,
+        /* 0x0B */ MIDI_INTRO_1,
+        /* 0x0C */ MIDI_INTRO_2,
+        /* 0x0D */ MIDI_INTRO_3,
+        /* 0x0E */ MIDI_INTRO_4,
+        /* 0x0F */ MIDI_INTRO_5
+} MidiId;
 
 #define MAX_VOLUME 0x7FFF
 
