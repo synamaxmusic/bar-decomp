@@ -638,7 +638,8 @@ SceneTrackInfo SceneTracks[] = {
     },
 };
 
-s32 D_scene_00402CF8[] = { 5, 7, 9, 8, 10, 6 };
+s32 D_scene_00402CF8[] = { TRACK_COVENTRY_COVE, TRACK_MOUNT_MAYHEM,  TRACK_INFERNO_ISLE,
+                           TRACK_SUNSET_SANDS,  TRACK_METRO_MADNESS, TRACK_WICKED_WOODS };
 
 s32 D_scene_00402D10[] = { 17, 24, 19, 18, 23, 20, 21, 22, 25 };
 
@@ -766,10 +767,11 @@ void func_scene_00400374(void) {
 void func_scene_004003F4(s32 track) {
     s32 var_v0;
     s32 var_v0_2;
+    s32 terrain;
     s32 *temp_t4;
     s32 i;
     SceneTrackInfo *sceneTrack;
-    char pad[0x8];
+    char pad[0x4];
 
     sceneTrack = &SceneTracks[track];
     temp_t4 = sceneTrack->unk1C;
@@ -845,11 +847,11 @@ void func_scene_004003F4(s32 track) {
         || (gGameSettings->currentGameState == GAME_STATE_INTRO)) {
         func_scene_004002A8();
         if ((u32) temp_t4 == (u32) SceneTracks[8].unk1C) {
-            temp_t4 = sCurrentScene.terrain;
+            terrain = sCurrentScene.terrain;
             sCurrentScene.terrain = 0x15;
             uvLoadFile('UVTR', 0x15);
             func_scene_004002A8();
-            sCurrentScene.terrain = temp_t4;
+            sCurrentScene.terrain = terrain;
         }
     }
     if ((gGameSettings->currentGameState == GAME_STATE_RACE) && (gGameSettings->unk6F74 != 2)) {
