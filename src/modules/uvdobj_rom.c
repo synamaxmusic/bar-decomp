@@ -26,17 +26,6 @@ typedef struct DObj_s {
     /* 0x2C */ s32 unk2C;
 } DObj; /* size = 0x30 */
 
-typedef struct DobjSettings {
-    s32 dobjsCount;
-    s32 unk4;
-    s32 unk8;
-} DobjSettings;
-
-typedef struct UnkTerra_Exports_s {
-    /* 0x00 */ char pad0[0xAC];
-    /* 0xAC */ void (*func_uvterra_rom_0040D128)(s32, s32, f32, f32, s32 *, void *, f32); /* inferred */
-} UnkTerra_Exports; /* size = 0xB0 */
-
 void func_uvdobj_rom_00400544(s32 arg0, s32 arg1);
 s32 func_uvdobj_rom_00400558(s32 arg0, s32 arg1, s32 arg2);
 void func_uvdobj_rom_0040056C(s32 arg0);
@@ -111,7 +100,7 @@ static UvChannel_Exports *sUvChannel_Exports;
 static UvCback_Exports *sUvCbackExports;
 static UvQuery_Exports *sUvQueryExports;
 static UvIntersect_Exports *sUvIntersectExports;
-static UnkTerra_Exports *sUvTerraExports;
+static UvTerra_Exports *sUvTerraExports;
 static UvLights_Exports *sUvLightExports;
 
 void __entrypoint_func_uvdobj_rom_400000(UvDobj_Exports *exports) {

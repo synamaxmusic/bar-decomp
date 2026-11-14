@@ -15,5 +15,9 @@
 #define SYSTEM_PROPID_AUDIOMGR_SETTINGS 2
 #define SYSTEM_PROP_COUNT 24
 
-
+typedef struct DobjSettings {
+    s32 dobjsCount;
+    s32 unk4;
+    s32 unk8;
+} DobjSettings;
 #endif /* SYSTEM_PROPS_H */

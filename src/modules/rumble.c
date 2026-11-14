@@ -71,7 +71,7 @@ void func_rumble_00400138(void) {
     }
 
     stopRumble = gGameSettings->pauseFlag || gGameSettings->unk6E9C || gGameSettings->introReplayState
-                 || ((gGameSettings->currentGameState != RACE) && (gGameSettings->currentGameState != BATTLE));
+                 || ((gGameSettings->currentGameState != GAME_STATE_RACE) && (gGameSettings->currentGameState != GAME_STATE_BATTLE));
 
     for (i = 0; i < 4; i++) {
         if ((stopRumble) || ((gGameSettings->unk98[i] == 0))) {

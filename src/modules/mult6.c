@@ -19,7 +19,7 @@ void __entrypoint_func_mult6_400000(Mult6_Exports* arg0) {
     gTdataExports = uvLoadModule('tdta');
     gVolTestExports = uvLoadModule('volt');
     gEnvExports->unk1C(gVolTestExports->unk4(0x27), 1);
-    if (gGameSettings->currentGameState != TASK_EDITOR) {
+    if (gGameSettings->currentGameState != GAME_STATE_TASK_EDITOR) {
         gTdataExports->unk24();
     }
     uvUnloadModule('tdta');

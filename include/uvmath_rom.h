@@ -21,7 +21,7 @@ typedef struct UvMath_Exports_s {
     /* 0x2C */ f32 (*uvFabs)(f32);
     /* 0x30 */ void (*uvSrand)(s32);
     /* 0x34 */ f32 (*uvRandFLcg)(void);
-    /* 0x38 */ void *unk38;
+    /* 0x38 */ f32 (*func_uvmath_rom_004008E4)(void);
     /* 0x3C */ s32 (*uvGetRandSeed)(void);
     /* 0x40 */ f32 (*uvClampF)(f32, f32, f32);
     /* 0x44 */ f32 (*uvNormalizeAngle)(f32);

@@ -82,6 +82,7 @@
 #include "dledit.h"
 #include "gamegui.h"
 #include "txtview.h"
+#include "scene.h"
 #define MODULE_ENTRY_POINT(func) __entrypoint_##func
 
 #endif /* BAR_MODULE_H */

@@ -32,7 +32,7 @@ void uvGameInit(void) {
     gGameSettings->playerNameLength = 0;
     gGameSettings->unk6FA0 = 0.009999999776f;
     gGameSettings->unk7C = 0.0f;
-    gGameSettings->currentGameState = INIT;
+    gGameSettings->currentGameState = GAME_STATE_INIT;
     gGameSettings->pauseFlag = 0;
     gGameSettings->debugState = 0;
     gGameSettings->unk18C = 1;
@@ -117,7 +117,7 @@ void uvGameInit(void) {
 
     gGameSettings->playIntroFlag = 1; // zero goes immediately to main menu
     gGameSettings->currentTrack = TRACK_COVENTRY_COVE;
-    uvSetGameState(SELECTION);
+    uvSetGameState(GAME_STATE_SELECTION);
     if (!gUvContExports->uvControllerPlugged(0)) {
         uvShowNoController();
     }
@@ -144,7 +144,7 @@ void uvGameInit(void) {
             D_8001F7D8 = 0;
             gGameSettings->newGameState = gGameSettings->currentGameState;
         }
-        if (gGameSettings->newGameState != INIT) {
+        if (gGameSettings->newGameState != GAME_STATE_INIT) {
             uvSetGameState(gGameSettings->newGameState);
         }
     }
@@ -158,7 +158,7 @@ void uvSetGameState(s32 gameStateId) {
 
     if (gUvGfxMgrExports != NULL) {
         gUvGfxMgrExports->func_uvgfxmgr_rom_00402090();
-        if (gGameSettings->currentGameState != INIT) {
+        if (gGameSettings->currentGameState != GAME_STATE_INIT) {
             gGameExports->unkC(gGameSettings->currentGameState);
         }
         timesLoaded = uvGetFileInstanceCount('UVMO', uvGetModuleFileId('MIDI'));
@@ -185,7 +185,7 @@ void uvSetGameState(s32 gameStateId) {
 
     }
     gGameSettings->currentGameState = gameStateId;
-    gGameSettings->newGameState = INIT;
+    gGameSettings->newGameState = GAME_STATE_INIT;
     uvSysInit();
     gSkidExports = 0;
     gSprayExports = 0;

@@ -226,14 +226,16 @@ typedef struct UnkStruct_uvdyn_rom_00411DC0_s {
     /* 0x1578 */ s32 unk1578[0xA];
 } UnkStruct_uvdyn_rom_00411DC0;                     /* size = 0x15A0 */
 
-typedef struct UnkIsectExports_s {
+typedef struct UnkIsectExports1_s {
     /* 0x00 */ char pad0[0x20];
     /* 0x20 */ void (*unk20)(UnkStruct_uvdyn_rom_00409CE4_unkC*, s32, Mtx4F*);
     /* 0x24 */ char pad24[0x14];                    /* maybe part of unk20[6]? */
     /* 0x38 */ void (*unk38)(UnkStruct_uvdyn_rom_00409CE4_unkC*, s32);
     /* 0x3C */ char pad3C[0x14];                    /* maybe part of unk38[6]? */
     /* 0x50 */ u16 (*unk50)(Vec3F*, s32, s32, s32, UnkStruct_uvdyn_rom_00411DC0_unk12A0*);
-    /* 0x54 */ char pad54[0x2C];                    /* maybe part of unk50[0xC]? */
+    /* 0x54 */ char pad54[0x10];                    /* maybe part of unk50[0xC]? */
+    /* 0x64 */ void (*unk64)(s32);
+    /* 0x68 */ char pad68[0x18];
     /* 0x80 */ void (*unk80)(f32);                     /* inferred */
     /* 0x84 */ s32 (*unk84)(s32, s32, s32);
     /* 0x88 */ char pad88[0xC];                     /* maybe part of unk84[4]? */
@@ -241,14 +243,14 @@ typedef struct UnkIsectExports_s {
     /* 0x98 */ char pad98[0x10];                    /* maybe part of unk94[5]? */
     /* 0xA8 */ s32 (*unkA8)(Vec3F*, s32, s32, s32, s32*);
     /* 0xAC */ char padAC[0x20];                    /* maybe part of unkA8[9]? */
-} UnkIsectExports;                                  /* size = 0xCC */
+} UnkIsectExports1;                                  /* size = 0xCC */
 
 // exports
 extern UvFMtx_Rom_Exports *D_uvdyn_rom_00411F70;
 extern UvFVec_Rom_Exports *D_uvdyn_rom_00411F74;
 extern UvQuat_Exports *D_uvdyn_rom_00411F78;
 extern UvMath_Exports *D_uvdyn_rom_00411F80;
-extern UnkIsectExports *D_uvdyn_rom_00411F7C; // uvisect_rom exports
+extern UnkIsectExports1 *D_uvdyn_rom_00411F7C; // uvisect_rom exports
 extern UvDobj_Exports *D_uvdyn_rom_00411F84;
 extern UvTerra_Exports *D_uvdyn_rom_00411F88;
 extern UvIntersect_Exports *D_uvdyn_rom_00411F8C;
