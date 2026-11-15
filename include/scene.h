@@ -9,8 +9,21 @@ typedef enum SceneFogType_e {
 } SceneFogType;
 
 typedef struct UnkLightStruct_s {
-    char pad[0x2C];
-} UnkLightStruct;
+    /* 0x00 */ s16 unk0;                            /* inferred */
+    /* 0x02 */ s16 unk2;                            /* inferred */
+    /* 0x04 */ f32 unk4;                            /* inferred */
+    /* 0x08 */ f32 unk8;                            /* inferred */
+    /* 0x0C */ f32 unkC;                            /* inferred */
+    /* 0x10 */ f32 unk10;                           /* inferred */
+    /* 0x14 */ f32 unk14;                           /* inferred */
+    /* 0x18 */ f32 unk18;                           /* inferred */
+    /* 0x1C */ f32 unk1C;                           /* inferred */
+    /* 0x20 */ f32 unk20;                           /* inferred */
+    /* 0x24 */ f32 unk24;                           /* inferred */
+    /* 0x28 */ f32 unk28;                           /* inferred */
+} UnkLightStruct;                                   /* size = 0x2C */
+
+
 
 typedef struct Scene_s {
     /* 0x00 */ s32 unk0;     /* inferred */
@@ -23,7 +36,7 @@ typedef struct Scene_s {
     /* 0x12 */ u8 unk12;                /* inferred */
     /* 0x13 */ s8 unk13;                /* inferred */
     /* 0x14 */ char pad14[0x10];        /* maybe part of unk13[0x11]? */
-    /* 0x24 */ s32 *unk24;              /* inferred */
+    /* 0x24 */ f32 *unk24;              /* inferred */
     /* 0x28 */ UnkLightStruct unk28[4]; /* maybe part of unk24[0x2D]? */
     /* 0xD8 */ s32 fogType;               /* inferred */
     /* 0xDC */ f32 fogRed;               /* inferred */

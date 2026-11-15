@@ -46,4 +46,5 @@ extern UvTerra_Exports* gUvTerraExports;
 extern UnkGlareExports* gGlareExports;
 extern UnkIsectExports* gUvIsectExports;
 extern UvLights_Exports* gUvLightExports;
+extern Scene_Exports*  gSceneExports;
 #endif /* GLOBAL_EXPORTS_H */

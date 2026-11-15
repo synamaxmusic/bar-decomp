@@ -93,7 +93,7 @@ typedef struct Misc_Exports_s {
     /* 0x0F8 */ s32 (*func_misc_00403348)(f32, f32, f32, f32, f32, f32, f32, f32 *);
     /* 0x0FC */ void (*func_misc_00403650)(s32, s32, s32);
     /* 0x100 */ f32 (*func_misc_00403748)(UnkStruct_misc_00403748 *, Vec3F *, Vec3F *);
-    /* 0x104 */ GuiMenuItem *(*func_misc_004038D8)(GuiMenuOption *, u8 *, s16, f32, f32, s32 *, GuiSlider **);
+    /* 0x104 */ GuiMenuItem *(*miscCreateGuiSlider)(GuiMenuOption *, u8 *, s16, f32, f32, s32 *, GuiSlider **);
     /* 0x108 */ GuiMenuItem *(*func_misc_00403A5C)(GuiMenuOption *, u8 *, u8 *, u8 *, UvGrphStruct *, f32 *, Inner30 **);
     /* 0x10C */ GuiMenuItem *(*func_misc_00403BEC)(GuiMenuOption *, u8 *, void (*)(void *));
     /* 0x110 */ void (*func_misc_00403CA4)(Vec3F *, Vec3F *);

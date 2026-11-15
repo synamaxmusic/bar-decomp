@@ -69,7 +69,7 @@ void miscUnloadFileRomModule(void);
 s32 func_misc_00403348(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 *arg7);
 void func_misc_00403650(s32 arg0, s32 profiler, s32 y);
 f32 func_misc_00403748(UnkStruct_misc_00403748 *arg0, Vec3F *arg1, Vec3F *arg2);
-GuiMenuItem *func_misc_004038D8(GuiMenuOption *menuOption, u8 *label, s16 arg2, f32 arg3, f32 arg4, s32 *arg5, GuiSlider **arg6);
+GuiMenuItem *miscCreateGuiSlider(GuiMenuOption *menuOption, u8 *label, s16 arg2, f32 arg3, f32 arg4, s32 *arg5, GuiSlider **arg6);
 GuiMenuItem *func_misc_00403A5C(GuiMenuOption *arg0, u8 *arg1, u8 *arg2, u8 *arg3, UvGrphStruct *arg4, f32 *arg5, Inner30 **arg6);
 GuiMenuItem *func_misc_00403BEC(GuiMenuOption *menuOption, u8 *itemName, UvGuiCallback callback);
 void func_misc_00403CA4(Vec3F *arg0, Vec3F *arg1);
@@ -147,7 +147,7 @@ void __entrypoint_func_misc_400000(Misc_Exports* arg0) {
     arg0->miscVec2FLen = miscVec2FLen;
     arg0->func_misc_00403748 = func_misc_00403748;
     arg0->func_misc_004017FC = func_misc_004017FC;
-    arg0->func_misc_004038D8 = func_misc_004038D8;
+    arg0->miscCreateGuiSlider = miscCreateGuiSlider;
     arg0->func_misc_00403A5C = func_misc_00403A5C;
     arg0->func_misc_00403BEC = func_misc_00403BEC;
     arg0->func_misc_00403CA4 = func_misc_00403CA4;
@@ -1481,30 +1481,31 @@ f32 func_misc_00403748(UnkStruct_misc_00403748* arg0, Vec3F* arg1, Vec3F* arg2) 
     return var_v0 * (temp_fa0 / (sp28 - temp_fa0));
 }
 
-GuiMenuItem* func_misc_004038D8(GuiMenuOption* menuOption, u8* label, s16 arg2, f32 arg3, f32 arg4, s32* arg5, GuiSlider** arg6) {
-    GuiMenuItem* menuItem;
-    GuiSlider* slider;
-    f32 var_fv0;
+GuiMenuItem *miscCreateGuiSlider(GuiMenuOption *menuOption, u8 *label, s16 mode, f32 minValue,
+                                 f32 maxValue, s32 *slideValuePtr, GuiSlider **destSlider) {
+    GuiMenuItem *menuItem;
+    GuiSlider *slider;
+    f32 slideValue;
 
     menuItem = gUvGuiExports->uvGuiGetMenuItem(gUvGuiExports->uvGuiNewMenuItem());
     gUvGuiExports->uvGuiSetMenuItemName(menuItem, label);
     gUvGuiExports->uvGuiAddMenuItem(menuOption, menuItem);
     slider = gUvGuiExports->uvGuiGetSlider(gUvGuiExports->uvGuiSliderNew());
-    gUvGuiExports->uvGuiSliderSetMode(slider, arg2);
-    if (arg5 != NULL) {
+    gUvGuiExports->uvGuiSliderSetMode(slider, mode);
+    if (slideValuePtr != NULL) {
         if (slider->mode & 2) {
-            var_fv0 = (f32) *arg5;
+            slideValue = (f32) *slideValuePtr;
         } else {
-            var_fv0 =  *(f32*)arg5;
+            slideValue = *(f32 *) slideValuePtr;
         }
     } else {
-        var_fv0 = 0.0f;
+        slideValue = 0.0f;
     }
-    gUvGuiExports->func_uvgui_rom_004037E0(slider, arg3, arg4, var_fv0, arg5);
+    gUvGuiExports->uvGuiSliderSetValues(slider, minValue, maxValue, slideValue, slideValuePtr);
     gUvGuiExports->uvGuiSliderSetLabel(slider, label);
     gUvGuiExports->uvGuiAddSlider(menuItem, slider);
-    if (arg6 != NULL) {
-        *arg6 = slider;
+    if (destSlider != NULL) {
+        *destSlider = slider;
     }
     return menuItem;
 }

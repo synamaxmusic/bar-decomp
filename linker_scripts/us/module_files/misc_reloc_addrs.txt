@@ -108,8 +108,8 @@ rom:0x2E0 reloc:MIPS_HI16 symbol:func_misc_00403748
 rom:0x308 reloc:MIPS_LO16 symbol:func_misc_00403748
 rom:0x2E4 reloc:MIPS_HI16 symbol:func_misc_004017FC
 rom:0x30C reloc:MIPS_LO16 symbol:func_misc_004017FC
-rom:0x2E8 reloc:MIPS_HI16 symbol:func_misc_004038D8
-rom:0x310 reloc:MIPS_LO16 symbol:func_misc_004038D8
+rom:0x2E8 reloc:MIPS_HI16 symbol:miscCreateGuiSlider
+rom:0x310 reloc:MIPS_LO16 symbol:miscCreateGuiSlider
 rom:0x2EC reloc:MIPS_HI16 symbol:func_misc_00403A5C
 rom:0x314 reloc:MIPS_LO16 symbol:func_misc_00403A5C
 rom:0x2F0 reloc:MIPS_HI16 symbol:func_misc_00403BEC

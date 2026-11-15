@@ -19,17 +19,17 @@ typedef struct GuiSlider_s {
     /* 0x1E */ s16 state;
     /* 0x20 */ s16 mode;
     /* 0x22 */ char pad22[2];
-    /* 0x24 */ f32 unk24;
-    /* 0x28 */ f32 unk28;
-    /* 0x2C */ s32* unk2C;
-    /* 0x30 */ f32 unk30;
-    /* 0x34 */ f32 unk34;
+    /* 0x24 */ f32 roundedValue;
+    /* 0x28 */ f32 currentValue;
+    /* 0x2C */ s32* currentValPtr;
+    /* 0x30 */ f32 minValue;
+    /* 0x34 */ f32 maxValue;
     /* 0x38 */ s16 x0;
     /* 0x3A */ s16 x1;
     /* 0x3C */ s16 y0;
     /* 0x3E */ s16 y1;
     /* 0x40 */ UvGuiCallback callback;
-    /* 0x44 */ s32* unk44;
+    /* 0x44 */ char** valuesLabel;
 } GuiSlider;                                          /* size = 0x48 */
 
 typedef struct Inner2C_s {
@@ -203,11 +203,11 @@ typedef struct UvGui_Exports_s {
     /* 0x0C8 */ void (*uvGuiSliderSetRect)(GuiSlider *, s16, s16, s16, s16);
     /* 0x0CC */ void (*uvGuiDrawSlider)(GuiSlider *);
     /* 0x0D0 */ void (*uvGuiSliderSetCallback)(GuiSlider *, s32);
-    /* 0x0D4 */ void (*func_uvgui_rom_004037E0)(GuiSlider *, f32, f32, f32, s32 *);
+    /* 0x0D4 */ void (*uvGuiSliderSetValues)(GuiSlider *, f32, f32, f32, s32 *);
     /* 0x0D8 */ void (*uvGuiSliderSetMode)(GuiSlider *, s16);
     /* 0x0DC */ void (*func_uvgui_rom_004038E4)(GuiSlider *, u8, f32);
     /* 0x0E0 */ void (*func_uvgui_rom_00403C50)(GuiSlider *, s16);
-    /* 0x0E4 */ void (*func_uvgui_rom_00403CA4)(GuiSlider *, s32);
+    /* 0x0E4 */ void (*uvGuiSetSliderValuesLabel)(GuiSlider *, char**);
     /* 0x0E8 */ void (*func_uvgui_rom_00403CAC)(void);
     /* 0x0EC */ s16 (*func_uvgui_rom_00403E78)(void);
     /* 0x0F0 */ void (*func_uvgui_rom_00403EB8)(s16);

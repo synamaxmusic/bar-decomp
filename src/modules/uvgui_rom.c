@@ -61,11 +61,11 @@ void uvGuiSliderSetLabel(GuiSlider *arg0, u8 *arg1);
 void uvGuiSliderSetRect(GuiSlider *arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4);
 void uvGuiDrawSlider(GuiSlider *arg0);
 void uvGuiSliderSetCallback(GuiSlider *arg0, s32 arg1);
-void func_uvgui_rom_004037E0(GuiSlider *arg0, f32 arg1, f32 arg2, f32 arg3, s32 *arg4);
+void uvGuiSliderSetValues(GuiSlider *arg0, f32 arg1, f32 arg2, f32 arg3, s32 *arg4);
 void uvGuiSliderSetMode(GuiSlider *arg0, s16 arg1);
 void func_uvgui_rom_004038E4(GuiSlider *arg0, u8 arg1, f32 arg2);
 void func_uvgui_rom_00403C50(GuiSlider *arg0, s16 arg1);
-void func_uvgui_rom_00403CA4(GuiSlider *arg0, s32 arg1);
+void uvGuiSetSliderValuesLabel(GuiSlider *arg0, char** arg1);
 void func_uvgui_rom_00403CAC(void);
 s16 func_uvgui_rom_00403E78(void);
 void func_uvgui_rom_00403EB8(s16 arg0);
@@ -148,14 +148,14 @@ void __entrypoint_func_uvgui_rom_400000(UvGui_Exports *exports) {
     exports->uvGuiInitializeMenuItems = uvGuiInitializeMenuItems;
     exports->uvGuiSliderSetCallback = uvGuiSliderSetCallback;
     exports->uvGuiNewMenuItem = uvGuiNewMenuItem;
-    exports->func_uvgui_rom_004037E0 = func_uvgui_rom_004037E0;
+    exports->uvGuiSliderSetValues = uvGuiSliderSetValues;
     exports->uvGuiGetMenuItem = uvGuiGetMenuItem;
     exports->uvGuiSliderSetMode = uvGuiSliderSetMode;
     exports->uvGuiSetMenuItemName = uvGuiSetMenuItemName;
     exports->func_uvgui_rom_004038E4 = func_uvgui_rom_004038E4;
     exports->func_uvgui_rom_00401D74 = func_uvgui_rom_00401D74;
     exports->func_uvgui_rom_00403C50 = func_uvgui_rom_00403C50;
-    exports->func_uvgui_rom_00403CA4 = func_uvgui_rom_00403CA4;
+    exports->uvGuiSetSliderValuesLabel = uvGuiSetSliderValuesLabel;
     exports->func_uvgui_rom_00403CAC = func_uvgui_rom_00403CAC;
     exports->func_uvgui_rom_00403E78 = func_uvgui_rom_00403E78;
     exports->uvGuiDestroy = uvGuiDestroy;
@@ -1209,12 +1209,12 @@ void uvGuiSliderInit(void) {
         slider = &sGuiSliders[i];
         slider->state = 0;
         slider->mode = 0x11;
-        slider->unk30 = 1.0f;
-        slider->unk34 = -1.0f;
-        slider->unk28 = 0.0f;
-        slider->unk24 = 0.0f;
-        slider->unk2C = 0;
-        slider->unk44 = 0;
+        slider->minValue = 1.0f;
+        slider->maxValue = -1.0f;
+        slider->currentValue = 0.0f;
+        slider->roundedValue = 0.0f;
+        slider->currentValPtr = 0;
+        slider->valuesLabel = NULL;
         uvGuiSliderSetRect(slider, (s16) ((s32) (sUvGfxMgrExports->uvGetScreenWidth() - 0xB4) / 2),
                                 (s16) ((s32) (sUvGfxMgrExports->uvGetScreenWidth() + 0xB4) / 2),
                                 (s16) ((sUvGfxMgrExports->uvGetScreenHeight() - 0x28) / 2),
@@ -1280,27 +1280,27 @@ void uvGuiDrawSlider(GuiSlider *slider) {
     u8 sliderText[24];
     s32 temp_v0_4;
 
-    if (slider->unk2C != 0) {
+    if (slider->currentValPtr != 0) {
         if (slider->mode & 2) {
-            if ((*slider->unk2C) < slider->unk28) {
-                var_fa0 = slider->unk28 - (*slider->unk2C);
+            if ((*slider->currentValPtr) < slider->currentValue) {
+                var_fa0 = slider->currentValue - (*slider->currentValPtr);
             } else {
-                var_fa0 = -(slider->unk28 - (*slider->unk2C));
+                var_fa0 = -(slider->currentValue - (*slider->currentValPtr));
             }
             if (var_fa0 > 1.0f) {
-                if (slider->unk28 >= 0.0f) {
-                    slider->unk28 = *slider->unk2C;
+                if (slider->currentValue >= 0.0f) {
+                    slider->currentValue = *slider->currentValPtr;
                 } else {
-                    slider->unk28 = *slider->unk2C;
+                    slider->currentValue = *slider->currentValPtr;
                 }
             }
         } else {
-            slider->unk28 = *((f32 *) slider->unk2C);
+            slider->currentValue = *((f32 *) slider->currentValPtr);
         }
-        if (slider->unk28 >= 0.0f) {
-            slider->unk24 = (f32) ((s32) (slider->unk28 + 0.5f));
+        if (slider->currentValue >= 0.0f) {
+            slider->roundedValue = (f32) ((s32) (slider->currentValue + 0.5f));
         } else {
-            slider->unk24 = (f32) ((s32) (slider->unk28 - 0.5f));
+            slider->roundedValue = (f32) ((s32) (slider->currentValue - 0.5f));
         }
     }
     switch (slider->state) {
@@ -1327,13 +1327,13 @@ void uvGuiDrawSlider(GuiSlider *slider) {
     if (slider->state == 2) {
         uvGuiDrawRect(sliderX0, sliderX1, sliderY0, sliderY1, 2, 50, 50, 50, 255);
     }
-    if (slider->unk34 != slider->unk30) {
-        var_fa0 = (slider->unk28 - slider->unk30) / (slider->unk34 - slider->unk30);
+    if (slider->maxValue != slider->minValue) {
+        var_fa0 = (slider->currentValue - slider->minValue) / (slider->maxValue - slider->minValue);
     } else {
         var_fa0 = 0.5f;
     }
     if (slider->mode & 2) {
-        temp_v0_4 = ((s32) slider->unk34) - ((s32) slider->unk30);
+        temp_v0_4 = ((s32) slider->maxValue) - ((s32) slider->minValue);
         if (temp_v0_4 > 0) {
             var_fa0 = ((f32) ((s32) ((temp_v0_4 * var_fa0) + 0.5f))) / temp_v0_4;
         } else {
@@ -1358,18 +1358,18 @@ void uvGuiDrawSlider(GuiSlider *slider) {
     temp_a0 = (sliderX0 + temp_a0) + 3;
     uvGuiDrawRect(temp_a0, temp_a0 + 6, sliderY0 + 2, sliderY1 - 2, 2, r, g, b,
                             a);
-    if ((slider->unk44 != 0) && (slider->mode & 2)) {
-        uvGuiSliderSetLabel(slider, slider->unk44[(s32) slider->unk24]);
+    if ((slider->valuesLabel != 0) && (slider->mode & 2)) {
+        uvGuiSliderSetLabel(slider, slider->valuesLabel[(s32) slider->roundedValue]);
     }
     sUvFontExports->uvFontWidth(slider->label);
     sUvFontExports->uvFontColor(0, 0, 0, 255);
     sUvFontExports->uvFontPrintStr(slider->x0 + 7, slider->y0 + 2, slider->label);
     if (slider->mode & 0x10) {
         if (slider->mode & 1) {
-            sUvStringExports->uvSprintf(sliderText, "%f", slider->unk28);
+            sUvStringExports->uvSprintf(sliderText, "%f", slider->currentValue);
         }
         if (slider->mode & 2) {
-            sUvStringExports->uvSprintf(sliderText, "%d", (s32) slider->unk24);
+            sUvStringExports->uvSprintf(sliderText, "%d", (s32) slider->roundedValue);
         }
         width = sUvFontExports->uvFontWidth(sliderText);
         sUvFontExports->uvFontColor(0, 0, 0, 255);
@@ -1381,28 +1381,28 @@ void uvGuiSliderSetCallback(GuiSlider *slider, s32 callBack) {
     slider->callback = callBack;
 }
 
-void func_uvgui_rom_004037E0(GuiSlider *slider, f32 arg1, f32 arg2, f32 arg3, s32 *arg4) {
-    slider->unk30 = arg1;
-    slider->unk2C = arg4;
-    slider->unk34 = arg2;
-    if (slider->unk2C != NULL) {
+void uvGuiSliderSetValues(GuiSlider *slider, f32 minValue, f32 maxValue, f32 slideVal, s32 *slideValPtr) {
+    slider->minValue = minValue;
+    slider->currentValPtr = slideValPtr;
+    slider->maxValue = maxValue;
+    if (slider->currentValPtr != NULL) {
         if (slider->mode & 2) {
-            slider->unk28 = *slider->unk2C;
+            slider->currentValue = *slider->currentValPtr;
         } else {
-            slider->unk28 = *(f32 *) slider->unk2C;
+            slider->currentValue = *(f32 *) slider->currentValPtr;
         }
     } else {
-        slider->unk28 = arg3;
+        slider->currentValue = slideVal;
     }
 
     if (slider->mode & 2) {
-        if (slider->unk28 >= 0.0f) {
-            slider->unk24 = (s32) (slider->unk28 + 0.5f);
+        if (slider->currentValue >= 0.0f) {
+            slider->roundedValue = (s32) (slider->currentValue + 0.5f);
         } else {
-            slider->unk24 = (s32) (slider->unk28 - 0.5f);
+            slider->roundedValue = (s32) (slider->currentValue - 0.5f);
         }
     } else {
-        slider->unk24 = slider->unk28;
+        slider->roundedValue = slider->currentValue;
     }
 }
 
@@ -1418,10 +1418,10 @@ void func_uvgui_rom_004038E4(GuiSlider *slider, u8 arg1, f32 arg2) {
     if (slider->state != 2) {
         return;
     }
-    if ((slider->unk2C != 0) && (!(slider->mode & 2))) {
-        slider->unk28 = *((f32 *) slider->unk2C);
+    if ((slider->currentValPtr != 0) && (!(slider->mode & 2))) {
+        slider->currentValue = *((f32 *) slider->currentValPtr);
     }
-    temp_ft4 = (slider->unk34 - slider->unk30) * 0.5f;
+    temp_ft4 = (slider->maxValue - slider->minValue) * 0.5f;
     var_fv1 = sUvGfxMgrExports->func_uvgfxmgr_rom_00401004();
     if (arg2 > 0.0f) {
         arg2 *= arg2;
@@ -1429,15 +1429,15 @@ void func_uvgui_rom_004038E4(GuiSlider *slider, u8 arg1, f32 arg2) {
         arg2 *= -arg2;
     }
     if (slider->mode == 0x11) {
-        slider->unk28 += ((0.5f * arg2) * temp_ft4) * var_fv1;
-        if (slider->unk28 < slider->unk30) {
-            slider->unk28 = slider->unk30;
-        } else if (slider->unk28 > slider->unk34) {
-            slider->unk28 = slider->unk34;
+        slider->currentValue += ((0.5f * arg2) * temp_ft4) * var_fv1;
+        if (slider->currentValue < slider->minValue) {
+            slider->currentValue = slider->minValue;
+        } else if (slider->currentValue > slider->maxValue) {
+            slider->currentValue = slider->maxValue;
         }
-        slider->unk24 = slider->unk28;
+        slider->roundedValue = slider->currentValue;
     } else {
-        var_fv0 = 20.0f / (slider->unk34 - slider->unk30);
+        var_fv0 = 20.0f / (slider->maxValue - slider->minValue);
         if (var_fv0 < 1.0f) {
             var_fv0 = 1.0f;
         } else if (var_fv0 > 100.0f) {
@@ -1450,19 +1450,19 @@ void func_uvgui_rom_004038E4(GuiSlider *slider, u8 arg1, f32 arg2) {
         if (sUvContExports->uvControllerButtonPress(arg1, R_JPAD) != 0) {
             var_fv0 = 1.0f;
         }
-        slider->unk28 += var_fv0;
-        if (slider->unk28 < slider->unk30) {
-            slider->unk28 = slider->unk30;
-        } else if (slider->unk28 > slider->unk34) {
-            slider->unk28 = slider->unk34;
+        slider->currentValue += var_fv0;
+        if (slider->currentValue < slider->minValue) {
+            slider->currentValue = slider->minValue;
+        } else if (slider->currentValue > slider->maxValue) {
+            slider->currentValue = slider->maxValue;
         }
-        slider->unk24 = ROUNDF(slider->unk28);
+        slider->roundedValue = ROUNDF(slider->currentValue);
     }
-    if (slider->unk2C != 0) {
+    if (slider->currentValPtr != 0) {
         if (slider->mode & 2) {
-            *slider->unk2C = ROUNDF(slider->unk28);
+            *slider->currentValPtr = ROUNDF(slider->currentValue);
         } else {
-            *((f32 *) slider->unk2C) = slider->unk28;
+            *((f32 *) slider->currentValPtr) = slider->currentValue;
         }
     }
     if (slider->callback != NULL) {
@@ -1479,8 +1479,8 @@ void func_uvgui_rom_00403C50(GuiSlider *slider, s16 arg1) {
     slider->state = arg1;
 }
 
-void func_uvgui_rom_00403CA4(GuiSlider *slider, s32 arg1) {
-    slider->unk44 = arg1;
+void uvGuiSetSliderValuesLabel(GuiSlider *slider, char** labels) {
+    slider->valuesLabel = labels;
 }
 
 void func_uvgui_rom_00403CAC(void) {
