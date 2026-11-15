@@ -6,9 +6,9 @@
 #include "uvsort_rom.h"
 #include "uvufileld_rom.h"
 #include "uvtseqld_rom.h"
-#include "uvvolumeld_rom.h"
 #include "uvmath_rom.h"
 #include "uvfvec_rom.h"
+#include "uvvolumeld_rom.h"
 #include "uvimtx_rom.h"
 #include "uvfmtx_rom.h"
 #include "uvgfxmgr_rom.h"
@@ -84,6 +84,7 @@
 #include "txtview.h"
 #include "scene.h"
 #include "light.h"
+#include "voltest.h"
 #define MODULE_ENTRY_POINT(func) __entrypoint_##func
 
 #endif /* BAR_MODULE_H */

@@ -256,7 +256,7 @@ void func_light_00400950(s32 arg0, s32 arg1, s32 arg2) {
     UnkStruct_light_00400DC8 *var_s0;
 
     for (var_s0 = D_light_00400DC8; var_s0 != NULL; var_s0 = var_s0->next) {
-        if (gVolTestExports->unkC(var_s0->unk0, 2, arg0) != 0) {
+        if (gVolTestExports->func_voltest_00400194(var_s0->unk0, 2, arg0) != 0) {
             func_light_00400120(gSceneExports->sCurrentScene->unk28, arg2, 1, var_s0->unk1C,
                                 var_s0->unk20, var_s0->unk24, 2, var_s0->unk10, var_s0->unk14,
                                 var_s0->unk18, 3, 1.0f, 4, var_s0->unk4, var_s0->unk8, var_s0->unkC, 0);

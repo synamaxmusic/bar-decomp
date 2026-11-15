@@ -198,7 +198,7 @@ typedef struct UnkScrnExports_s {
     void (*unk0)(void);
     void (*unk4)(s32, s32);
     char pad8[0x14 - 0x8];
-    void *(*unk14)(s32 *);
+    s32 (*unk14)(s32 *);
     UnkScrnExports_unk18 *unk18;
     s32 unk1C;
 } UnkScrnExports;

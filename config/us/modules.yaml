@@ -178,6 +178,10 @@ Modules:
   - name: ufo
   - name: ufogame
   - name: voltest
+    done_sections:
+      - text
+      - data
+      - bss
   - name: weapon
     done_sections:
       - text
@@ -424,6 +428,7 @@ Modules:
   - name: uvvolumeld_rom
     done_sections:
       - text
+      - data
   - name: victory
   - name: weapon
     done_sections:
