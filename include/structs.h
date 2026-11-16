@@ -99,7 +99,7 @@ typedef struct UnkStruct_80025CF0_s {
     /* 0x00DC */ s32 dbgOptsDrawingOff;
     /* 0x00E0 */ s32 sceneEditorMode;   // 80025DD0
     /* 0x00E4 */ u8 padE4[0xF0 - 0xE4];   // 80025DD4
-    /* 0x00F0 */ s32 unkF0;
+    /* 0x00F0 */ u8* currentSceneTrackName;
     /* 0x00F4 */ u8 padF4[0x138 - 0xF4];
     /* 0x0138 */ CarInfo playerCarInfo[4]; // 80025E28
     /* 0x0150 */ u8 playerName[16];        // 80025E40
@@ -175,6 +175,8 @@ typedef struct UnkStruct_80025CB0_s {
 typedef struct Volt_Exports_s {
     char pad0[4];
     s32 (*unk4)(s32);
+    char pad8[4];
+    s32 (*unkC)(s32, s32, s32);
 } Volt_Exports;
 
 typedef struct Env_Exports_s {
@@ -196,7 +198,7 @@ typedef struct UnkScrnExports_s {
     void (*unk0)(void);
     void (*unk4)(s32, s32);
     char pad8[0x14 - 0x8];
-    void *(*unk14)(s32 *);
+    s32 (*unk14)(s32 *);
     UnkScrnExports_unk18 *unk18;
     s32 unk1C;
 } UnkScrnExports;

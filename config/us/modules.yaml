@@ -68,6 +68,11 @@ Modules:
     done_sections:
       - text
   - name: light
+    done_sections:
+      - text
+      - rodata
+      - data
+      - bss
   - name: logo
     done_sections:
       - text
@@ -173,7 +178,13 @@ Modules:
   - name: ufo
   - name: ufogame
   - name: voltest
+    done_sections:
+      - text
+      - data
+      - bss
   - name: weapon
+    done_sections:
+      - text
   - name: uvaudiomgr_rom
     done_sections:
       - text
@@ -417,6 +428,7 @@ Modules:
   - name: uvvolumeld_rom
     done_sections:
       - text
+      - data
   - name: victory
   - name: weapon
     done_sections:

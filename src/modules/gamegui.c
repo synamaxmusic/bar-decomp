@@ -80,7 +80,7 @@ extern s32 gNumOpenTracks;
 extern s32 gOptionsMusicVol;
 extern s32 gOptionsSfxVol;
 extern s32 gDebugEnable;
-extern UnkSceneExports *gSceneExports;
+extern Scene_Exports *gSceneExports;
 extern UnkRainExports *gRainExports;
 extern UnkFlagExports *gFlagExports;
 extern s32 D_80025D7C;
@@ -117,7 +117,7 @@ void func_gamegui_004000B0(void) {
     func_gamegui_00400194(menu);
     func_gamegui_00400370(menu);
     func_gamegui_004014F8(menu);
-    gSceneExports->unk20(menu);
+    gSceneExports->func_scene_00400EC8(menu);
 }
 
 void func_gamegui_00400194(GuiMenu *menu) {
@@ -127,13 +127,13 @@ void func_gamegui_00400194(GuiMenu *menu) {
     menuOption = gUvGuiExports->uvGuiGetMenuOption(gUvGuiExports->uvGuiNewMenuOption());
     gUvGuiExports->uvGuiSetMenuOptionName(menuOption, "race");
     gUvGuiExports->uvGuiAddMenuOption(menu, menuOption);
-    gMiscExports->func_misc_004038D8(menuOption, "num players", 0x12, 1.0f, 4.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, "num players", 0x12, 1.0f, 4.0f,
                                      &gGameSettings->numPlayers, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, "ai", 0x12, 0.0f, 7.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, "ai", 0x12, 0.0f, 7.0f,
                                      &gGameSettings->numAiCars, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, "ai record", 0x12, 0.0f, 1.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, "ai record", 0x12, 0.0f, 1.0f,
                                      &gGameSettings->dbgRaceAiRecord, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, "steer assist", 0x12, 0.0f, 1.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, "steer assist", 0x12, 0.0f, 1.0f,
                                      &gGameSettings->dbgSteerAssist, &slider);
     gMiscExports->func_misc_00403BEC(menuOption, "* play *", func_gamegui_00401E24);
     gMiscExports->func_misc_00403BEC(menuOption, "* battle *", func_gamegui_00401E50);
@@ -355,172 +355,172 @@ void func_gamegui_00400370(GuiMenu *menu) {
     menuOption = gUvGuiExports->uvGuiGetMenuOption(gUvGuiExports->uvGuiNewMenuOption());
     gUvGuiExports->uvGuiSetMenuOptionName(menuOption, D_gamegui_00402580);
     gUvGuiExports->uvGuiAddMenuOption(menu, menuOption);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402584, 0x12, 1.0f, 12.0f, &gNumOpenCars,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402584, 0x12, 1.0f, 12.0f, &gNumOpenCars,
                                      &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402590, 0x12, 1.0f, 7.0f, &gNumOpenTracks,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402590, 0x12, 1.0f, 7.0f, &gNumOpenTracks,
                                      &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_0040259C, 0x12, 1.0f, 9.0f, &gNumOpenMtracks,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_0040259C, 0x12, 1.0f, 9.0f, &gNumOpenMtracks,
                                      &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004025AC, 0x12, 1.0f, 4.0f, &gNumOpenTourns,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004025AC, 0x12, 1.0f, 4.0f, &gNumOpenTourns,
                                      &slider);
-    D_gamegui_00402D20 = gMiscExports->func_misc_004038D8(
+    D_gamegui_00402D20 = gMiscExports->miscCreateGuiSlider(
         menuOption, D_gamegui_004025B8, 0x12, 0.0f,
         (f32) (gUvEmitterExports->func_uvemitter_rom_004027E4() - 1), &D_gamegui_00402D10, &slider);
     gUvGuiExports->uvGuiSliderSetCallback(slider, (s32) &func_gamegui_00401AF8);
     gUvGuiExports->func_uvgui_rom_0040221C(
-        gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004025C4, 0x12, 0.0f,
+        gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004025C4, 0x12, 0.0f,
                                          (f32) (gUvCmidiExports->uvaGetSeqCount() - 1),
                                          &D_gamegui_00402D14, &slider),
         3, func_gamegui_00401D34);
     gMiscExports->func_misc_00403BEC(menuOption, D_gamegui_004025D0, func_gamegui_004023BC);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402694, 2, 0, 15.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402694, 2, 0, 15.0f,
                                      &gGameSettings->debugState, &slider);
-    gUvGuiExports->func_uvgui_rom_00403CA4(slider, (s32) &D_gamegui_00402B20);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004026AC, 0x12, 0.0f, 2.0f,
+    gUvGuiExports->uvGuiSetSliderValuesLabel(slider, (s32) &D_gamegui_00402B20);
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004026AC, 0x12, 0.0f, 2.0f,
                                      &gGameSettings->dbgFrateDisp, &slider);
-    gUvGuiExports->func_uvgui_rom_00403CA4(slider, (s32) &D_gamegui_00402B60);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004026B8, 0x12, 0.0f, 1.0f,
+    gUvGuiExports->uvGuiSetSliderValuesLabel(slider, (s32) &D_gamegui_00402B60);
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004026B8, 0x12, 0.0f, 1.0f,
                                      &gGameSettings->dbgDefaultMaterialFlag, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004026C8, 0x12, 0.0f, 1.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004026C8, 0x12, 0.0f, 1.0f,
                                      &gGameSettings->dbgAbortMode, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004026D4, 0x11, 0.0f, 25000.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004026D4, 0x11, 0.0f, 25000.0f,
                                      &gGameSettings->dbgPlayerLead, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004026E0, 0x11, 0.1f, 300.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004026E0, 0x11, 0.1f, 300.0f,
                                      &gGameSettings->dbgMxSpeed, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004026F0, 0x12, 0.0f, 3.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004026F0, 0x12, 0.0f, 3.0f,
                                      &gGameSettings->dbgHudState, &slider);
-    gUvGuiExports->func_uvgui_rom_00403CA4(slider, (s32) &D_gamegui_00402B10);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402710, 0x12, 0.0f, 2.0f,
+    gUvGuiExports->uvGuiSetSliderValuesLabel(slider, (s32) &D_gamegui_00402B10);
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402710, 0x12, 0.0f, 2.0f,
                                      &gGameSettings->dbgAiDbgState, &slider);
-    gUvGuiExports->func_uvgui_rom_00403CA4(slider, (s32) &D_gamegui_00402B6C);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_0040272C, 0x12, 0.0f, 2.0f,
+    gUvGuiExports->uvGuiSetSliderValuesLabel(slider, (s32) &D_gamegui_00402B6C);
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_0040272C, 0x12, 0.0f, 2.0f,
                                      &gDebugProfilingState, &slider);
-    gUvGuiExports->func_uvgui_rom_00403CA4(slider, (s32) &D_gamegui_00402B78);
+    gUvGuiExports->uvGuiSetSliderValuesLabel(slider, (s32) &D_gamegui_00402B78);
     menuOption = gUvGuiExports->uvGuiGetMenuOption(gUvGuiExports->uvGuiNewMenuOption());
     gUvGuiExports->uvGuiSetMenuOptionName(menuOption, D_gamegui_00402738);
     gUvGuiExports->uvGuiAddMenuOption(menu, menuOption);
     if (player != NULL) {
-        gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402740, 0x11, 0.0f, 1.0f,
+        gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402740, 0x11, 0.0f, 1.0f,
                                          player->unk28, &slider);
     }
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_0040274C, 0x11, 0.01f, 1.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_0040274C, 0x11, 0.01f, 1.0f,
                                      &gDebugOptsMinDt, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402754, 0x12, 0.0f, 1.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402754, 0x12, 0.0f, 1.0f,
                                      &gGameSettings->dbgInfLapsFlag, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402760, 0x12, 1.0f, 500.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402760, 0x12, 1.0f, 500.0f,
                                      &gGameSettings->dbgNumMaxTxts, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_0040276C, 2, 0, 8.0f, &gOptionsMusicVol,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_0040276C, 2, 0, 8.0f, &gOptionsMusicVol,
                                      &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402774, 2, 0, 8.0f, &gOptionsSfxVol,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402774, 2, 0, 8.0f, &gOptionsSfxVol,
                                      &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402778, 0x12, 0.0f, 1.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402778, 0x12, 0.0f, 1.0f,
                                      &gGameSettings->dbgSuspensionFlag, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004027A0, 0x12, 0.0f, 2.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004027A0, 0x12, 0.0f, 2.0f,
                                      &gGameSettings->dbgTileSort, &slider);
-    gUvGuiExports->func_uvgui_rom_00403CA4(slider, (s32) &D_gamegui_00402B84);
+    gUvGuiExports->uvGuiSetSliderValuesLabel(slider, (s32) &D_gamegui_00402B84);
     gMiscExports->func_misc_00403BEC(menuOption, D_gamegui_004027AC, func_gamegui_0040219C);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004027D0, 0x12, 0.0f, 1.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004027D0, 0x12, 0.0f, 1.0f,
                                      &gGameSettings->dbgOptsRecordIntro, &slider);
-    gUvGuiExports->func_uvgui_rom_00403CA4(slider, (s32) &D_gamegui_00402B90);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402898, 0x12, 0.0f, 11.0f,
+    gUvGuiExports->uvGuiSetSliderValuesLabel(slider, (s32) &D_gamegui_00402B90);
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402898, 0x12, 0.0f, 11.0f,
                                      &gDebugOptsCarSelect, &slider);
-    gUvGuiExports->func_uvgui_rom_00403CA4(slider, (s32) &D_gamegui_00402B98);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_0040289C, 0x12, 0.0f, 1.0f,
+    gUvGuiExports->uvGuiSetSliderValuesLabel(slider, (s32) &D_gamegui_00402B98);
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_0040289C, 0x12, 0.0f, 1.0f,
                                      &gGameSettings->dbgOptsCarShadow, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004028A4, 0x12, 0.0f, 1.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004028A4, 0x12, 0.0f, 1.0f,
                                      &gGameSettings->dbgOptsLosCheckOff, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004028B0, 0x12, 0.0f, 1.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004028B0, 0x12, 0.0f, 1.0f,
                                      &gGameSettings->dbgOptsVelCam, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004028B8, 0x12, 0.0f, 1.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004028B8, 0x12, 0.0f, 1.0f,
                                      &gGameSettings->dbgOptsDrawingOff, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004028C4, 0x12, 0.0f, 1.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004028C4, 0x12, 0.0f, 1.0f,
                                      &gGameSettings->dbgOptsGlare, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004028CC, 0x12, 0.0f, 4.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004028CC, 0x12, 0.0f, 4.0f,
                                      &gGameSettings->dbgOptsFrameRate, &slider);
-    gUvGuiExports->func_uvgui_rom_00403CA4(slider, (s32) &D_gamegui_00402AFC);
+    gUvGuiExports->uvGuiSetSliderValuesLabel(slider, (s32) &D_gamegui_00402AFC);
     menuOption = gUvGuiExports->uvGuiGetMenuOption(gUvGuiExports->uvGuiNewMenuOption());
     gUvGuiExports->uvGuiSetMenuOptionName(menuOption, D_gamegui_004028D8);
     gUvGuiExports->uvGuiAddMenuOption(menu, menuOption);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004028E0, 0x12, 0, 1,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004028E0, 0x12, 0, 1,
                                      &gGameSettings->dbgDispMasks, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004028E8, 0x12, 0.0f, 1.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004028E8, 0x12, 0.0f, 1.0f,
                                      &gGameSettings->dbgDispViGamma, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004028F4, 0x12, 0.0f, 1.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004028F4, 0x12, 0.0f, 1.0f,
                                      &gGameSettings->dbgDispViGamDith, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402900, 0x12, 0.0f, 1.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402900, 0x12, 0.0f, 1.0f,
                                      &gGameSettings->dbgDispViDivot, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_0040290C, 0x12, 0.0f, 1.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_0040290C, 0x12, 0.0f, 1.0f,
                                      &gGameSettings->dbgDispViDither, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402918, 0x12, 0.0f, 1.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402918, 0x12, 0.0f, 1.0f,
                                      &gGameSettings->dbgDispAntialias, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402924, 0x12, 0.0f, 3.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402924, 0x12, 0.0f, 3.0f,
                                      &gGameSettings->dbgDispTxtFilter, &slider);
-    gUvGuiExports->func_uvgui_rom_00403CA4(slider, (s32) &D_gamegui_00402AC0);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402930, 0x12, 0.0f, 2.0f,
+    gUvGuiExports->uvGuiSetSliderValuesLabel(slider, (s32) &D_gamegui_00402AC0);
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402930, 0x12, 0.0f, 2.0f,
                                      &gGameSettings->dbgDispTxtPersp, &slider);
-    gUvGuiExports->func_uvgui_rom_00403CA4(slider, (s32) &D_gamegui_00402AD0);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_0040293C, 0x12, 0.0f, 3.0f,
+    gUvGuiExports->uvGuiSetSliderValuesLabel(slider, (s32) &D_gamegui_00402AD0);
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_0040293C, 0x12, 0.0f, 3.0f,
                                      &gGameSettings->dbgDispTxtDetail, &slider);
-    gUvGuiExports->func_uvgui_rom_00403CA4(slider, (s32) &D_gamegui_00402ADC);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402948, 0x12, 0.0f, 3.0f,
+    gUvGuiExports->uvGuiSetSliderValuesLabel(slider, (s32) &D_gamegui_00402ADC);
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402948, 0x12, 0.0f, 3.0f,
                                      &gGameSettings->dbgDispMipmap, &slider);
-    gUvGuiExports->func_uvgui_rom_00403CA4(slider, (s32) &D_gamegui_00402AEC);
-    D_gamegui_00402D18 = gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402950, 2, 0.0f, 2.0f,
+    gUvGuiExports->uvGuiSetSliderValuesLabel(slider, (s32) &D_gamegui_00402AEC);
+    D_gamegui_00402D18 = gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402950, 2, 0.0f, 2.0f,
                                                           &D_gamegui_00402AB0, &slider);
-    D_gamegui_00402D1C = gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402958, 2, 0.0f, 2.0f,
+    D_gamegui_00402D1C = gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402958, 2, 0.0f, 2.0f,
                                                           &D_gamegui_00402AB4, &slider);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402960, 0x11, -1.0f, 1.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402960, 0x11, -1.0f, 1.0f,
                                      &D_gamegui_00402ABC, &slider);
     menuOption = gUvGuiExports->uvGuiGetMenuOption(gUvGuiExports->uvGuiNewMenuOption());
     gUvGuiExports->uvGuiSetMenuOptionName(menuOption, D_gamegui_0040296C);
     gUvGuiExports->uvGuiAddMenuOption(menu, menuOption);
-    gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402974, 0x12, 0.0f, 1.0f,
+    gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402974, 0x12, 0.0f, 1.0f,
                                      &gGameSettings->dbgDisableGoodFramera, &slider);
     gMiscExports->func_misc_00403BEC(menuOption, D_gamegui_00402984, func_gamegui_00401D94);
     gMiscExports->func_misc_00403BEC(menuOption, D_gamegui_0040298C, func_gamegui_00401DC4);
     gMiscExports->func_misc_00403BEC(menuOption, D_gamegui_00402994, func_gamegui_00401DF4);
     if (gUvPfxExports != NULL) {
-        gMiscExports->func_misc_004038D8(menuOption, D_gamegui_0040299C, 0x12, 0.0f, 1.0f,
+        gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_0040299C, 0x12, 0.0f, 1.0f,
                                          gUvPfxExports->sNoParticlesFlag, &slider);
     }
     if (gUvDobjExports != NULL) {
-        gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004029AC, 0x12, 0.0f, 1.0f,
+        gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004029AC, 0x12, 0.0f, 1.0f,
                                          gUvDobjExports->sNoDobjsFlag, &slider);
     }
     if (gUvEnvExports != NULL) {
-        gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004029B8, 0x12, 0.0f, 1.0f,
+        gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004029B8, 0x12, 0.0f, 1.0f,
                                          gUvEnvExports->unk28, &slider);
-        gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004029C0, 0x12, 0.0f, 1.0f,
+        gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004029C0, 0x12, 0.0f, 1.0f,
                                          gUvEnvExports->unk2C, &slider);
     }
     if (gUvTerraExports != NULL) {
-        gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004029CC, 0x12, 0.0f, 1.0f,
+        gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004029CC, 0x12, 0.0f, 1.0f,
                                          gUvTerraExports->sNoSobjsFlag, &slider);
-        gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004029D8, 0x12, 0.0f, 1.0f,
+        gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004029D8, 0x12, 0.0f, 1.0f,
                                          gUvTerraExports->sNoTobjsFlag, &slider);
     }
     if (gUvGfxStateExports != NULL) {
-        gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004029E4, 0x12, 0.0f, 1.0f,
+        gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004029E4, 0x12, 0.0f, 1.0f,
                                          gUvGfxStateExports->unk78, &slider);
     }
     if (gSkidExports != NULL) {
-        gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004029F0, 0x12, 0.0f, 1.0f,
+        gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004029F0, 0x12, 0.0f, 1.0f,
                                          gSkidExports->unk14, &slider);
     }
     if (gRainExports != NULL) {
-        gMiscExports->func_misc_004038D8(menuOption, D_gamegui_004029F8, 0x12, 0.0f, 1.0f,
+        gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_004029F8, 0x12, 0.0f, 1.0f,
                                          gRainExports->unk24, &slider);
     }
     if (gScrnExports != NULL) {
-        gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402A00, 0x12, 0.0f, 1.0f,
+        gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402A00, 0x12, 0.0f, 1.0f,
                                          gScrnExports->unk1C, &slider);
     }
     if (player != NULL) {
-        gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402A08, 0x12, 0.0f, 1.0f,
+        gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402A08, 0x12, 0.0f, 1.0f,
                                          player->unk24, &slider);
     }
     if (gFlagExports != NULL) {
-        gMiscExports->func_misc_004038D8(menuOption, D_gamegui_00402A10, 0x12, 0.0f, 1.0f,
+        gMiscExports->miscCreateGuiSlider(menuOption, D_gamegui_00402A10, 0x12, 0.0f, 1.0f,
                                          gFlagExports->unk18, &slider);
     }
 }

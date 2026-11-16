@@ -44,8 +44,8 @@ void func_scene_00400EC0(void);
 void func_scene_00400EC8(GuiMenu *menu);
 void func_scene_00401254(s32 arg0);
 void func_scene_004012B0(s32 arg0);
-void func_scene_004012B8(GuiSlider *slider);
-void func_scene_00401324(GuiSlider *slider);
+void sceneTrackSliderCallback(GuiSlider *slider);
+void sceneWeatherSliderCallback(GuiSlider *slider);
 void func_scene_004013F4(UnkStruct_scene_004013F4 *arg0, UnkStruct_scene_004013F4 *arg1);
 void func_scene_00401438(UnkStruct_scene_004013F4 *arg0, UnkStruct_scene_004013F4 *arg1,
                          UnkStruct_scene_004013F4 *arg2, f32 arg3);
@@ -768,7 +768,7 @@ void func_scene_004003F4(s32 track) {
     s32 var_v0;
     s32 var_v0_2;
     s32 terrain;
-    s32 *temp_t4;
+    f32 *temp_t4;
     s32 i;
     SceneTrackInfo *sceneTrack;
     char pad[0x4];
@@ -784,7 +784,7 @@ void func_scene_004003F4(s32 track) {
 
     sCurrentScene.unk12 = sceneTrack->unk13;
 
-    gGameSettings->unkF0 = sceneTrack->trackName;
+    gGameSettings->currentSceneTrackName = sceneTrack->trackName;
     if ((track >= TRACK_COVENTRY_COVE) && (track < TRACK_STUNT_O_RAMA)) {
         if (gGameSettings->numAiCars >= 3) {
             var_v0 = 2;
@@ -1003,31 +1003,31 @@ void func_scene_00400EC8(GuiMenu *menu) {
     menuOption = gUvGuiExports->uvGuiGetMenuOption(gUvGuiExports->uvGuiNewMenuOption());
     gUvGuiExports->uvGuiSetMenuOptionName(menuOption, "scene");
     gUvGuiExports->uvGuiAddMenuOption(menu, menuOption);
-    gMiscExports->func_misc_004038D8(menuOption, "track", 2, 0.0f, 33.0f, &gGameSettings->currentTrack, &slider);
-    gUvGuiExports->uvGuiSliderSetCallback(slider, func_scene_004012B8);
-    func_scene_004012B8(slider);
-    gMiscExports->func_misc_004038D8(menuOption, "weather", 2, 0.0f, 3.0f, &gTrackWeather, &slider);
-    gUvGuiExports->uvGuiSliderSetCallback(slider, func_scene_004012B8);
-    gUvGuiExports->uvGuiSliderSetCallback(slider, func_scene_00401324);
-    func_scene_00401324(slider);
+    gMiscExports->miscCreateGuiSlider(menuOption, "track", 2, 0.0f, 33.0f, &gGameSettings->currentTrack, &slider);
+    gUvGuiExports->uvGuiSliderSetCallback(slider, sceneTrackSliderCallback);
+    sceneTrackSliderCallback(slider);
+    gMiscExports->miscCreateGuiSlider(menuOption, "weather", 2, 0.0f, 3.0f, &gTrackWeather, &slider);
+    gUvGuiExports->uvGuiSliderSetCallback(slider, sceneTrackSliderCallback);
+    gUvGuiExports->uvGuiSliderSetCallback(slider, sceneWeatherSliderCallback);
+    sceneWeatherSliderCallback(slider);
     gMiscExports->func_misc_00403BEC(menuOption, "edit env", (void (*)(void *)) func_scene_00401254);
     gMiscExports->func_misc_00403BEC(menuOption, "print env", (void (*)(void *)) func_scene_004012B0);
     {
         static const char *sFogTypeValues[3] = { "NONE", "HARDWARE", "SOFTWARE" };
-        gMiscExports->func_misc_004038D8(menuOption, "fogtype", 0x12, 0.0f, 2.0f,
-                                         &sCurrentScene.fogType, &slider);
-        gUvGuiExports->func_uvgui_rom_00403CA4(slider, (s32) sFogTypeValues);
-        gMiscExports->func_misc_004038D8(menuOption, "fogstart", 0x11, 0.0f, 1.0f,
-                                         &sCurrentScene.fogStart, &slider);
-        gMiscExports->func_misc_004038D8(menuOption, "fogmax", 0x11, 0.0f, 1.0f, &sCurrentScene.fogMax,
+        gMiscExports->miscCreateGuiSlider(menuOption, "fogtype", 0x12, 0.0f, 2.0f,
+                                         (s32*)&sCurrentScene.fogType, &slider);
+        gUvGuiExports->uvGuiSetSliderValuesLabel(slider, (char**)sFogTypeValues);
+        gMiscExports->miscCreateGuiSlider(menuOption, "fogstart", 0x11, 0.0f, 1.0f,
+                                         (s32*)&sCurrentScene.fogStart, &slider);
+        gMiscExports->miscCreateGuiSlider(menuOption, "fogmax", 0x11, 0.0f, 1.0f, (s32*)&sCurrentScene.fogMax,
                                          &slider);
-        gMiscExports->func_misc_004038D8(menuOption, "farplane", 0x11, 10.0f, 3000.0f,
-                                         &sCurrentScene.farPlane, &slider);
-        gMiscExports->func_misc_004038D8(menuOption, "fog red", 0x11, 0, 1.0f, &sCurrentScene.fogRed,
+        gMiscExports->miscCreateGuiSlider(menuOption, "farplane", 0x11, 10.0f, 3000.0f,
+                                        (s32*)&sCurrentScene.farPlane, &slider);
+        gMiscExports->miscCreateGuiSlider(menuOption, "fog red", 0x11, 0, 1.0f, (s32*)&sCurrentScene.fogRed,
                                          &slider);
-        gMiscExports->func_misc_004038D8(menuOption, "fog green", 0x11, 0, 1.0f,
-                                         &sCurrentScene.fogGreen, &slider);
-        gMiscExports->func_misc_004038D8(menuOption, "fog blue", 0x11, 0, 1.0f, &sCurrentScene.fogBlue,
+        gMiscExports->miscCreateGuiSlider(menuOption, "fog green", 0x11, 0, 1.0f,
+                                         (s32*)&sCurrentScene.fogGreen, &slider);
+        gMiscExports->miscCreateGuiSlider(menuOption, "fog blue", 0x11, 0, 1.0f, (s32*)&sCurrentScene.fogBlue,
                                          &slider);
     }
 }
@@ -1045,18 +1045,18 @@ void func_scene_00401254(s32 arg0) {
 void func_scene_004012B0(s32 arg0) {
 }
 
-void func_scene_004012B8(GuiSlider *slider) {
+void sceneTrackSliderCallback(GuiSlider *slider) {
     SceneTrackInfo *sceneTrack;
 
-    gGameSettings->currentTrack = slider->unk24;
+    gGameSettings->currentTrack = slider->roundedValue;
     sceneTrack = &SceneTracks[gGameSettings->currentTrack];
     gUvGuiExports->uvGuiSliderSetLabel(slider, sceneTrack->trackName);
 }
 
-void func_scene_00401324(GuiSlider *slider) {
+void sceneWeatherSliderCallback(GuiSlider *slider) {
     char label[16];
 
-    gGameSettings->dbgTrackWeather = slider->unk24;
+    gGameSettings->dbgTrackWeather = slider->roundedValue;
     switch (gGameSettings->dbgTrackWeather) { /* irregular */
         case TRACK_WEATHER_CLEAR:
             sprintf(label, "CLEAR");

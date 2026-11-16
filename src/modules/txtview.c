@@ -89,7 +89,7 @@ void func_txtview_00400298(GuiSlider *slider) {
     s32 fileId;
     char label[4];
 
-    fileId = slider->unk24;
+    fileId = slider->roundedValue;
     if (D_txtview_00400C94 >= 0) {
         if (D_txtview_00400CB8.texture > 0) {
             uvUnloadFile('UVTX', D_txtview_00400CB8.texture);
@@ -112,7 +112,7 @@ void func_txtview_00400298(GuiSlider *slider) {
     D_txtview_00400C94 = fileId;
     sprintf(label, "%d", D_txtview_00400C94);
 
-    gUvGuiExports->func_uvgui_rom_004037E0(slider, 0.0f, (uvGetFilesCount('UVTX') - 1),
+    gUvGuiExports->uvGuiSliderSetValues(slider, 0.0f, (uvGetFilesCount('UVTX') - 1),
                                            D_txtview_00400C94, NULL);
     gUvGuiExports->uvGuiSliderSetLabel(slider, label);
 }
@@ -140,7 +140,7 @@ void txtviewCreateMenu(void) {
     fileCount = uvGetFilesCount('UVTX') - 1;
     slider = gUvGuiExports->uvGuiGetSlider(gUvGuiExports->uvGuiSliderNew());
     gUvGuiExports->uvGuiSliderSetMode(slider, 2);
-    gUvGuiExports->func_uvgui_rom_004037E0(slider, 0.0f, fileCount, 0.0f, NULL);
+    gUvGuiExports->uvGuiSliderSetValues(slider, 0.0f, fileCount, 0.0f, NULL);
     gUvGuiExports->uvGuiSliderSetCallback(slider, func_txtview_00400298);
     gUvGuiExports->uvGuiSliderSetLabel(slider, "0");
     gUvGuiExports->uvGuiAddSlider(menuItem, slider);
@@ -150,41 +150,41 @@ void txtviewCreateMenu(void) {
     gUvGuiExports->uvGuiAddMenuItem(menuOption, menuItem);
     slider = gUvGuiExports->uvGuiGetSlider(gUvGuiExports->uvGuiSliderNew());
     gUvGuiExports->uvGuiSliderSetMode(slider, 0x11);
-    gUvGuiExports->func_uvgui_rom_004037E0(slider, 0.0f, 2.0f, 0.0f, (s32 *) &D_txtview_00400C9C);
+    gUvGuiExports->uvGuiSliderSetValues(slider, 0.0f, 2.0f, 0.0f, (s32 *) &D_txtview_00400C9C);
     gUvGuiExports->uvGuiAddSlider(menuItem, slider);
     menuItem = gUvGuiExports->uvGuiGetMenuItem(gUvGuiExports->uvGuiNewMenuItem());
     gUvGuiExports->uvGuiSetMenuItemName(menuItem, "V coordinate");
     gUvGuiExports->uvGuiAddMenuItem(menuOption, menuItem);
     slider = gUvGuiExports->uvGuiGetSlider(gUvGuiExports->uvGuiSliderNew());
     gUvGuiExports->uvGuiSliderSetMode(slider, 0x11);
-    gUvGuiExports->func_uvgui_rom_004037E0(slider, 0.0f, 2.0f, 0.0f, (s32 *) &D_txtview_00400CA0);
+    gUvGuiExports->uvGuiSliderSetValues(slider, 0.0f, 2.0f, 0.0f, (s32 *) &D_txtview_00400CA0);
     gUvGuiExports->uvGuiAddSlider(menuItem, slider);
     menuItem = gUvGuiExports->uvGuiGetMenuItem(gUvGuiExports->uvGuiNewMenuItem());
     gUvGuiExports->uvGuiSetMenuItemName(menuItem, "red");
     gUvGuiExports->uvGuiAddMenuItem(menuOption, menuItem);
     slider = gUvGuiExports->uvGuiGetSlider(gUvGuiExports->uvGuiSliderNew());
     gUvGuiExports->uvGuiSliderSetMode(slider, 0x11);
-    gUvGuiExports->func_uvgui_rom_004037E0(slider, 0.0f, 1.0f, 0.0f, (s32 *) &D_txtview_00400CA4);
+    gUvGuiExports->uvGuiSliderSetValues(slider, 0.0f, 1.0f, 0.0f, (s32 *) &D_txtview_00400CA4);
     gUvGuiExports->uvGuiAddSlider(menuItem, slider);
     menuItem = gUvGuiExports->uvGuiGetMenuItem(gUvGuiExports->uvGuiNewMenuItem());
     gUvGuiExports->uvGuiSetMenuItemName(menuItem, "green");
     gUvGuiExports->uvGuiAddMenuItem(menuOption, menuItem);
     slider = gUvGuiExports->uvGuiGetSlider(gUvGuiExports->uvGuiSliderNew());
     gUvGuiExports->uvGuiSliderSetMode(slider, 0x11);
-    gUvGuiExports->func_uvgui_rom_004037E0(slider, 0.0f, 1.0f, 0.0f, (s32 *) &D_txtview_00400CA8);
+    gUvGuiExports->uvGuiSliderSetValues(slider, 0.0f, 1.0f, 0.0f, (s32 *) &D_txtview_00400CA8);
     gUvGuiExports->uvGuiAddSlider(menuItem, slider);
     menuItem = gUvGuiExports->uvGuiGetMenuItem(gUvGuiExports->uvGuiNewMenuItem());
     gUvGuiExports->uvGuiSetMenuItemName(menuItem, "blue");
     gUvGuiExports->uvGuiAddMenuItem(menuOption, menuItem);
     slider = gUvGuiExports->uvGuiGetSlider(gUvGuiExports->uvGuiSliderNew());
     gUvGuiExports->uvGuiSliderSetMode(slider, 0x11);
-    gUvGuiExports->func_uvgui_rom_004037E0(slider, 0.0f, 1.0f, 0.0f, (s32 *) &D_txtview_00400CAC);
+    gUvGuiExports->uvGuiSliderSetValues(slider, 0.0f, 1.0f, 0.0f, (s32 *) &D_txtview_00400CAC);
     gUvGuiExports->uvGuiAddSlider(menuItem, slider);
     menuItem = gUvGuiExports->uvGuiGetMenuItem(gUvGuiExports->uvGuiNewMenuItem());
     gUvGuiExports->uvGuiSetMenuItemName(menuItem, "alpha");
     gUvGuiExports->uvGuiAddMenuItem(menuOption, menuItem);
     slider = gUvGuiExports->uvGuiGetSlider(gUvGuiExports->uvGuiSliderNew());
     gUvGuiExports->uvGuiSliderSetMode(slider, 0x11);
-    gUvGuiExports->func_uvgui_rom_004037E0(slider, 0.0f, 1.0f, 0.0f, (s32 *) &D_txtview_00400CB0);
+    gUvGuiExports->uvGuiSliderSetValues(slider, 0.0f, 1.0f, 0.0f, (s32 *) &D_txtview_00400CB0);
     gUvGuiExports->uvGuiAddSlider(menuItem, slider);
 }

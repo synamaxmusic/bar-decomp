@@ -1,5 +1,5 @@
-rom:0x64 reloc:MIPS_HI16 symbol:func_uvvolumeld_rom_00400050
-rom:0x70 reloc:MIPS_LO16 symbol:func_uvvolumeld_rom_00400050
+rom:0x64 reloc:MIPS_HI16 symbol:uvParseUVVL
+rom:0x70 reloc:MIPS_LO16 symbol:uvParseUVVL
 rom:0x68 reloc:MIPS_HI16 symbol:func_uvvolumeld_rom_00400048
 rom:0x74 reloc:MIPS_LO16 symbol:func_uvvolumeld_rom_00400048
 rom:0x6C reloc:MIPS_HI16 symbol:func_uvvolumeld_rom_004001F8

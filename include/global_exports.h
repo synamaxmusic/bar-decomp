@@ -11,7 +11,7 @@ extern UnkStruct_80025CAC* gAiExports;
 extern UnkStruct_80025CB0* gTdataExports;
 extern UnkRainExports* gRainExports;
 extern UnkFlagExports* gFlagExports;
-extern Volt_Exports* gVolTestExports;
+extern VolTest_Exports* gVolTestExports;
 extern void* gBattleExports;
 extern Powerup_Exports* gPowerupExports;
 extern void* gLetterExports;
@@ -46,4 +46,5 @@ extern UvTerra_Exports* gUvTerraExports;
 extern UnkGlareExports* gGlareExports;
 extern UnkIsectExports* gUvIsectExports;
 extern UvLights_Exports* gUvLightExports;
+extern Scene_Exports*  gSceneExports;
 #endif /* GLOBAL_EXPORTS_H */
