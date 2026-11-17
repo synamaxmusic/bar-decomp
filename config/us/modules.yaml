@@ -144,6 +144,10 @@ Modules:
       - data
       - bss
   - name: scrn
+    done_sections:
+      - text
+      - data
+      - bss 
   - name: selection
   - name: shadow
   - name: skid
