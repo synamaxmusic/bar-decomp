@@ -85,6 +85,7 @@
 #include "scene.h"
 #include "light.h"
 #include "voltest.h"
+#include "scrn.h"
 #define MODULE_ENTRY_POINT(func) __entrypoint_##func
 
 #endif /* BAR_MODULE_H */
